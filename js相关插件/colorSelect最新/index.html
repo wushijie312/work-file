@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale =1.0,maximum-scale=1.0,user-scalable=no">
+    <title></title>
+    <link rel="stylesheet" href="index.css"/>
+    <link rel="stylesheet" href="home.css"/>
+</head>
+<body style="height: 100%; background: #F06060;">
+<div class="start_main">
+    <div class="start_content_one">
+        <h3>测测你的视力有多强</h3>
+        <h4>The Color !</h4>
+
+        <p>找出所有色块里颜色不同的一个</p>
+
+        <p>世界上只有3个人能玩到40关</p>
+    </div>
+    <div class="start_content_two">
+        <div class="start_btn">开始测试</div>
+        <p>uyu.com</p>
+    </div>
+</div>
+
+<div class="main_cont">
+    <div class="header_cont">
+        <div class="h_content h_score">
+            <div class="h_score_one">0</div><div class="h_score_two">分</div>
+        </div><div class="h_content h_time">
+            <div class="h_time_one"></div>
+        </div><div class="h_content h_stop">
+            <div class="h_stop_one">暂停</div>
+        </div>
+    </div>
+
+
+    <div class="color_cont">
+        <div class="color_cont_one">
+
+        </div>
+    </div>
+</div>
+
+<div class="stop_main">
+    <div class="stop_content">
+        <h3>游戏暂停</h3>
+
+        <div class="stop_btn">继续</div>
+    </div>
+</div>
+
+<div class="end_main">
+    <div class="end_content">
+        <div class="end_score end_score_one"></div>
+        <div class="end_score end_score_two">分</div>
+        <div class="end_text">你的视力达到以下动物的水平：</div>
+        <div class="end_title">蝙蝠</div>
+        <div class="end_btn">再玩一次</div>
+    </div>
+</div>
+
+
+<div class="guoGuan_main">
+    <div class="guoGuan_content">
+        <div class="guoGuan_text">恭喜您以神的速度和视力来到这里！</div>
+        <div class="guoGuan_btn">再玩一次</div>
+    </div>
+</div>
+</body>
+</html>
+<script>
+    var util = {//这里面写的基本上都是各各模块公用的方法
+        timer: function () {
+            var s = 60, self = this;
+
+            function times() {
+                s--;
+                self.s = s;
+                searchRender.getElesByClass("h_time_one")[0].innerHTML = s;
+                self.t = setTimeout(times, 1000);
+                if (s <= 0) {
+                    clearTimeout(self.t);
+                    self.t = null;
+                }
+            }
+
+            this.times = times;
+            times();
+        },
+        stop: function () {
+            clearTimeout(this.t);
+            this.t = null;
+        },
+        start: function () {
+            setTimeout(this.times, 1000);
+        },
+        end: function () {
+            var self = util;
+            if (self.s <= 0) {
+                if (self.score < 15) {
+                    searchRender.getElesByClass("end_title")[0].innerHTML = "蝙蝠";
+                } else if (self.score >= 15 && self.score < 28) {
+                    searchRender.getElesByClass("end_title")[0].innerHTML = "狗";
+                } else if (self.score >= 28 && self.score < 36) {
+                    searchRender.getElesByClass("end_title")[0].innerHTML = "狮子";
+                } else if (self.score >= 36) {
+                    searchRender.getElesByClass("end_title")[0].innerHTML = "鹰";
+                }
+                searchRender.getElesByClass("end_main")[0].style.display = "block";
+                searchRender.getElesByClass("end_score_one")[0].innerHTML = self.score;
+            }
+        },
+        showOrHide:function(){
+            searchRender.getElesByClass("start_main")[0].style.display = "none";
+            searchRender.getElesByClass("stop_main")[0].style.display = "none";
+            searchRender.getElesByClass("end_main")[0].style.display = "none";
+            searchRender.getElesByClass("guoGuan_main")[0].style.display = "none";
+            searchRender.getElesByClass("main_cont")[0].style.display = "block";
+            //开始运行----初始化
+            //倒计时
+            util.timer();
+            //颜色初始化
+            util.color(1);
+            util.score = 0;
+            searchRender.getElesByClass("h_score_one")[0].innerHTML = util.score;
+        },
+        color: function (n) {
+            var score = 0, self = this;
+            var h_score_one = searchRender.getElesByClass("h_score_one")[0];
+
+            function step() {
+                self.score = score;
+                var suiJiColor = searchRender.getRandomColor();
+                var color_cont_one = searchRender.getElesByClass("color_cont_one")[0];
+                var boxColor = [];
+
+                color_cont_one.innerHTML = '';
+                n++;
+                if (suiJiColor == "#F06060") {
+                    colorSelect();
+                } else {
+                    if (n >= 2 && n < 4) {
+                        for (var i = 0; i < n * n; i++) {
+                            var div = document.createElement("div");
+                            div.style.width = color_cont_one.offsetWidth / n + "px";
+                            div.style.height = color_cont_one.offsetWidth / n + "px";
+                            div.className = "colorList";
+                            boxColor.push(div);
+                            div.style.background = suiJiColor;
+                            color_cont_one.appendChild(div);
+                        }
+                        var index = Math.floor((Math.random() * boxColor.length));
+                        boxColor[index].style.opacity = 6 / 10;
+                        boxColor[index].onclick = function () {
+                            score++;
+                            h_score_one.innerHTML = score;
+                            step();
+                        }
+
+                    } else if (n >= 4 && n < 7) {
+                        for (var i = 0; i < 5 * 5; i++) {
+                            var div = document.createElement("div");
+                            div.style.width = color_cont_one.offsetWidth / 5 + "px";
+                            div.style.height = color_cont_one.offsetWidth / 5 + "px";
+                            div.className = "colorList";
+                            boxColor.push(div);
+                            div.style.background = suiJiColor;
+                            color_cont_one.appendChild(div);
+                        }
+                        var index = Math.floor((Math.random() * boxColor.length));
+                        boxColor[index].style.opacity = 6 / 10 + n / 100;
+                        boxColor[index].onclick = function () {
+                            score++;
+                            h_score_one.innerHTML = score;
+                            step();
+                        }
+                    } else if (n >= 7 && n < 10) {
+                        for (var i = 0; i < 6 * 6; i++) {
+                            var div = document.createElement("div");
+                            div.style.width = color_cont_one.offsetWidth / 6 + "px";
+                            div.style.height = color_cont_one.offsetWidth / 6 + "px";
+                            div.className = "colorList";
+                            boxColor.push(div);
+                            div.style.background = suiJiColor;
+                            color_cont_one.appendChild(div);
+                        }
+                        var index = Math.floor((Math.random() * boxColor.length));
+                        boxColor[index].style.opacity = 6 / 10 + n / 100;
+                        boxColor[index].onclick = function () {
+                            score++;
+                            h_score_one.innerHTML = score;
+                            step();
+                        }
+                    } else if (n >= 10 && n < 15) {
+                        for (var i = 0; i < 7 * 7; i++) {
+                            var div = document.createElement("div");
+                            div.style.width = color_cont_one.offsetWidth / 7 + "px";
+                            div.style.height = color_cont_one.offsetWidth / 7 + "px";
+                            div.className = "colorList";
+                            boxColor.push(div);
+                            div.style.background = suiJiColor;
+                            color_cont_one.appendChild(div);
+                        }
+                        var index = Math.floor((Math.random() * boxColor.length));
+                        boxColor[index].style.opacity = 6 / 10 + n / 100;
+                        boxColor[index].onclick = function () {
+                            score++;
+                            h_score_one.innerHTML = score;
+                            step();
+                        }
+                    } else if (n >= 15 && n < 25) {
+                        for (var i = 0; i < 8 * 8; i++) {
+                            var div = document.createElement("div");
+                            div.style.width = color_cont_one.offsetWidth / 8 + "px";
+                            div.style.height = color_cont_one.offsetWidth / 8 + "px";
+                            div.className = "colorList";
+                            boxColor.push(div);
+                            div.style.background = suiJiColor;
+                            color_cont_one.appendChild(div);
+                        }
+                        var index = Math.floor((Math.random() * boxColor.length));
+                        boxColor[index].style.opacity = 6 / 10 + n / 100;
+                        boxColor[index].onclick = function () {
+                            score++;
+                            h_score_one.innerHTML = score;
+                            step();
+                        }
+                    } else if (n >= 25 && n < 40) {
+                        for (var i = 0; i < 9 * 9; i++) {
+                            var div = document.createElement("div");
+                            div.style.width = color_cont_one.offsetWidth / 9 + "px";
+                            div.style.height = color_cont_one.offsetWidth / 9 + "px";
+                            div.className = "colorList";
+                            boxColor.push(div);
+                            div.style.background = suiJiColor;
+                            color_cont_one.appendChild(div);
+                        }
+                        var index = Math.floor((Math.random() * boxColor.length));
+                        boxColor[index].style.opacity = 6 / 10 + n / 100;
+                        boxColor[index].onclick = function () {
+                            score++;
+                            h_score_one.innerHTML = score;
+                            step();
+                        }
+                    } else if (n == 40) {
+                        searchRender.getElesByClass("main_cont")[0].style.display = "none";
+                        searchRender.getElesByClass("guoGuan_main")[0].style.display = "block";
+                    }
+
+                }
+            }
+
+            step();
+        }
+
+    };
+
+    var searchRender = {
+        getElesByClass: function (str, context) {
+            context = context || document;
+            if (context.getElementsByClassName)
+                return context.getElementsByClassName(str);
+
+            var regTrim = /^ +| +$/g;
+            str = str.replace(regTrim, "");
+            var aClass = str.split(/ +/);
+            var eles = context.getElementsByTagName("*");
+            for (var i = 0; i < aClass.length; i++) {
+                //eles=byClass(aClass[i],eles)
+                var strClass = aClass[i];
+                var regClass = new RegExp("(?:^| )" + strClass + "(?: |$)");
+                var a = [];
+                for (var j = 0; j < eles.length; j++) {
+                    var ele = eles[j];
+                    if (regClass.test(ele.className)) {
+                        a.push(ele);
+                    }
+                }
+                eles = a;
+            }
+            return eles;
+
+        },
+        getRandomColor: function () {
+            return '#' + ('00000' + (Math.random() * 0x1000000 << 0).toString(16)).substr(-6);
+        }
+    };
+
+    //点击暂停
+    searchRender.getElesByClass("h_stop_one")[0].onclick = function () {
+        util.stop();
+        searchRender.getElesByClass("stop_main")[0].style.display = "block";
+    };
+    //stop_btn
+    searchRender.getElesByClass("stop_btn")[0].onclick = function () {
+        util.start();
+        searchRender.getElesByClass("stop_main")[0].style.display = "none";
+    };
+
+    //点击开始按钮  start_main
+    searchRender.getElesByClass("start_btn")[0].onclick = function () {
+        searchRender.getElesByClass("start_main")[0].style.display = "none";
+        searchRender.getElesByClass("main_cont")[0].style.display = "block";
+        //开始运行----初始化
+        //倒计时
+        util.timer();
+        //颜色初始化
+        util.color(1);
+    };
+    setInterval(util.end, 1000);
+    //再玩一次
+    searchRender.getElesByClass("end_btn")[0].onclick = function () {
+        util.showOrHide();
+    };
+    //再玩一次
+    searchRender.getElesByClass("guoGuan_btn")[0].onclick = function () {
+        util.showOrHide();
+    };
+
+
+</script>

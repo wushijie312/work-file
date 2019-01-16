@@ -1,0 +1,44 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+a{
+    text-decoration: none;
+}
+
+img{
+    vertical-align: middle;
+    border:0;
+}
+li{
+    list-style: none;
+}
+.cb{
+    clear:both;
+}
+.fl{
+    float:left;
+}
+.fr{
+    float:right;
+}
+body {
+    width: 100%;
+    overflow-x: hidden;
+    color: #341e00;
+    position: relative;
+    min-height: 100%;
+    font-family: "Microsoft YaHei","Gotham","Helvetica Neue","Hiragino Sans GB","WenQuanYi Micro Hei",Arial,sans-serif;
+    font-size: 14px;
+    margin:0;
+    padding:0;
+    background-color: #fff;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box; /* Firefox */
+    -webkit-box-sizing:border-box; /* Safari */
+}
+.container{
+    margin:0 auto;
+    width:1200px;
+}
