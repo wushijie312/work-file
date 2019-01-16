@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>我的收益</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>
+
+    <!--weui css-->
+    <link href="https://res.wx.qq.com/open/libs/weui/1.1.1/weui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-weui/1.0.1/css/jquery-weui.min.css">
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+
+<style>
+
+    .right_btn_box {
+        margin: 5%;
+    }
+
+    .banner_list {
+        font-size: 120%;
+    }
+
+    @media screen and (min-width: 300px) and  (max-width: 360px) {
+        /*iphone 5*/
+        .right_btn_box {
+            margin: -11%;
+            margin-top: 5%;
+        }
+
+        .banner_list {
+            font-size: 100%;
+        }
+    }
+
+    @media screen and (min-width: 360px) and (max-width: 400px) {
+        /*iphone 8*/
+        .right_btn_box {
+            margin: -11%;
+            margin-top: 5%;
+        }
+
+        .banner_list {
+            font-size: 100%;
+        }
+    }
+
+    @media screen and (min-width: 400px) and (max-width: 500px) {
+        /*iphone 8plus*/
+
+    }
+</style>
+<body>
+
+<div style="width: 100%;height: 149px;    background-repeat: round;background-image: url('../img/partner3.png')">
+    <div style="width: 100%;height: 101px"></div>
+    <div style="width: 100%;height:47px;float: left;position:relative;top:48px;display:inline-block;margin-top:-46px;background: #000;opacity: 0.2"></div>
+    <div style="width: 100%;height: 47px;float: left;position: relative" class="banner_list">
+        <div style="float: left;width: 33.33333%;height:80%;" id="index_page">
+            <div style="width: 60%;height: 70%;margin: 0 auto;margin-top:10%;">
+                <div style="width: 100%;text-align:center;color: #b1e6fc;">邀请码</div>
+                <div style="display: none;width: 50%;margin: 0 auto;height: 15%;background:#3dbafc "></div>
+
+            </div>
+        </div>
+
+        <div style="float: left;width: 33.33333%;height:80%;">
+            <div style="width: 60%;height: 70%;margin: 0 auto;margin-top:10%;" id="profit">
+                <div style="width: 100%;text-align:center;color: #fff;">我的收益</div>
+                <div style="width: 50%;margin: 0 auto;height: 15%;background:#fff "></div>
+            </div>
+        </div>
+
+        <div style="float: left;width: 33.33333%;height:80%;" id="rules">
+            <div style="width: 60%;height: 70%;margin: 0 auto;margin-top:10%;">
+                <div style="width: 100%;text-align:center;color: #b1e6fc;">收益规则</div>
+                <div style="display:none;width: 50%;margin: 0 auto;height: 15%;background:#3dbafc; "></div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div style="clear: both;
+            background: #00a8ff;
+            background-size: cover;
+            background-repeat: no-repeat;height: 230px">
+    <div class="weui-flex bank-info-top" style="height: 113px;">
+        <div>
+            <div class="" style="font-size: 14px;   height: 88px;
+            width: 150px;
+            margin: 26px;
+            margin-top: 18px;
+            color: #87d3fc;">
+                <div><span style="font-size: 14px">总收益(元)</span></div>
+                <div class="money" style="margin-top: 0px;color: #fff;font-size: 30px;font-weight: 300;">
+                    <span>28645.00</span></div>
+            </div>
+        </div>
+    </div>
+    <div style="height: 0.5px;width: 95%;margin-left:5%;background:#7ccbfc;    float: left;"></div>
+    <div class="weui-flex " style="    clear: both;">
+        <div class="" style="float:left;font-size: 14px ;height: 88px;
+            width: 50%;
+            margin: 5%;
+            color: #87d3fc;">
+            <div><span>可提现金额(元)</span></div>
+            <div class="money" style="margin-top: 0px;color: #fff;font-size: 30px;font-weight: 300;">
+                <span>1034.23</span></div>
+        </div>
+        <div class="right_btn_box" style="float:right;font-size: 14px ;  height: 88px;
+        text-align: center;
+            width: 50%;
+            ">
+            <div><span style="font-size: 90%;color: #87d3fc">(提现收益将于T+1到账)</span></div>
+            <div style="margin-top: 8.5%;height: 7.5%">
+                <div style="
+                    color: #fff;
+                    float: left;
+                    width: 47%;
+                    height: 30px;
+                    /*background: #fff;*/
+                    border: 2px #fff solid;
+                    text-align: center;
+                    line-height: 30.5px;
+                    border-radius: 32.5px;
+                    font-size: 110%;
+                    margin-right:10px;" class="btn">提现记录
+                </div>
+                <div style="float: right;
+                    width: 40%;
+                    height: 30px;
+                    border: 2px #fff solid;
+                    background: #fff;
+                    text-align: center;
+                    line-height: 30.5px;
+                    border-radius: 32.5px;
+                    color: #1daafc;
+                    font-size: 110%" class="btn">提现
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<div style="width: 100%;height: 16px;">
+</div>
+
+
+<div style="width: 90%;height: 116px;margin:0 auto;background: #fff;border-radius: 3px">
+    <div style="width: 100%;height:50% ;text-align: center;color: #ccc">
+        <div style="width: 60px;height: 50%;margin-top: 10px;
+    margin-left: 22px;float:left;">
+            <span>0.71%</span>
+        </div>
+        <div style="width: 60px;height: 50%;margin-top: 10px;
+    margin-left: 22px;float: right;">
+            <span>0元</span>
+
+        </div>
+
+    </div>
+    <div style="width: 100%;height:50% ;text-align: center;clear: both;color: #000">
+        <div style="height: 50%;margin-top: 10px;
+    margin-left: 22px;float:left;">
+            <span>此码还没有商户</span>
+        </div>
+        <div style="width: 60px;height: 50%;margin-top: 10px;
+    margin-left: 22px;float: right;">
+            <span>..</span>
+
+        </div>
+
+    </div>
+
+
+</div>
+<div style="width: 100%;height: 16px;">
+</div>
+<div style="width: 90%;height: 61px;margin:0 auto;background: #fff;border-radius: 3px">
+
+    <div style="width: 100%;height:50% ;text-align: center;clear: both;color: #000">
+        <div style="height: 50%;margin-top: 20px;
+    margin-left: 22px;float:left;">
+            <span>0.38%</span>
+        </div>
+        <div style="width: 60px;height: 50%;margin-top: 20px;
+    margin-left: 22px;float: right;">
+            <span>0元</span>
+
+        </div>
+
+    </div>
+
+
+</div>
+<div style="width: 100%;height: 16px;">
+</div>
+<div style="width: 90%;height: 61px;margin:0 auto;background: #fff;border-radius: 3px">
+
+    <div style="width: 100%;height:50% ;text-align: center;clear: both;color: #000">
+        <div style="height: 50%;margin-top: 20px;
+    margin-left: 22px;float:left;">
+            <span>0.38%</span>
+        </div>
+        <div style="width: 60px;height: 50%;margin-top: 20px;
+    margin-left: 22px;float: right;">
+            <span>0元</span>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+<script>
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+    $(function () {
+
+        $("#index_page").click(function () {
+            window.location.href = "index.html";
+        });
+        $("#profit").click(function () {
+            window.location.href = "profit.html";
+        });
+        $("#rules").click(function () {
+            window.location.href = "";
+        });
+    });
+
+</script>
+</body>
+</html>

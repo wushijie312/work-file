@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>wwww</title>
+	 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <!-- 为移动设备添加 viewport -->
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <!-- 添加到主屏后的标题（iOS 6 新增） -->
+    <meta name="apple-mobile-web-app-title" content="">
+    <!-- 是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏 -->
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/css/index.css">
+    <script type="text/javascript" src='js/jquery-2.1.3.min.js'></script>
+    
+    <!-- <link rel="stylesheet" type="text/css" href="../public/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../public/css/index.css">
+    <script type="text/javascript" src='../public/js/jquery-2.1.3.min.js'></script> -->
+</head>
+<body>
+<div class="bg_1"></div>
+<div class="login_box">
+	<div class="width640">
+		<div class="login_header">
+			欢迎来到修改页
+        </div>
+        <% if(users ) {%>
+	    <form method="post" action="/modify/<%=users.id%>">
+			<div class="login_inputText">
+                
+				<input type="text" class="inputusername" name="username" placeholder='请输入用户名' value="<%=users.username%>" /><br />
+                <input type="text" class="inputpaddword" name="password" placeholder='请输入密码'  value="<%=users.password%>"  />
+                
+                <!-- <input type="text" class="inputpaddword" name="email" placeholder='请输入邮箱' value="12@qq.com" /> -->
+                <!-- <input type="text" class="inputpaddword" name="phone" placeholder='请输入手机号' value="18310293883" /> -->
+			</div>
+			<div class="login_main">
+				<input class="login_inf" type="submit" name="" value="修改" />
+			</div>
+        </form>
+        <a href="/login"> <img src="http://localhost:3000/uploads/album/<%=users.images%>" alt=""></a>
+        <form method="post" action="/uploads/<%=users.id%>"  enctype="multipart/form-data">
+			<div class="login_inputText">
+                
+                <input type="file" class="inputpaddword" name="file" placeholder='请输入密码'  value="<%=users.images%>"  />
+                
+                <!-- <input type="text" class="inputpaddword" name="email" placeholder='请输入邮箱' value="12@qq.com" /> -->
+                <!-- <input type="text" class="inputpaddword" name="phone" placeholder='请输入手机号' value="18310293883" /> -->
+			</div>
+			<div class="login_main">
+				<input class="login_inf" type="submit" name="" value="修改" />
+			</div>
+        </form>
+        <%}%>
+	</div>
+</div>
+</body>
+</html>
+<script type="text/javascript">
+
+</script>

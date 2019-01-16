@@ -1,0 +1,44 @@
+<html> 
+  <head> 
+        <meta charset="utf-8"> 
+        <title>HelloWorld</title> 
+  </head> 
+<body> 
+<!-- <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+   <circle cx="100" cy="50" r="40" stroke="black" stroke-width="2" fill="#f90" />
+   <circle cx="200" cy="50" r="40" stroke="black" stroke-width="2" fill="red" />
+</svg>  -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script> 
+<script>  
+
+        // var body=d3.select('body');
+
+var dataset = [ 2.5 , 2.1 , 1.7 , 1.3 , 0.9 ];
+var width=300;
+        var height=300;
+        var svg=d3.select('body').append("svg").attr({"width":width,"height":height});
+var linear = d3.scale.linear()
+        .domain([0, d3.max(dataset)])
+        .range([0, 250]);
+
+var rectHeight = 25;   //每个矩形所占的像素高度(包括空白)
+
+svg.selectAll("rect")
+    .data(dataset)
+    .enter()
+    .append("rect")
+    .attr("x",20)
+    .attr("y",function(d,i){
+         return i * rectHeight;
+    })
+    .attr("width",function(d){
+         return linear(d);   //在这里用比例尺
+    })
+    .attr("height",rectHeight-2)
+    .attr("fill","steelblue");
+
+
+
+</script> 
+</body> 
+</html>

@@ -1,0 +1,19 @@
+<!--index.wxml-->
+<view class='home_box'>
+	<view class="bg_a"></view>
+	<div class="{{templateList?'':'allHide'}}">	
+	<view class='home_ban'>
+		<view class="{{currentActive==index?'home_top allShow':'home_top allHide'}}" wx:for="{{templateList}}" >
+			<image class="home_top_hpone" src="{{item.OSSBucketPath}}{{item.PreviewFrontImgPath_L}}" ></image>
+		</view>
+		
+		<view class='home_btn_box'>
+			<text class="{{currentActive==index?'home_btn_item hight':'home_btn_item'}}" data-current="{{index}}" wx:for="{{templateList}}" data-listid="{{item.Id}}" bindtap="changeMoban">{{item.TemplateName}}</text>
+		</view>
+	</view>
+	<view class='home_btn' bindtap="indexTap">填写信息</view>
+	</div>
+	<view class="{{loading_active?'bg_loading':'allHide'}}">
+		<image class="bg_loading_img " src="../../images/loading.gif" ></image>
+	</view>
+</view>

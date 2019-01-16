@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>创建分享码</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
+
+    <!--weui css-->
+    <link href="https://res.wx.qq.com/open/libs/weui/1.1.1/weui.min.css" rel="stylesheet">
+</head>
+
+<style>
+
+</style>
+<body>
+
+<div class="btn" id="createBtn"
+ style="font-weight: 300;color: #fff;font-size: 1.05rem;box-shadow: 1px 5px 20px 2px #91ccec;text-align: center;line-height: 40px;height: 40px;width: 140px;border-radius: 30px;background: #00a8ff">
+创建
+</div>
+<script>
+    $("#createBtn").click(function () {
+            // weui.confirm('普通的confirm');
+            // weui.confirm('自定义标题的confirm', { title: '自定义标题' });
+            // weui.confirm('带回调的confirm', function(){ console.log('yes') }, function(){ console.log('no') });
+            // var confirmDom = weui.confirm('手动关闭的confirm', function(){
+            //     return false; // 不关闭弹窗，可用confirmDom.hide()来手动关闭
+            // });
+            // weui.confirm('带回调的自定义标题的confirm', function(){ console.log('yes') }, function(){ console.log('no') }, {
+            //     title: '自定义标题'
+            // });
+            weui.confirm('自定义按钮的confirm', {
+                title: '自定义按钮的confirm',
+                buttons: [{
+                    label: 'NO',
+                    type: 'default',
+                    onClick: function(){ console.log('no') }
+                }, {
+                    label: 'YES',
+                    type: 'primary',
+                    onClick: function(){ console.log('yes') }
+                }]
+            });
+});
+</script>
+</body>
+</html>

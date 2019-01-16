@@ -1,0 +1,57 @@
+//index.js
+//获取应用实例
+const app = getApp()
+import { WXOnload, WXIndextap } from '../../service/WXIndex.js'
+
+import { TYPES } from '../../src/const.js'
+Page({
+  data: {
+    loading_active: false,
+    currentActive: 0,
+    templateList: [],
+    templateId: 0,
+    onloadonetime: true
+  },
+
+  //事件处理函数
+  indexTap: function () {
+    var sessionid = wx.getStorageSync('SessionId');
+    var self = this;
+    self.setData({
+      loading_active: true
+    });
+    // md5加密
+    var resValues = 'sessionid:' + sessionid + '&templateId:' + this.data.templateId + '&key:' + TYPES.codeKey;
+    var encryptionValues = app.md5(resValues).toLowerCase();
+    WXIndextap(sessionid, this.data.templateId, encryptionValues, self)
+      .then((datas) => {
+        wx.setStorageSync('template', JSON.parse(datas.Message));
+        wx.navigateTo({
+          url: '../fillUserInfo/index/index'
+        });
+
+      }).catch(function (e) {
+
+        examine(e);
+      });
+  },
+
+  changeMoban: function (e) {
+    this.setData({
+      currentActive: e.currentTarget.dataset.current
+    });
+    this.setData({
+      templateId: e.currentTarget.dataset.listid
+    });
+  },
+
+  onLoad: function () {
+    var sessionid = wx.getStorageSync('SessionId');
+    var self = this;
+    // md5加密
+    var resValues = 'sessionid:' + sessionid + '&key:' + TYPES.codeKey;
+    var encryptionValues = app.md5(resValues).toLowerCase();
+    WXOnload(sessionid, encryptionValues, self);
+  }
+
+})

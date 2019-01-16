@@ -1,0 +1,17 @@
+{
+  "name": "webpack1",
+  "version": "1.0.0",
+  "description": "--config 指定配置打包文件到webpack.dev.config.js --progress显示打包进度过程 --display-modules显示打包模块 --colors显示打包颜色 --display-reasons显示打包原因",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "web": "webpack --watch --config webpack.config.js --progress --display-modules --colors --display-reasons",
+    "webcopy": "webpack --watch --config webpack.dev.config.js --progress --display-modules --colors --display-reasons"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "html-webpack-plugin": "^2.30.1",
+    "webpack": "^3.8.1"
+  }
+}

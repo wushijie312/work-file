@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<div class="container">
+	<% if(tmp.length) {%>
+	 <ul>
+	 	<% tmp.forEach(function(name) {%>
+	 	<li><%= name.nickName %> <%= name.created_at %> <%= name.password %></li>
+	 	<% }) %>
+	 </ul>   
+	 <% } %>     
+</div>
+</body>
+</html>

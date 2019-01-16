@@ -1,0 +1,13 @@
+
+@import '~antd/dist/antd.css';
+
+.top {
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  flex-direction: row;
+  justify-content:flex-end;
+}
+
+.top_btn {
+  margin-left: 5px;
+}

@@ -1,0 +1,9 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+.div1 {
+  background: red;
+  color: #fff;
+  line-height: 300px;
+  padding: 20px; }

@@ -1,0 +1,47 @@
+@import "../../style/reset.wxss";
+/**index.wxss**/
+.home_ban{
+	padding:60rpx 0rpx 0;
+}
+.home_top{
+	box-sizing:0 0 20rpx rgba(0,0,0,0.3);
+}
+.home_top_bg{
+	text-align:center;
+	position:relative;
+}
+
+.home_top_hpone{
+	width:630rpx;
+	height:880rpx;
+}
+
+
+
+.preview_bottom{
+	position:absolute;
+    bottom:36rpx;
+    lefet:0;
+    width:100%;
+}
+.preview_btn{
+    margin:0 40rpx;
+	display: block;
+}
+.preview_btn_item{
+	display:block;
+	width:46%;
+	border:1rpx solid #0096e0;
+	border-radius:	49rpx;
+	-webkit-border-radius:	49rpx;
+	background:#0096e0;
+	font-size:32rpx;
+	color:#fff;
+	text-align:center;
+	line-height:98rpx;
+}
+.preview_btn_item:nth-of-type(1){
+	background:#fff;
+	color:#0096e0;
+}
+

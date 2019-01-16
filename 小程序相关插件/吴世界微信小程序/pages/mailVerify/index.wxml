@@ -1,0 +1,32 @@
+<!--index.wxml-->
+<view class='home_box'>
+	<view class="bg_a"></view>
+	<view class="login_head">
+		
+	</view>
+	<view class="login_main">
+		<view class="filluser_logo">
+			<image class="filluser_logo_img " src="http://static.98ep.com/Img/mobiles/yiXinCard/mail_logo.png" ></image>
+		</view>
+		<view class='mailVerify_head_a'>验证邮件已发送</view>
+		<view class='mailVerify_head_b'>{{emails}}</view>
+		<view class='mailVerify_head_c'>点击邮件中的链接完成操作</view>
+		<view class='mailVerify_head_c mailVerify_head_c_bottom'>验证邮件24小时内有效，请尽快验证</view>
+		<view class='mailVerify_head_d'>邮箱错误？<text class="mailVerify_head_d_again" bindtap='backInputAgainTap'>返回重新输入</text></view>
+
+	</view>
+	<view class="mailVerify_main_a">
+		<view class="mailVerify_cont_title ">没有收到邮件？</view>
+		<view class="mailVerify_content">
+			<view class="mailVerify_content_item">1.查看邮箱的垃圾邮箱，邮件有可能被误认为是垃圾邮件。</view>
+			<view class="mailVerify_content_item">2.超过10分钟仍未收到验证邮件，请点击按钮重新发送邮件。</view>
+		</view>
+		<view class="mailVerify_cont_send" bindtap='mailVerifySendTap'>重新发送</view>
+	</view>
+	<view class="mailVerify_footer">
+		<view class='login_btn' bindtap="mailVerifyTap">返回首页</view>
+	</view>
+    <view class="{{loading_active?'bg_loading':'allHide'}}">
+		<image class="bg_loading_img " src="../../images/loading.gif" ></image>
+	</view>
+</view>

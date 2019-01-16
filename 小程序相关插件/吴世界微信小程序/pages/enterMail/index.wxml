@@ -1,0 +1,16 @@
+<!--index.wxml-->
+<view class='home_box'>
+	<view class="bg_a"></view>
+	<view class="login_head">
+		<view class="enterMail_head_cont">
+			<text class="enterMail_head_title">为了您的订单能够有效生成</text>
+			<text class="enterMail_head_title">系统要对您的企业邮箱进行验证</text>
+		</view>
+	</view>
+	<view class="login_main">
+		<view class="login_cont_a clearfix">
+			<input class="enterMail_input fl" placeholder="请输入企业邮箱" bindinput='inputEmailCodeTap' /><label class="enterMail_label_name fr">{{emailHZ}}</label>
+		</view>
+		<view class='login_btn' bindtap="enterMailTap">验证</view>
+	</view>
+</view>

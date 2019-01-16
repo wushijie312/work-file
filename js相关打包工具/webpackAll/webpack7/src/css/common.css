@@ -1,0 +1,13 @@
+@import './reset.css';
+html,body{
+    margin:0;
+    padding:0;
+    height: 500px;
+    background: green;
+}
+ul,li{
+    list-style: none;
+}
+.flex_div{
+    display: flex;
+}

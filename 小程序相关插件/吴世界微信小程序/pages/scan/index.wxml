@@ -1,0 +1,19 @@
+<!--index.wxml-->
+<view class='home_box'>
+	<view class="bg_a"></view>
+	<view class="login_head">
+		<image class="login_logo " src="http://static.98ep.com/Img/yiXinCard/login_logo.png" ></image>
+	</view>
+	<view class="login_main">
+		<text class="login_title">授权码登录</text>
+		<view class="login_cont ">
+			<view class="scan_cont_a clearfix">
+				<image class="scan_logo " src="http://static.98ep.com/Img/mobiles/yiXinCard/scan_logo.png"  bindtap="scanViewTap"></image>
+				<image class="scan_upDown" src="http://static.98ep.com/Img/mobiles/yiXinCard/scan_logo_line.png" ></image>
+				
+			</view>
+			<view class='login_btn' bindtap="scanViewTap">扫描专属二维码</view>
+
+		</view>
+	</view>
+</view>

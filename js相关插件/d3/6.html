@@ -1,0 +1,56 @@
+<html> 
+  <head> 
+        <meta charset="utf-8"> 
+        <title>HelloWorld</title> 
+  </head> 
+<body> 
+<!-- <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+   <circle cx="100" cy="50" r="40" stroke="black" stroke-width="2" fill="#f90" />
+   <circle cx="200" cy="50" r="40" stroke="black" stroke-width="2" fill="red" />
+</svg>  -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script> 
+<script>  
+
+        // var body=d3.select('body');
+        var width=300;
+        var height=300;
+        var dataset = [ 250 , 210 , 170 , 130 , 90 ];
+        var svg=d3.select('body').append("svg").attr({"width":width,"height":height});
+        var rectHeight = 25;   //每个矩形所占的像素高度(包括空白)
+        // 这段代码添加了与 dataset 数组的长度相同数量的矩形，所使用的语句是： start
+       svg.selectAll("rect")   //选择svg内所有的矩形
+            .data(dataset)  //绑定数组
+            .enter()        //指定选择集的enter部分
+            .append("rect") //添加足够数量的矩形元素
+        // 这段代码添加了与 dataset 数组的长度相同数量的矩形，所使用的语句是： end
+
+            .attr("y",20)
+            .attr("x",function(d,i){
+                 return i * rectHeight;
+            })
+            .attr("height",function(d){
+                 return d;
+            })
+            .attr("width",rectHeight-2)
+            .attr("fill","steelblue");
+
+       //       // 这段代码添加了与 dataset 数组的长度相同数量的矩形，所使用的语句是： start
+       // svg.selectAll("rect")   //选择svg内所有的矩形
+       //      .data(dataset)  //绑定数组
+       //      .enter()        //指定选择集的enter部分
+       //      .append("rect") //添加足够数量的矩形元素
+       //  // 这段代码添加了与 dataset 数组的长度相同数量的矩形，所使用的语句是： end
+
+       //      .attr("x",20)
+       //      .attr("y",function(d,i){
+       //           return i * rectHeight;
+       //      })
+       //      .attr("width",function(d){
+       //           return d;
+       //      })
+       //      .attr("height",rectHeight-2)
+       //      .attr("fill","steelblue");
+
+</script> 
+</body> 
+</html>

@@ -1,0 +1,214 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- 为移动设备添加1 viewport -->
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <!-- 添加到主屏后的标题（iOS 6 新增） -->
+    <meta name="apple-mobile-web-app-title" content="">
+    <meta name="format-detection" content="telephone=no">
+    <!-- 是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <script src="./js/jquery-1.9.1.min.js"></script>
+    <title>
+        打地鼠
+    </title>
+</head>
+
+<body>
+    <div class="start ">
+        <div class="start_bg_one"></div>
+        <div class="start_bg">
+            <img class="start_bg_img" src="./img/d_start_bg.jpg" alt="">
+            <div class="start_btn d_width">
+            </div>
+        </div>
+
+    </div>
+    <div class="begin hide">
+        <div class="all_bg"></div>
+        <div class="d_box">
+            <div class="">
+                <ul class="d_head clearfix">
+                    <li>
+                        时间：
+                        <span class="d_time">60</span>
+                    </li>
+                    <li>
+                        得分：
+                        <span class="d_score">0</span>
+                    </li>
+                    <li>
+                        <span class="d_stop">暂停</span>
+                        <span class="d_again">重新开始</span>
+                    </li>
+                </ul>
+                <div class="d_main">
+                    <ul class="d_ul ">
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="end hide">
+        <div class="start_bg_one"></div>
+        <div class="d_width">
+             <div class="end_score">
+                0
+             </div>
+             <div class="end_again">
+                再玩一次
+             </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    $(function () {
+       
+
+        var ary = [];
+        var W = $(window).width();
+        var H = $(window).height();
+        var interval = 1200, outTime = 100, score = 0, timeser = null;
+        //出现范围
+        function move(mask) {
+            var w = W - mask.outerWidth();
+            var h = H - mask.outerHeight();
+            var l = Math.floor(Math.random() * W);
+            var t = Math.floor(Math.random() * 400);
+            if (l >= w) {
+                mask.css({ left: w + "px" });
+            } else if (l <= 0) {
+                mask.css({ left: 0 + "px" });
+            } else {
+                mask.css({ left: l + "px" });
+            }
+
+            if (t >= h) {
+                mask.css({ top: t + "px" });
+            } else if (t <= 0) {
+                mask.css({ top: 0 + "px" });
+            } else {
+                mask.css({ top: t + "px" });
+            }
+        }
+        //倒计时
+        var send = $(".d_time"), timer = null, wait = 60;
+        function time() {
+            if (wait == 0) {
+                clearTimeout(timer);
+                timer = null;
+                // wait=60;
+                send.text(wait);
+              
+                //删除已有图
+                // end
+                $(".begin").hide();
+                $(".end").show();
+                $(".end_score").text(score);
+                $(".d_ul").html('');
+
+            } else {
+                send.text(wait);
+                wait--;
+                // 加快时间
+                if(wait>58){
+                    interval=1500;
+                }else if(wait>52){
+                    interval=1200;
+                }else if(wait>45){
+                    interval=1100;
+                }else if(wait>40){
+                    interval=1000;
+                }else if(wait>20){
+                    interval=800;
+                }else if(wait>10){
+                    interval=600;
+                }
+                timer = setTimeout(time, 1000);
+            }
+        }
+        // 定时出现图
+        function start() {
+                $(".d_ul").html('');
+                var divLi = `<li>
+                                <img class="d_move " src="./img/d_move.png" alt="">
+                            </li>`;
+
+                $(".d_ul").append(divLi);
+                setTimeout(function () {
+                    $(".d_ul li").addClass("active");
+                }, outTime || 200);
+                move($(".d_ul li"));
+            timeser = setTimeout(function () {
+                if(wait==0){
+                      // 暂停显示
+                    clearInterval(timeser);
+                    timeser = null;
+                }
+                start();
+            }, interval);
+
+        }
+        // $(".d_ul li .d_move").click(function () {
+        $("body").on("click", ".d_ul li .d_move", function () {
+            score += 10;
+            $(this).attr('src','./img/d_hit.png');
+            $(".d_score").text(score);
+        });
+        //暂停
+        $(".d_stop").click(function () {
+            // 暂停显示
+            clearTimeout(timer);
+            timer = null;
+            clearInterval(timeser);
+                timeser = null;
+            if (wait == 0) return;
+            if ($(this).text() == '暂停') {
+                $(this).text("开始");
+               
+            } else {
+                $(this).text("暂停");
+                start();
+                time();
+            }
+        });
+        // 重新开始
+        $(".d_again").click(function () {
+            wait = 60;
+            score = 0;
+            clearTimeout(timer);
+            timer = null;
+            time(); 
+            $(".d_score").text(score);
+        });
+
+         // start
+         $(".start_btn").click(function () {
+            $(".start").hide();
+            $(".d_ul").html('');
+            time(); 
+            start();    
+            $(".begin").show();
+        });
+        // 在玩一次
+        $(".end_again").click(function(){
+            wait = 60;
+            score = 0;
+            clearTimeout(timer);
+            timer = null;
+            time(); 
+            start();
+            $(".d_score").text(score);
+            $(".begin").show();
+            $(".end").hide();
+        });
+    
+    })
+</script>

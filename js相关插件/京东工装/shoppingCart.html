@@ -1,0 +1,275 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    <!-- 为移动设备添加 viewport -->
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <!-- 添加到主屏后的标题（iOS 6 新增） -->
+    <meta name="apple-mobile-web-app-title" content="">
+    <meta name="format-detection" content="telephone=no">
+    <!-- 是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏 -->
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <title>购物车</title>
+    <link href="./index.css" rel="stylesheet" type="text/css">
+    <!-- <link href="http://static.98ep.com/css/gongzhuang/index.css" rel="stylesheet" type="text/css"> -->
+    <script src='http://static.98ep.com/js/gongzhuang/jquery-1.9.1.min.js'></script>
+    <!-- <script src="http://static.98ep.com/js/gongzhuang/fastclick.js"></script> -->
+    <script src="http://static.98ep.com/js/gongzhuang/public.js"></script>
+    <script src="http://static.98ep.com/js/gongzhuang/utils.js"></script>
+
+</head>
+
+<body>
+
+<div class="hight100 ">
+    <div class="remarks_Box shop_b allHide">
+        <div class="remarks_one_box">
+            <textarea class="remarks_leaveWord_one shopCart_textarea_heightAuto" name="" id="remarks_leaveWord_one" placeholder="添加备注"></textarea>
+        </div>
+        <div class="remarks_two_box">
+            <a  href="javascript:;">确认</a>
+        </div>
+    </div>
+    <div class="mall_box shop_a allShow allHide">
+        <!-- shoppingCart_box start -->
+        <div class="shoppingCart_box">
+            <div class="shop_box_fixed">
+                <div class="shop_box_autoMove">
+                    <div class="shopCart_box_margin">
+                        <div class="shopCart_head clearfix">
+                            <p class="shopCart_head_a fl">精品男士工装（<span>2件</span>）</p>
+                            <p class="shopCart_head_b fr">123123<span>12343</span></p>
+                        </div>
+                        <div class="shopCart_box_alone">
+                            <div class="shopCart_top_one clearfix">
+                                <div class="shopCart_select_one shopcart_head_select">
+                                    <input class="shopCart_checkOne" type="checkbox"/>
+                                </div>
+                                <div class="shopCart_one_aBox clearfix">
+                                    <div class="shopCart_one_a fl">
+                                        <img  src="http://static.98ep.com/Img/gongzhuang/shopCart/shopCart_2.png" alt="">
+                                    </div>
+                                    <div class="shopCart_one_b fl">
+                                        <div class="shopCart_inf_box">
+                                            <h3>精品单页</h3>
+                                            <div class="shopcart_one_btype clearfix"><p class="shopCart_one_bColor fl">单价(元):</p>
+                                            <p class="shopCart_head_b fl" style="margin-left: 0.5rem">123123<span>12343</span></p>
+                                            </div>
+                                            
+                                            <p class="shopCart_one_bPadding"><span>货期：30-70 天</span> <span>库存：99999999</span></p>
+                                            <div class="shopCart_one_cBox clearfix">
+                                                <span class="shopCart_one_c1 fl">-</span>
+                                                <input class="shopCart_one_c2 fl" value="100,000"/>
+                                                <span class="shopCart_one_c3 fr">+</span>
+                                            </div>
+                                        </div>
+                                        <div class="shopcart_one_order">
+                                        (最低起订量为10,000)申请数量须为5000倍数
+                                        </div>
+                                    </div>
+                                </div>
+                                <span class="shopCart_one_e shopCart_one_eDEL fr">删除</span>
+                                <span class="shopcart_jump"><a href="detail.html" class="clearfix">></a></span>
+                            </div>
+          
+                            <textarea class="shopCart_leaveWord_one shopCart_textarea_heightAuto" name="" id="" placeholder="添加备注"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="shopCart_bottom_one clearfix">
+                <div class="shopCart_allSelect_one fl">
+                    <div class="shopCart_select_one shopCart_select_all fl">
+                        <input class="shopCart_checkAll" type="checkbox"/>
+                    </div>
+                    <span class="shopCart_one_f shopCart_checkAll">全选</span>
+                </div>
+                <ul class="shopCart_orderMoney_one fr">
+                    <li class="shopCart_one_g">
+                        <h3>总计：<span class="shopCart_allTotal">0</span></h3>
+                        <p>不包含运费</p>
+                    </li>
+                    <li class="shopCart_one_h">
+                        <a class="shopCart_one_hColor" href="paymentInterflow.html">结算(<span class="shopCart_allNum">0</span>)</a>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <!-- shoppingCart_box end -->
+    </div>
+    <ul class="home_foot">
+        <li><a href="index.html">首页</a></li>
+        <li class="shopCart_order_pay_one home_footHighlight"><a href="shoppingCart.html">购物车</a><div class="person_one_c_unPay shopCart_order_one_DW">6</div></li>
+        <li class="order_one"><a href="order.html">我的订单</a></li>
+        <li class="shopCart_order_pay_one"><a href="personalCenter.html">个人中心</a><div class="home_one_c_imgAskReq person_center_one_DW"></div></li>
+    </ul>
+</div>
+<div class="shopingCart_empty_box allHide">
+    <div class="shopCart_empty_one">
+        <img class="shopCart_empty_one_img" src="http://static.98ep.com/Img/gongzhuang/shopCart/shopCart_empty_1.png" alt="">
+        <div class="shopCart_empty_buy clearfix">
+            <span class="fl">暂无商品</span>
+            <a href="" class="fr">去购选</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+<script>
+//shopCart 留言
+    var textareaTag,entry_content,textarea_top;
+    $(".shopCart_leaveWord_one").on("focus",function(e){
+        textareaTag=e.target;
+        textarea_top=$(document.body).scrollTop();
+        $(".shop_b").addClass("allShow").siblings(".shop_a").removeClass("allShow");
+        $(document.body).scrollTop(0);
+        $(".remarks_leaveWord_one").val(textareaTag.value);
+    });
+    $(".remarks_two_box a").on("click",function () {
+        entry_content=$(".remarks_leaveWord_one").val();
+        $(".shop_a").addClass("allShow").siblings(".shop_b").removeClass("allShow");
+        $(document.body).scrollTop(textarea_top);
+        textareaTag.value=entry_content;
+        $(".shopCart_textarea_heightAuto").txtaAutoHeight();
+        $(".remarks_leaveWord_one").val('');
+    });
+//shopcart 高度自适应
+     utils.heightauto();
+     $(".shopCart_textarea_heightAuto").txtaAutoHeight();
+//shopCart 购物车选择
+    function selectWork() {
+        var total=0,len;
+        len=$(".shopCart_one_c2").length;
+        $(".shopCart_one_c2").each(function (index,row) {
+            var num=$(this).val(),price=$(".shopCart_unitPrice").eq(index).text();
+            num=parseInt(utils.twoWay_Kbit(num));
+            total+=num*price;
+
+        });
+        shopCart_total=Math.round(total*100)/100;
+        $(".shopCart_allTotal").text(total);
+        $(".shopCart_allNum").text(len);
+    }
+    function inputChecked(a1,a2){
+        //全选
+        $(a2).click(function(){
+            if($(this).prop("checked")){
+                $(a1).prop("checked",true);
+                $(a2).prop("checked",true);
+                selectWork();
+            }else{
+                $(a1).prop("checked",false);
+                $(a2).prop("checked",false);
+                $(".shopCart_allTotal").text(0.00);
+                $(".shopCart_allNum").text(0);
+            }
+        })
+        //单选
+        $(a1).click(function(){
+            var flag = 1;shopCart_total=0,len=0; //默认全选状态
+            $(a1).each(function(index,row){
+                if(!$(this).prop("checked")){
+                    flag = 0;
+                }else{
+                    len+=1;
+                    var num=$(".shopCart_one_c2").eq(index).val(),price=$(".shopCart_unitPrice").eq(index).text();
+                    num=parseInt(utils.twoWay_Kbit(num));
+                    shopCart_total+=num*price;
+                }
+                $(".shopCart_allTotal").text(shopCart_total);
+                $(".shopCart_allNum").text(len);
+            });
+            if(flag){
+                $(a2).prop("checked",true);
+            }else{
+                $(a2).prop("checked",false);
+            }
+        });
+    }
+    inputChecked('.shopCart_checkOne','.shopCart_checkAll');
+    //shopCart 基数的增减
+    function selectWork1() {
+        var shopCart_total=0,len=0; //默认全选状态
+        $(".shopCart_checkOne").each(function(index,row){
+            if($(this).prop("checked")){
+                len+=1;
+                var nums=$(".shopCart_one_c2").eq(index).val(),price=$(".shopCart_unitPrice").eq(index).text();
+                nums=parseInt(utils.twoWay_Kbit(nums));
+                shopCart_total+=nums*price;
+            }
+            shopCart_total=Math.round(shopCart_total*100)/100;
+            $(".shopCart_allTotal").text(shopCart_total);
+            $(".shopCart_allNum").text(len);
+        });
+    }
+    $(".shopCart_one_c1").each(function (index,row) {
+        $(this).click(function (e) {
+            if(e.target.tagName=='SPAN'){
+                var num=$(this).next().val();
+                num=parseInt(utils.twoWay_Kbit(num));
+                if(num<=100000){
+                    num=100000;
+                    num=utils.twoWay_Kbit(num,',');
+                    $(this).next().val(num);
+                }else if(num<1000000000){
+                    num-=1000;
+                    num=utils.twoWay_Kbit(num,',');
+                    $(this).next().val(num);
+
+                }
+                selectWork1();
+            }
+        });
+    });
+
+    $(".shopCart_one_c2").bind('input propertychange', function() {
+        var num=$(this).val() || 1;
+        num=parseInt(utils.twoWay_Kbit(num));
+        if(num==0 || num=="NaN"){
+            num=1;
+        }
+        if(num>=1000000000){
+            num=1000000000;
+        }
+        num=utils.twoWay_Kbit(num,',');
+        $(this).val(num);
+        selectWork1();
+        // $(this).valueOf()
+    });
+    $(".shopCart_one_c3").each(function (index,row) {
+        $(this).click(function (e) {
+            if(e.target.tagName=='SPAN'){
+                var num=$(this).prev().val();
+                // var SingsPrice=$('.shopCart_unitPrice').text();
+                num=parseInt(utils.twoWay_Kbit(num));
+                if(num<1000000000) {
+                    num += 1000;
+                    // var singsTotal = num * SingsPrice;
+                    // console.log(singsTotal);
+                    num = utils.twoWay_Kbit(num, ',');
+                    $(this).prev().val(num);
+                }else{
+                    num=1000000000;
+                }
+                selectWork1();
+            }
+        });
+    });
+    // editAddress 显示弹框隐藏弹框
+    $(".shopCart_one_eDEL").each(function (index,row) {
+        $(this).click(function (e) {
+            if(e.target.tagName=='SPAN'){
+                utils.dialogBox('是否要在购物车中删除此商品?','取消','删除');
+            }
+        });
+    });
+    $(document).on("click", ".shopCart_dialog_box_bg", function() {
+        $(this).hide();
+    });
+    $(document).on("click",".shopCart_dialog_box",function(e){
+        e.stopPropagation();
+    });
+</script>

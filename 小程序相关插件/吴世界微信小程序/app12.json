@@ -1,0 +1,42 @@
+{
+  "pages": [
+    
+    "pages/dashboard/index",
+    "pages/normal/normal",
+    "pages/avatarUpload/index/index",
+    "pages/avatarUpload/upload/upload",
+    "pages/network/network",
+    "pages/watermark/watermark",
+    "pages/cutInside/cutInside"
+  ],
+  "tabBar": {
+    "selectedColor": "#1296db",
+    "list": [{
+      "pagePath": "home/index",
+      "text": "首页",
+      "iconPath": "images/tabBar/ban_1a.png",
+      "selectedIconPath": "images/tabBar/ban_1b.png"
+    },{
+      "pagePath": "goodsList/index",
+      "text": "商品列表",
+      "iconPath": "images/tabBar/ban_2a.png",
+      "selectedIconPath": "images/tabBar/ban_2b.png"
+    },{
+      "pagePath": "shopcart/index",
+      "text": "购物车",
+      "iconPath": "images/tabBar/ban_3a.png",
+      "selectedIconPath": "images/tabBar/ban_3b.png"
+    },{
+      "pagePath": "person/index",
+      "text": "我的",
+      "iconPath": "images/tabBar/ban_4a.png",
+      "selectedIconPath": "images/tabBar/ban_4b.png"
+    }]
+  },
+  "window": {
+    "backgroundTextStyle": "#000",
+    "navigationBarTitleText": "示例",
+    "navigationBarTextStyle": "#fff"
+  }
+ 
+}

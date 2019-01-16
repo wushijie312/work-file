@@ -1,0 +1,20 @@
+{
+  "pages": [
+    "pages/login/index",
+    "pages/scan/index",
+     
+    "pages/fillUserInfo/index/index",  
+    "pages/index/index",      
+    "pages/mailVerify/index",
+    "pages/fillUserInfo/upload/upload",
+    "pages/enterMail/index",
+    "pages/preview/index" 
+
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#0096e0",
+    "navigationBarTextStyle": "white"
+  }
+ 
+}

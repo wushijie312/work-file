@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>创建分享码</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
+
+    <!--weui css-->
+    <link href="https://res.wx.qq.com/open/libs/weui/1.1.1/weui.min.css" rel="stylesheet">
+</head>
+
+<style>
+
+    .right_btn_box {
+        margin: 5%;
+    }
+
+    .banner_list {
+        font-size: 120%;
+    }
+
+    @media screen and (min-width: 300px) and  (max-width: 360px) {
+        /*iphone 5*/
+        .right_btn_box {
+            margin: -11%;
+            margin-top: 5%;
+        }
+
+        .banner_list {
+            font-size: 100%;
+        }
+    }
+
+    @media screen and (min-width: 360px) and (max-width: 400px) {
+        /*iphone 8*/
+        .right_btn_box {
+            margin: -11%;
+            margin-top: 5%;
+        }
+
+        .banner_list {
+            font-size: 100%;
+        }
+    }
+
+    @media screen and (min-width: 400px) and (max-width: 500px) {
+        /*iphone 8plus*/
+
+    }
+</style>
+<body>
+<div style="width: 100%;height: 32px"></div>
+<div style="width: 100%;height: 48px;font-size: 20px;background: #fff;border-top:1px solid #cdcdcd;border-bottom:1px solid #cdcdcd;">
+    <div style="width: 40%;height: 48px;line-height:48px;float: left">
+        &nbsp;<span style="margin-left: 16px;">费&nbsp;&nbsp;率</span>
+    </div>
+    <div style="width: 25%;height: 48px;line-height:48px;float: right">
+        &nbsp;<span style="color: #cdcdcd;margin-left:16px">0.4</span>&nbsp;%
+    </div>
+</div>
+<div style="width: 100%;height: 50px">
+    <p style="font-size: 10px;color: #cccccc;margin-top: 1rem;margin-left: 1rem">不低于 0.35%</p>
+</div>
+
+<div style="width: 100%;height: 48px;font-size: 20px;background: #fff;border-top:1px solid #cdcdcd;border-bottom:1px solid #cdcdcd;">
+    <div style="width: 40%;height: 48px;line-height:48px;float: left">
+        &nbsp;<span style="margin-left: 16px;">提现费</span>
+    </div>
+    <div style="width: 25%;height: 48px;line-height:48px;float: right">
+        &nbsp;<span style="margin-left: 16px;color: #cdcdcd">1</span>&nbsp;元
+    </div>
+</div>
+
+
+<div style="width: 100%;height: 55px">
+    <p style="font-size: 10px;color: #cccccc;margin-top: 1rem;margin-left: 1rem">不低于 0 元</p>
+</div>
+<div style="width: 130px;height: 55px;margin: 0 auto;">
+    <div class="btn" id="createBtn"
+         style="font-weight: 300;color: #fff;font-size: 1.05rem;box-shadow: 1px 5px 20px 2px #91ccec;text-align: center;line-height: 40px;height: 40px;width: 140px;border-radius: 30px;background: #00a8ff">
+        创建
+    </div>
+</div>
+<script>
+    $("#createBtn").click(function () {
+        //do something
+
+
+        weui.alert('提示',{title:'提示'});
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,340 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <!-- 为移动设备添加1 viewport -->
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <!-- 添加到主屏后的标题（iOS 6 新增） -->
+    <meta name="apple-mobile-web-app-title" content="">
+    <meta name="format-detection" content="telephone=no">
+    <!-- 是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏 -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <title>
+        demo
+    </title>
+    <script src="https://cdn.bootcss.com/jquery/1.10.2/jquery.min.js">
+    </script>
+    <style type="text/css">
+        body,
+        ul,
+        ol,
+        li,
+        p,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        form,
+        fieldset,
+        table,
+        td,
+        img,
+        div,
+        dl,
+        dt,
+        dd,
+        input,
+        figure {
+            margin: 0;
+            padding: 0;
+        }
+
+        a,
+        a:hover {
+            text-decoration: none;
+            outline: none;
+        }
+
+        li {
+            list-style: none
+        }
+
+        img {
+            border: none;
+            max-width: 100%;
+        }
+
+        input,
+        select,
+        textarea {
+            outline: none;
+            background: none
+        }
+
+        em,
+        i {
+            font-style: normal
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-weight: normal
+        }
+
+        .jz {
+            max-width: 990px;
+            margin: 0 auto;
+        }
+
+        .jz640 {
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .jz700 {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .jz1200 {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .clearfix {
+            *zoom: 1;
+        }
+
+        .fl {
+            float: left;
+        }
+
+        .fr {
+            float: right;
+        }
+
+        .clearfix::after {
+            clear: both;
+            display: block;
+            height: 0;
+            content: '';
+            visibility: hidden;
+        }
+
+        .bg_1 {
+            height: 100%;
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            background: #fff;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12px;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .img {
+            border: 0;
+        }
+
+        .hide {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+
+        .o_bg {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            z-index: 1002;
+        }
+
+        .o_tanchuMark {
+            width: 280px;
+            position: absolute;
+            top: 150px;
+            left: 50%;
+            color: #666;
+            transform: translate(-50%, 0);
+            min-height: 150px;
+            text-align: center;
+            background: rgba(255, 255, 255, 1);
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+        }
+
+        .o_tanchuMark_title {
+            line-height: 24px;
+            padding: 20px 0 0px 0;
+            /* background: #f1f1f1; */
+            font-weight: normal;
+            font-size: 16px;
+            color: #333;
+            border-top-left-radius: 5px;
+            -webkit-border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            -webkit-border-top-right-radius: 5px;
+        }
+
+        .o_tanchuMark_cont {
+            line-height: 24px;
+            padding: 15px 10px 15px;
+            font-weight: normal;
+            font-size: 14px;
+            color: #333;
+            margin-bottom: 44px;
+        }
+
+        .o_tanchu_btn {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .o_tanchu_btn li {
+            float: left;
+            padding: 6px 0;
+            width: 42%;
+            margin: 0 4%;
+            line-height: 24px;
+            font-size: 14px;
+            text-align: center;
+            color: #fff;
+            background: #4f86ea;
+            cursor: pointer;
+            border-radius: 20px;
+            -webkit-border-radius: 20px;
+        }
+
+        .o_tanchu_btn_width li {
+            width: 92%;
+        }
+
+        .o_tanchu_btn li a {
+            color: #fff;
+        }
+
+        .o_success,
+        .o_error {
+            width: 200px;
+            padding: 10px;
+            position: absolute;
+            top: 150px;
+            left: 50%;
+            transform: translate(-50%, 0);
+            height: 100px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 5px;
+            -webkit-border-radius: 5px;
+        }
+
+        .o_success img,
+        .o_error img {
+            margin-top: 20px;
+            width: 30px;
+        }
+
+        .o_success p,
+        .o_error p {
+            line-height: 24px;
+            margin-top: 5px;
+            font-size: 14px;
+            color: #fff;
+        }
+
+        .o_is_no {
+            width: 100%;
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 2;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            padding: 5px 10px;
+            text-align: center;
+            line-height: 20px;
+            font-size: 14px;
+            color: #fff;
+            background: #f3624e;
+        }
+
+        .o_is_ok {
+            width: 100%;
+            position: fixed;
+            left: 0;
+            top: 0;
+            z-index: 2;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            padding: 5px 10px;
+            text-align: center;
+            line-height: 20px;
+            font-size: 14px;
+            color: #fff;
+            background: #4bbe51;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="click_open_a">弹框，确定---取消</div>
+    <div class="click_open_b">弹框，提示框</div>
+    <div class="click_open_c">头部，提示框</div>
+    <input class="click_p_number" type="text" /><br/>
+    <input class="click_d_number" type="text" /><br/>
+    <button class="click_time">验证码</button><br/>
+    <input class="click_e_words" type="text" /><br/>
+    <input class="click_idCard" type="text" /><br/>
+</body>
+
+</html>
+<script src="./tanchu.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        $(".click_open_a").click(function () {
+            // 参数说明 参数1：提示内容，参数2：标题，提示3，4：按钮，参数5：按钮数量，false为2个按钮，true为一个按钮，参数6：回调函数
+            utils.tips("您确认关闭吗", "温馨提示", "确定", "取消", false, function () { utils.success("asdkj"); });
+        });
+        $(".click_open_b").click(function () {
+            // 参数说明：参数1提示内容
+            utils.error("asdkj");
+        });
+        $(".click_open_c").click(function () {
+            // 参数说明：参数1提示内容
+            utils.errorWarn("body", "文件格式不正确" || "格式不正确", "o_is_no");
+        });
+        // 只输入数字
+        $(".click_p_number").keyup(function(){
+            utils.p_number(this);
+        });
+        // 只输入数字和点
+        $(".click_d_number").keyup(function(){
+            utils.d_number(this);
+        });
+        //倒计时
+        $(".click_time").click(function(){
+            utils.timeCode(this);
+        });
+        //只输入字母
+        $(".click_idCard").keyup(function(){
+            utils.idCard(this);
+        });
+        $("body").keydown(function(event) {
+            if (event.keyCode == "13") {//keyCode=13是回车键；数字不同代表监听的按键不同
+                alert("asdsdfsdf");
+            }
+        });
+    });
+</script>

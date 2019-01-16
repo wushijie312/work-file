@@ -1,0 +1,1 @@
+module.exports = { brand: "YIXIN" } //当前品牌

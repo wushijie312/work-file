@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>首页</title>
+    <link href="https://res.wx.qq.com/open/libs/weui/1.1.1/weui.min.css" rel="stylesheet">
+    <link href="../css/index.css" rel="stylesheet">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
+</head>
+<body>
+<div class="index_box">
+    <div class="index_one">
+        <img class="index_one_a" src="../img/home_1.jpg" />
+    </div>
+    <div class="index_two">
+      <div class="index_two_a"><div class="index_two_left"><h3>银联大频通道a</h3><img class="index_two_button" src="../img/home_2.jpg"></div><div class="index_two_main"><p>收款卡号：3091093019203910293</p><p>D0 到账 0.56% 封顶35元 但比价收2元</p></div></div>
+    </div>
+    <div class="weui-btn-area">
+        <button class="weui-btn weui-btn_primary" style="background-color: #10aeff" type="submit">开始收款</button>
+    </div>
+</div>
+<script type="text/javascript" class="picker js_show">
+    // 获取首页商户信息
+    
+    function getList(){
+        $.ajax({
+            type: "GET",
+            //url: "http://172.16.3.34:8080/backstage_wxwork/daily/queryUserDaily.shtml?userid="+userId+"&date="+dates,
+            url: "/merchant/products",
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                if(data.code=="000000"){
+                    data.data.each(function(index,row){
+                        $(".index_two").append('<div class="index_two_a"><img class="index_two_button" src="../img/home_2.jpg"><div class="index_two_main"><h3>'+row.productType+'</h3><p>'+row.productInfo+'</p></div></div>');
+                    });
+                }
+            }
+        });
+    };
+    getList();
+
+    // 开始收款
+    var hasTouch = 'ontouchstart' in window,
+            endEvent = hasTouch ? 'touchend' : 'click';
+        $(document).on(endEvent,".weui-btn_primary",function(){
+            var jsonData={参数:参数}  
+            $.ajax({
+                type: 'POST',
+                url: "http://h5.soneykj.com/admin/registry",
+                // async: false,
+                data:jsonData,
+                dataType: 'json',
+                success: function(data) {
+                    console.log(data);
+                }
+            });
+        });   
+</script>
+
+</body>
+</html>

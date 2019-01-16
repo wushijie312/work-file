@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>交易查询</title>
+    <link href="https://res.wx.qq.com/open/libs/weui/1.1.1/weui.min.css" rel="stylesheet">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
+</head>
+<body>
+    <div class="page picker js_show">
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label for="startTimepicker" class="weui-label">起始日期</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" name="start_date" id="startTimepicker" value="2017-11-20" readonly placeholder="起始日期">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label for="endTimepicker" class="weui-label">结束日期</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" name="end_date" id="endTimepicker" value="2017-11-22" readonly placeholder="结束日期">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label for="statuspicker" class="weui-label">交易状态</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" name="SUCCESS" id="statuspicker" readonly placeholder="成功">
+            </div>
+        </div>
+    </div>
+<div class="weui-btn-area">
+    <button class="weui-btn weui-btn_primary" style="background-color: #10aeff" type="button">查询</button>
+</div>
+<script type="text/javascript" class="picker js_show">
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+   // 获取时间信息 start
+   var nowDate=getDay(0);//当天日期  
+   var beforeThreeDate= getDay(-3);//3天前日期  
+      
+    function getDay(day){    
+           var today = new Date();    
+               
+           var targetday_milliseconds=today.getTime() + 1000*60*60*24*day;            
+        
+           today.setTime(targetday_milliseconds); //注意，这行是关键代码  
+               
+           var tYear = today.getFullYear();    
+           var tMonth = today.getMonth();    
+           var tDate = today.getDate();    
+           tMonth = doHandleMonth(tMonth + 1);    
+           tDate = doHandleMonth(tDate);    
+           return tYear+"-"+tMonth+"-"+tDate;    
+    }    
+    function doHandleMonth(month){    
+           var m = month;    
+           if(month.toString().length == 1){    
+              m = "0" + month;    
+           }    
+           return m;    
+    }  
+   $("#startTimepicker").val(beforeThreeDate);
+   $("#endTimepicker").val(nowDate);
+   // 获取时间信息 end
+    $('#startTimepicker').on('click', function () {
+        weui.datePicker({
+            start: 2017,
+            end: new Date().getFullYear(),
+            defaultValue: [new Date().getFullYear(), new Date().getMonth()+1, new Date().getDate()],
+            onChange: function (result) {
+                console.log(result);
+            },
+            onConfirm: function (result) {
+                $("#startTimepicker").val(result[0] + "-" + result[1] + "-" + result[2]);
+            }
+        });
+    });
+    $('#endTimepicker').on('click', function () {
+        weui.datePicker({
+            start: 2017,
+            end: new Date().getFullYear(),
+            defaultValue: [new Date().getFullYear(), new Date().getMonth()+1, new Date().getDate()],
+            onChange: function (result) {
+                console.log(result);
+            },
+            onConfirm: function (result) {
+                $("#endTimepicker").val(result[0] + "-" + result[1] + "-" + result[2]);
+            }
+        });
+    });
+    $('#statuspicker').on('click', function () {
+        //查询所有银行卡
+        var val = [{label: '成功',value:'成功',name:"SUCCESS"},{label: '支付中',value:'支付中',name:"PAYING"},{label: '失败',value:'失败',name:"FAIL"}];
+
+        if (val.length == 0) {
+            val = [{value: '您还没有付款卡'}];
+            weui.picker(val, {
+                onChange: function (result) {
+                    //console.log(result);
+                },
+                onConfirm: function (result) {
+                    //console.log(result);
+                }
+            });
+        } else {
+            weui.picker(val, {
+                onChange: function (result) {
+                    //console.log(result);
+                },
+                onConfirm: function (result) {
+                    $(val).each(function (index, ele) {
+                        if (ele.value == result) {
+                            $("#statuspicker").val(ele.value);
+                            $("#statuspicker").prop("name",ele.name);
+                        }
+                    });
+                }
+            });
+        }
+    });
+    var hasTouch = 'ontouchstart' in window,
+            endEvent = hasTouch ? 'touchend' : 'click';
+    $(document).on(endEvent,".weui-btn_primary",function(){
+        var beginDate= $("#startTimepicker").val();
+        var endDate= $("#endTimepicker").val();
+        var tradeStatus= $("#statuspicker").prop("name");
+        // alert(beginDate);alert(endDate);alert(tradeStatus);
+        var jsonData={
+                'beginDate': beginDate,
+                'endDate': endDate,
+                'tradeStatus':tradeStatus
+            };
+        window.location.href="/trade/toOrderList";
+        
+    });
+</script>
+
+</body>
+</html>

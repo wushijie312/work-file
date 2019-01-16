@@ -1,0 +1,28 @@
+<!--index.wxml-->
+<view class='home_box'>
+	<view class="bg_a"></view>
+	<view class="login_head">
+		
+	</view>
+	<view class="login_main">
+		<view class="filluser_logo" bindtap="uploadImgTap">
+			<image class="{{src?'filluser_logo_head':'filluser_logo_img' }}" src="{{src?src:'http://static.98ep.com/Img/mobiles/yiXinCard/wxapplogo1.png'}}" ></image>
+		</view>
+		<view class='filluser_btn_a' bindtap="uploadImgTap">点击设置头像</view>
+	</view>
+	<view class="filluser_main_a">
+		<view class="login_cont ">
+			<view class="login_cont_a clearfix">
+				<label class="login_label_name fl">姓名</label><input class="login_input fl" value="{{username}}" name="username" bindinput="inputUsernameTap"  placeholder="请输入您的姓名" />
+			</view>
+			<view class="login_cont_a clearfix">
+				<label class="login_label_name fl">部门</label><input class="login_input fl" value="{{userClass}}" name="userCLass" bindinput="inputUserCLassTap"  placeholder="请输您的部门" />
+			</view>
+
+		</view>
+	</view>
+	<view class='login_btn' bindtap="fillUserTap">预览</view>
+    <view class="{{loading_active?'bg_loading':'allHide'}}">
+		<image class="bg_loading_img " src="../../../images/loading.gif" ></image>
+	</view>
+</view>

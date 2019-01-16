@@ -1,0 +1,20 @@
+<!--index.wxml-->
+<view class='home_box'>
+	<view class="bg_a"></view>
+	<view class='home_ban'>
+		<view class='home_top'>
+			<view class="home_top_bg">
+				<image class="home_top_hpone" src="{{previews}}" ></image>
+			</view>
+		</view>
+	</view>
+	<view class="preview_bottom">
+		<view class="preview_btn clearfix">
+			<view class='preview_btn_item fl' bindtap="againeditTap">重新编辑</view>
+			<view class='preview_btn_item fr' bindtap="previewTap">提交制作</view>
+		</view>
+	</view>
+	<view class="{{loading_active?'bg_loading':'allHide'}}">
+		<image class="bg_loading_img " src="../../images/loading.gif" ></image>
+	</view>
+</view>

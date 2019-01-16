@@ -1,0 +1,15 @@
+<html>
+<title><%=htmlWebpackPlugin.options.title%></title>
+<head>
+	<!-- <script src="<%=htmlWebpackPlugin.files.chunks.main.entry%>"></script> -->
+</head>
+<body>
+	<% for(var key in htmlWebpackPlugin.files){%>
+	    <%=key%>:<%=htmlWebpackPlugin.files[key]%><br/>
+	<%}%>
+	<% for(var key in htmlWebpackPlugin.options){%>
+	    <%=key%>:<%=htmlWebpackPlugin.options[key]%><br/>
+	<%}%>
+</body>
+<script src="bundle.js"></script>
+</html>

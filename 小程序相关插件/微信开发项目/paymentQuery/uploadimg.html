@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>收款</title>
+    <link href="../css/index.css" rel="stylesheet">
+    <link href="https://res.wx.qq.com/open/libs/weui/1.1.1/weui.min.css" rel="stylesheet">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
+</head>
+<body>
+<div class="weui-tab__content" style="display: block;">
+    <p class="weui-cells__title">图片手动上传</p>
+    <div class="weui-cells weui-cells_form" id="uploaderCustom1">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <div class="weui-uploader">
+                    <div class="weui-uploader__hd"><p class="weui-uploader__title">身份证正面照</p></div>
+                    <div class="weui-uploader__bd">
+                    <span class="weui-uploader__file" id="tmp-icon1"
+                          style="background-image: url(&quot;../img/icon_idcard_face.png&quot;);"></span>
+                        <ul class="weui-uploader__files" id="idcard_face_tmp">
+                            <li class="weui-uploader__file weui-uploader__file_status upload_cardId_face" data-id="1" style="display:none">
+
+                            </li>
+                        </ul>
+                        <div class="weui-uploader__input-box"><input id="uploaderIdCardFaceBtn"
+                                                                     class="weui-uploader__input" type="file"
+                                                                     accept="image/*" capture></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="weui-cells weui-cells_form" id="uploaderCustom2">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <div class="weui-uploader">
+                    <div class="weui-uploader__hd"><p class="weui-uploader__title">身份证反面照</p></div>
+                    <div class="weui-uploader__bd">
+                    <span class="weui-uploader__file" id="tmp-icon2"
+                          style="background-image: url(&quot;../img/icon_idcard_back.png&quot;);"></span>
+                        <ul class="weui-uploader__files" id="idcard_back_tmp">
+                            <li class="weui-uploader__file weui-uploader__file_status upload_cardId_back" data-id="1" style="display:none">
+
+                            </li>
+                        </ul>
+                        <div class="weui-uploader__input-box"><input id="uploaderIdCardBackBtn"
+                                                                     class="weui-uploader__input" type="file"
+                                                                     accept="image/*" capture></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="weui-cells weui-cells_form" id="uploaderCustom3">
+        <div class="weui-cell">
+            <div class="weui-cell__bd">
+                <div class="weui-uploader">
+                    <div class="weui-uploader__hd"><p class="weui-uploader__title">手持身份证正面照</p></div>
+                    <div class="weui-uploader__bd">
+                    <span class="weui-uploader__file" id="tmp-icon3"
+                          style="background-image: url(&quot;../img/icon_idcard_hand.png&quot;);"></span>
+                        <ul class="weui-uploader__files" id="idcard_hand_tmp">
+                            <li class="weui-uploader__file weui-uploader__file_status upload_cardId_hand" data-id="1" style="display:none">
+
+                            </li>
+                        </ul>
+                        <div class="weui-uploader__input-box"><input id="uploaderIdCardHandBtn"
+                                                                     class="weui-uploader__input" type="file"
+                                                                     accept="image/*" capture></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" id="idcard_face_url" name="idcard_face_url"/>
+        <input type="hidden" id="idcard_back_url" name="idcard_back_url"/>
+        <input type="hidden" id="idcard_hand_url" name="idcard_hand_url"/>
+        <div class="weui-btn-area">
+            <button type="button" class="weui-btn weui-btn_primary" onclick="commitOrder()">开通并支付</button>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../js/example.js"></script>
+<script>
+    // document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+    //     WeixinJSBridge.call('hideOptionMenu');
+    // });
+    // 获取商户信息
+    function getList(){
+        $.ajax({
+            type: "GET",
+            //url: "http://172.16.3.34:8080/backstage_wxwork/daily/queryUserDaily.shtml?userid="+userId+"&date="+dates,
+            url: "/merchant/info",
+            data: {type:"image"},
+            dataType: 'json',
+            success: function(data) {
+                if(data.code=="000000"){
+                    $(".weui-uploader__input-box").css({display:"none"});
+                    data.data.each(function(index,row){
+                        if(row.type=="IDCARD_FACE"){
+                            $(".upload_cardId_face").css({display:"block",background:'url('+row.path+') center center no-repeat',backgroundSize:"77px"});
+                            $('#idcard_face_url').val(row.path);
+                        }
+                        if(row.type=="IDARCD_BACK"){
+                            $(".upload_cardId_back").css({display:"block",background:'url('+row.path+') center center no-repeat',backgroundSize:"77px"});
+                            $('#idcard_back_url').val(row.path)
+                        }
+                        if(row.type=="IDCARD_HAND"){
+                            $(".upload_cardId_hand").css({display:"block",background:'url('+row.path+') center center no-repeat',backgroundSize:"77px"});
+                            $('#idcard_hand_url').val(row.path)
+                        }
+                    });
+                    
+                }
+            }
+        });
+    };
+    getList();
+    function commitOrder() {
+        //所有图片都必须上传成功
+        if ($("#idcard_face_url").val() == "") {
+            weui.alert('请等待身份证正面照上传完成', {title: '温馨提示'});
+            return;
+        }
+        if ($("#idcard_back_url").val() == "") {
+            weui.alert('请等待身份证反面照上传完成', {title: '温馨提示'});
+            return;
+        }
+        if ($("#idcard_hand_url").val() == "") {
+            weui.alert('请等待手持身份证正面照上传完成', {title: '温馨提示'});
+            return;
+        }
+        weui.dialog({
+            title: '温馨提示',
+            content: '身份证信息确认',
+            className: 'custom-classname',
+            buttons: [{
+                label: '取消',
+                type: 'default',
+                onClick: function () {
+                    //do something
+                }
+            }, {
+                label: '确定',
+                type: 'primary',
+                onClick: function () {
+                    $.ajax({
+                        url: '/merchant/upload',
+                        data: {idcard_face_url:$('#idcard_face_url').val(),idcard_back_url:$('#idcard_back_url').val(),idcard_hand_url:$('#idcard_hand_url').val()},
+                        dataType: 'json',
+                        method: 'post',
+                        success: function (res) {
+                            if(res.code == 0){
+                                weui.alert('上传成功',function () {
+                                    window.location.href = res.url;
+                                },'温馨提示');
+                            }else{
+                                weui.alert(res.msg, {title: '温馨提示'});
+                            }
+                        }
+                    });
+                }
+            }]
+        });
+    }
+
+</script>
+</body>
+</html>

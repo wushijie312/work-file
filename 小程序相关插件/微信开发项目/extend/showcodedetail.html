@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>快捷合伙人分享</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
+
+    <!--weui css-->
+    <link href="https://res.wx.qq.com/open/libs/weui/1.1.1/weui.min.css" rel="stylesheet">
+    <link href="../css/style.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/all.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.js"></script>
+
+</head>
+
+<style>
+    /*iphone 8plus*/
+    .fldz {
+        margin: 0 auto;
+        width: 230px;
+        position: relative;
+        top: 130px;
+        color: #fff;
+        font-size: 33px;
+        font-weight: 200;
+
+    }
+    .d_0{
+        margin: 0 auto;
+        width: 195px;
+        font-size: 16px;
+        position: relative;
+        top:135px;
+    }
+    .qianbao{
+        width: 94px;
+        height: 134px;
+        position: absolute;
+        background-image: url(../img/qianbao.png);
+        margin: 0 auto;
+        bottom: 15%;
+        left: 12%;
+        background-repeat: round;
+    }
+
+    .saoma{
+        font-size: 24px;
+        width: 24px;
+        position: relative;
+        top: 5px;
+        left: 22px;
+    }
+
+    .ljsy{
+        width: 19px;
+        font-size: 19px;
+        position: relative;
+        top: -72px;
+        left: 61px;
+    }
+    .code{
+        left: 58%;
+        bottom: 15%;
+        position: absolute;
+    }
+
+    @media screen and (min-width: 300px) and  (max-width: 360px) {
+        /*iphone 5*/
+        .fldz {
+            margin: 0 auto;
+            width: 160px;
+            position: relative;
+            top: 90px;
+            color: #fff;
+            font-size: 23px;
+            font-weight: 200;
+
+        }
+        .d_0{
+            margin: 0 auto;
+            width: 157px;
+            font-size: 13px;
+            position: relative;
+            top: 91px;
+        }
+        .qianbao{
+            width: 79px;
+            height: 110px;
+            background-image: url(../img/qianbao.png);
+            margin: 0 auto;
+            background-repeat: round;
+        }
+
+        .saoma{
+            font-size: 20px;
+            width: 20px;
+            position: relative;
+            top: 5px;
+            left: 22px;
+        }
+
+        .ljsy{
+            width: 16px;
+            font-size: 16px;
+            position: relative;
+            top: -60px;
+            left: 53px;
+        }
+
+    }
+
+    @media screen and (min-width: 360px) and (max-width: 400px) {
+        /*iphone 8*/
+        .fldz {
+            margin: 0 auto;
+            width: 200px;
+            position: relative;
+            top: 106px;
+            color: #fff;
+            font-size: 27px;
+            font-weight: 200;
+
+        }
+        .d_0{
+            margin: 0 auto;
+            width: 195px;
+            font-size: 16px;
+            position: relative;
+            top: 108px;
+        }
+        .qianbao{
+            width: 85px;
+            height: 132px;
+            background-image: url(../img/qianbao.png);
+            margin: 0 auto;
+            background-repeat: round;
+        }
+
+        .saoma{
+            font-size: 24px;
+            width: 24px;
+            position: relative;
+            top: 5px;
+            left: 22px;
+        }
+
+        .ljsy{
+            width: 19px;
+            font-size: 19px;
+            position: relative;
+            top: -72px;
+            left: 55px;
+        }
+    }
+
+    @media screen and (min-width: 400px) and (max-width: 500px) {
+        /*iphone 8plus*/
+        .fldz {
+            margin: 0 auto;
+            width: 235px;
+            position: relative;
+            top: 115px;
+            color: #fff;
+            font-size: 33px;
+            font-weight: 200;
+
+        }
+        .d_0{
+            margin: 0 auto;
+            width: 195px;
+            font-size: 16px;
+            position: relative;
+            top: 117px;
+        }
+        .qianbao{
+            width: 94px;
+            height: 134px;
+            background-image: url(../img/qianbao.png);
+            margin: 0 auto;
+            background-repeat: round;
+        }
+
+        .saoma{
+            font-size: 24px;
+            width: 24px;
+            position: relative;
+            top: 5px;
+            left: 22px;
+        }
+
+        .ljsy{
+            width: 19px;
+            font-size: 19px;
+            position: relative;
+            top: -72px;
+            left: 61px;
+        }
+    }
+
+    @media screen and (min-width: 370px) and (max-width: 380px)and (min-height: 700px)and (max-height: 800px) {
+        /*iphone 8plus*/
+        .fldz {
+            margin: 0 auto;
+            width: 188px;
+            position: relative;
+            top: 136px;
+            color: #fff;
+            font-size: 26px;
+            font-weight: 200;
+
+        }
+        .d_0{
+            margin: 0 auto;
+            width: 195px;
+            font-size: 16px;
+            position: relative;
+            top: 141px;
+        }
+        .qianbao{
+            width: 94px;
+            height: 134px;
+            background-image: url(../img/qianbao.png);
+            margin: 0 auto;
+            background-repeat: round;
+        }
+
+        .saoma{
+            font-size: 24px;
+            width: 24px;
+            position: relative;
+            top: 5px;
+            left: 22px;
+        }
+
+        .ljsy{
+            width: 19px;
+            font-size: 19px;
+            position: relative;
+            top: -72px;
+            left: 61px;
+        }
+    }
+</style>
+<body>
+
+<div style="width: 100%;height: 100%;background-repeat: round;background-image: url('../img/kjzf_bg.jpg')">
+    <div style="" class="fldz">
+        <span style="vertical-align: inherit;
+    text-shadow: 3px 0px 1px #357ae8;">费率低至0.30%</span>
+    </div>
+    <div style="color: #a4601d" class="d_0">
+        <span>D+0快速到账 </span> &nbsp;&nbsp;&nbsp;<span>免注册审核</span>
+    </div>
+
+    <div class="qianbao" style="color: #fff">
+        <div class="saoma">
+            扫码
+        </div>
+        <div class="ljsy">
+            立即使用
+        </div>
+    </div>
+
+    <div class="code" id="code-info" style="padding: 2px;background-color: #eef2f4">
+
+    </div>
+</div>
+<div onclick="$(this).hide()" class="js_dialog" style="opacity: 1;">
+    <div class="weui-mask" style="background: rgba(0,0,0,.5);"></div>
+    <img style="margin-left:18%;width: 80%;position: absolute;top:0;z-index: 10000;" src="../img/mask.png">
+</div>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="../js/jquery.qrcode.min.js"></script>
+<script src="http://cdn.bootcss.com/jquery-weui/0.8.3/js/jquery-weui.min.js"></script>
+
+<script>
+    // 微信JSSDK开发
+    wx.config({
+        debug: false,
+        appId: '你的微信Appid',
+        timestamp: '时间戳',
+        nonceStr: '随机字符串',
+        signature: 'sign',
+        jsApiList: ['onMenuShareAppMessage', 'onMenuShareTimeline']
+    });
+    wx.ready(function () {
+        var screen_width = document.documentElement.clientWidth;
+        var qr_width = 100;
+        var qr_height = 100;
+
+        if(screen_width > 400){
+            qr_width = 120;
+            qr_height = 120;
+        } else if(screen_width >= 370 && screen_width <= 400){
+            qr_width = 105;
+            qr_height = 105;
+        }else{
+            qr_width = 95;
+            qr_height = 95;
+        }
+        $("#code-info").qrcode({
+            render: "canvas",
+            width: qr_width,
+            height: qr_height,
+            text: '扫码链接'
+        });
+
+        var imgstyle = "width:"+qr_width*2+"px,height:"+qr_height*2+"px";
+        $("#code-info").css('width',qr_width+'px');
+        $("#code-info").css('height',qr_height+'px');
+        var imgdata = document.querySelector("#code-info canvas").toDataURL('image/jpeg', 1);
+        $("#code-info canvas").css('display','none');
+        $("#code-info").append('<img style='+imgstyle+' src="'+imgdata+'">');
+
+        $(".qianbao").css("height",qr_height+2+'px');
+        $(".qianbao .ljsy").css("font-size",qr_height/7.2 + 'px');
+
+        wx.onMenuShareAppMessage({
+            title: "{$platform_name}快捷支付分享", // 分享标题
+            desc: "送你一台免费手机POS，快来接收吧", // 分享描述
+            link: '{$share_url}', // 分享链接，该链接域名或路径必须与当前页面对应的公众号JS安全域名一致
+            imgUrl: '{$img_url}', // 分享图标
+            type: 'link',
+            success: function (res) {
+                weui.alert('已分享', {title: '分享成功'});
+            },
+            cancel: function (res) {
+                weui.alert('已取消', {title: '分享失败'});
+            },
+            fail: function (res) {
+                weui.alert(JSON.stringify(res), {title: '分享失败'});
+            }
+        });
+        wx.onMenuShareTimeline({
+            title: "{$platform_name}快捷支付分享", // 分享标题
+            link: '{$share_url}', // 分享链接
+            imgUrl: '{$img_url}', // 分享图标
+            success: function () {
+                weui.alert('分享给朋友成功', {title: '分享失败'});
+            },
+            cancel: function () {
+                weui.alert('已取消', {title: '分享失败'});
+            }
+        });
+    });
+</script>
+</body>
+</html>

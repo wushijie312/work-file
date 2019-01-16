@@ -1,0 +1,32 @@
+<html> 
+  <head> 
+        <meta charset="utf-8"> 
+        <title>HelloWorld</title> 
+  </head> 
+<body> 
+<!-- <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+   <circle cx="100" cy="50" r="40" stroke="black" stroke-width="2" fill="#f90" />
+   <circle cx="200" cy="50" r="40" stroke="black" stroke-width="2" fill="red" />
+</svg>  -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script> 
+<script>  
+
+        // var body=d3.select('body');
+
+        var index = [0, 1, 2, 3, 4];
+var color = ["red", "blue", "green", "yellow", "black"];
+
+
+var ordinal = d3.scale.ordinal()
+        .domain(index)
+        .range(color);
+
+console.log(ordinal(0)); //返回 red
+console.log(ordinal(2)); //返回 green
+console.log(ordinal(4)); //返回 black
+
+
+
+</script> 
+</body> 
+</html>

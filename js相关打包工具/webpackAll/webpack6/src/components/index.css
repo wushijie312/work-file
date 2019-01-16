@@ -1,0 +1,12 @@
+@import './flex.css';
+div{
+	height: 100px;
+	background: #f90;
+	display: flex;
+}
+body{
+	height: 200px;
+	background: red;
+	display: flex;
+	border-radius: 50%;
+}

@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>首页</title>
+    <link href="https://res.wx.qq.com/open/libs/weui/1.1.1/weui.min.css" rel="stylesheet">
+    <link href="../css/index.css" rel="stylesheet">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
+</head>
+<body>
+<div class="index_box">
+    <div class="index_one">
+        <img class="index_one_a" src="/static/images/ZXF_LOGO.jpeg" />
+        <!--<img class="index_one_a" src="/static/images/home_1.png" />-->
+    </div>
+    <div class="index_two">
+        <div class="weui-cells weui-cells_checkbox index_all">
+            <!--<label class="" for="s11"><div class="index_two_a"><div class="index_all_pos"><input type="radio" class="weui-check" name="checkbox1" id="s11" checked="checked"/><i class="weui-icon-checked"></i></div><div class="index_two_left"><h3>银联大频通道a</h3><img class="index_two_button" src="/static/images/home_3.jpg"></div><div class="index_two_main"><p>收款卡号：3091093019203910293</p><p>D0 到账 0.56% 封顶35元 但比价收2元</p><p>D0 到账 0.56% 封顶35元 但比价收2元</p></div></div></label>-->
+            <!--<label class="" for="s12"><div class="index_two_a index_two_b"><div class="index_all_pos"><input type="radio" name="checkbox1" class="weui-check" id="s12"/><i class="weui-icon-checked"></i></div><div class="index_two_left"><h3>银联大频通道a</h3><img class="index_two_button" src="/static/images/home_2.jpg"></div><div class="index_two_main"><p>收款卡号：3091093019203910293</p><p>D0 到账 0.56% 封顶35元 但比价收2元</p><p>D0 到账 0.56% 封顶35元 但比价收2元</p></div></div></label>-->
+
+        </div>
+    </div>
+    <div class="weui-btn-area">
+        <button class="weui-btn weui-btn_primary" style="background-color: #10aeff" type="submit">开始收款</button>
+    </div>
+    <div class="index_warning">
+        <h3>*交易提示*</h3>
+        <p>因交易量大，年前交易一般在下午2点后无交易额度，此情况年后恢复，请各位提前做好交易安排，给您带来的不便，敬请谅解！</p>
+    </div>
+</div>
+
+<div class="bobm_box">
+    <img class="bobm_one" src="/static/images/loading.gif" alt="">
+</div>
+
+<script type="text/javascript" class="picker js_show">
+
+    // loading
+    function loadHide(){
+        $(".bobm_box").hide();
+    }
+
+    function loadShow(){
+        $(".bobm_box").show();
+    }
+    // 交易提示 start
+    function tradeWarning(){
+        $(".index_warning").show();
+    }
+    // tradeWarning()
+    // 交易提示 end
+    // 获取首页商户信息
+    function getList(){
+        $.ajax({
+            type: "GET",
+            url: "/merchant/products",
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                if(data.code=="000000"){
+                    $.each(data.data.OPENED,function(index,row){
+                        $(".index_all").append('<label class="" for="s1'+index+'"><div class="index_two_a"><div class="index_all_pos"><input type="radio" productType="'+row.productType+'" name="checkbox1" class="weui-check" id="s1'+index+'"/><i class="weui-icon-checked"></i></div><div class="index_two_left"><h3>'+row.productName+'</h3><img class="index_two_button" src="/static/images/home_3.jpg"></div><div class="index_two_main"><p>'+row.cardInfo+'</p><p>'+row.rateInfo+'</p><p>'+row.limitInfo+'</p></div></div></label>');
+                    });
+                    $.each(data.data.CLOSED,function(index,row){
+                        $(".index_all").append('<label class="" for="s1'+index+'"><div class="index_two_a index_two_b"><div class="index_all_pos"><input type="radio" productType="'+row.productType+'" name="checkbox1" class="weui-check" id="s1'+index+'"/><i class="weui-icon-checked"></i></div><div class="index_two_left"><h3>'+row.productName+'</h3><img class="index_two_button" src="/static/images/home_2.jpg"></div><div class="index_two_main"><p>'+row.cardInfo+'</p><p>'+row.rateInfo+'</p><p>'+row.limitInfo+'</p></div></div></label>');
+                    });
+                }
+            }
+        });
+    };
+    getList();
+
+    var hasTouch = 'ontouchstart' in window,
+        endEvent = hasTouch ? 'touchend' : 'click';
+
+    // 选择产品类型
+    var productType='';
+    $(document).on('click', '.index_all input',function(){
+        productType=$(this).attr("productType");
+        console.log(productType);
+    });
+    // 开始收款
+
+    $(document).on(endEvent,".index_two_b",function(){
+        var self = $(this);
+        weui.confirm('确认开通支付产品', {
+            buttons: [{
+                label: '取消',
+                type: 'default',
+                onClick: function(){ console.log('no') }
+            }, {
+                label: '确认',
+                type: 'primary',
+                onClick: function(){
+                    var productType=$(self).find("input").attr("productType");
+                    var jsonData = {productType:productType};
+                    loadShow();
+                    $.ajax({
+                        type: "POST",
+                        url: "/merchant/openProduct",
+                        data:jsonData,
+                        dataType: 'json',
+                        success: function(data) {
+                            loadHide()
+                            if(data.code=="000000"){
+                                weui.alert('恭喜,产品开通成功!', function () {
+                                    window.location.reload();
+                                }, '温馨提示');
+                            }else if(data.code=="ERR600029" || data.code=="ERR600031"){
+                                weui.alert('当前商户信息尚未完善，立即前往？', function () {
+                                    window.location.href = '/merchant/toModify';
+                                }, '操作提示');
+                            } else{
+                                weui.alert('开通支付产品失败,请联系管理员！', {title: '操作失败'});
+                            }
+                        }
+                    });
+                }
+            }]
+        });
+        return false;
+    });
+
+    $(document).on(endEvent,".weui-btn_primary",function(){
+        if(productType==""){
+            weui.alert('您尚未选择支付产品，不能支付！', {title: '操作失败'});
+        }else{
+            if(productType == 'QUICK_A'){
+                getAgreeStatus(productType,productType);
+            }else {
+                sessionStorage.setItem('payType',"QUICK_FRONT_UPPER");
+                sessionStorage.setItem('productType',productType);
+                window.location.href="/trade/toPay";
+            }
+
+        }
+    });
+
+    function getAgreeStatus(payType,productType){
+
+        var jsonData = {productType:productType};
+
+        $.ajax({
+            type: 'GET',
+            url: "/trade/agreeInfo",
+            data:jsonData,
+            dataType: 'json',
+            success: function(data) {
+                console.log(data)
+                sessionStorage.setItem('payType',payType);
+                sessionStorage.setItem('productType',productType);
+                if(data.code  == '000000'){
+                    window.location.href="/trade/toPay";
+                }else{
+                    weui.alert('尚未签约支付卡，确认前往？', function () {
+                        window.location.href="/trade/toAgree";
+                    }, '温馨提示')
+                }
+            }
+        });
+    }
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>交易明细</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>
+
+    <!--weui css-->
+    <link href="https://res.wx.qq.com/open/libs/weui/1.1.1/weui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-weui/1.0.1/css/jquery-weui.min.css">
+    <link href="../css/style.css" rel="stylesheet">
+</head>
+
+<style>
+
+    .right_btn_box {
+        margin: 5%;
+    }
+
+    .banner_list {
+        font-size: 120%;
+    }
+
+    @media screen and (min-width: 300px) and  (max-width: 360px) {
+        /*iphone 5*/
+        .right_btn_box {
+            margin: -11%;
+            margin-top: 5%;
+        }
+
+        .banner_list {
+            font-size: 100%;
+        }
+    }
+
+    @media screen and (min-width: 360px) and (max-width: 400px) {
+        /*iphone 8*/
+        .right_btn_box {
+            margin: -11%;
+            margin-top: 5%;
+        }
+
+        .banner_list {
+            font-size: 100%;
+        }
+    }
+
+    @media screen and (min-width: 400px) and (max-width: 500px) {
+        /*iphone 8plus*/
+
+    }
+</style>
+<body>
+
+<div style="width: 100%;height: 120px;background: #2bb7ff">
+
+    <div id="totalAmount" style="height: 50%;width: 100%;font-size: 14.3px;color: #cfe7fc;text-align: center;line-height: 80px">您共交易汇总</div>
+    <div  style="height: 50%;width: 100%;font-size: 20px;text-align: center;color: #fff;line-height: 30px"><span id="totalCount">0</span> 笔，共<span id="totalAmount">0.00</span></div>
+</div>
+
+
+
+<div id="orderList_detail" style="margin-top: 20px;background: #fff;font-size:20px;border-top:1px solid #cdcdcd;">
+    
+    
+</div>
+<script>
+    // 获取首页商户信息
+    console.log($("#totalCount"));
+    function getList(){
+        var beginDate=sessionStorage.getItem('beginDate'); 
+        var endDate=sessionStorage.getItem('endDate'); 
+        var tradeStatus=sessionStorage.getItem('tradeStatus'); 
+        var jsonData={
+                'beginDate': beginDate,
+                'endDate': endDate,
+                'tradeStatus':tradeStatus
+            };
+        $.ajax({
+            type: "GET",
+            //url: "http://172.16.3.34:8080/backstage_wxwork/daily/queryUserDaily.shtml?userid="+userId+"&date="+dates,
+            url: "/trade/orderList",
+            data:jsonData,
+            dataType: 'json',
+            success: function(data) {
+                if(data.code=="000000"){
+                    if(data.code.length==0){
+                        weui.alert('无交易记录', {title: '提示'});
+                    }else{
+                        $("#totalCount").text(data.data.totalCount);
+                        $("#totalAmount").text(data.data.totalAmount);
+                        data.data.each(function(index,row){
+                            if(row.tradeStatus=="SUCCESS"){
+                              $("#orderList_detail").append('<div style="width: 100%;height: 82px;border-bottom: 1px solid #ccc;"><div style="width: 50%;height: 82px;float: left"><div style="line-height: 65px;width: 100%;height: 40px;"><span style="color: #000000;font-size: 20px;margin-left: 15px;">'+row.amount+'</span></div><div style="line-height: 30px;width: 100%;height: 40px;"><span style="color: #a0a0a0;font-size: 13.5px;margin-left: 15px;">'+row.createTime+'</span></div></div><div style="width: 20%;height: 82px;float: right;line-height: 82px;"><span style="font-size: 16.5px;color: #2bb7ff">'+row.tradeStatus+'</span></div></div>');  
+                          }else if(row.tradeStatus=="FAIL"){
+                            $("#orderList_detail").append('<div style="width: 100%;height: 82px;border-bottom: 1px solid #ccc;"><div style="width: 50%;height: 82px;float: left"><div style="line-height: 65px;width: 100%;height: 40px;"><span style="color: #000000;font-size: 20px;margin-left: 15px;">'+row.amount+'</span></div><div style="line-height: 30px;width: 100%;height: 40px;"><span style="color: #a0a0a0;font-size: 13.5px;margin-left: 15px;">'+row.createTime+'</span></div></div><div style="width: 20%;height: 82px;float: right;line-height: 82px;"><span style="font-size: 16.5px;color: #ff2929">'+row.tradeStatus+'</span></div></div>'); 
+                          }else{
+                            $("#orderList_detail").append('<div style="width: 100%;height: 82px;border-bottom: 1px solid #ccc;"><div style="width: 50%;height: 82px;float: left"><div style="line-height: 65px;width: 100%;height: 40px;"><span style="color: #000000;font-size: 20px;margin-left: 15px;">'+row.amount+'</span></div><div style="line-height: 30px;width: 100%;height: 40px;"><span style="color: #a0a0a0;font-size: 13.5px;margin-left: 15px;">'+row.createTime+'</span></div></div><div style="width: 20%;height: 82px;float: right;line-height: 82px;"><span style="font-size: 16.5px;color: #a0a0a0">'+row.tradeStatus+'</span></div></div>'); 
+                          }
+                            
+                        });
+                    }
+                    
+                }else{
+                    weui.alert('请求出错！', {title: '操作失败'});
+                }
+            }
+        });
+    };
+    getList();
+
+    var hasTouch = 'ontouchstart' in window,
+            endEvent = hasTouch ? 'touchend' : 'click';
+    $(document).on(endEvent,".weui-btn_primary",function(){
+        $.ajax({
+            url: '/trade/orderList',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                'beginDate': $("#startTimepicker").val(),
+                'endDate': $("#endTimepicker").val(),
+                'tradeStatus':$("#statuspicker").val()
+            },
+            success: function (data) {
+                if (data.code=="000000") {
+                    
+                } else {
+                    weui.alert(data.msg, '温馨失败');
+                }
+            }
+        });
+        
+    });
+</script>
+</body>
+</html>

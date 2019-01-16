@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>快捷推广</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-weui/1.0.1/js/jquery-weui.min.js"></script>
+
+    <!--weui css-->
+    <link href="https://res.wx.qq.com/open/libs/weui/1.1.1/weui.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-weui/1.0.1/css/jquery-weui.min.css">
+    <link href="../css/style.css" rel="stylesheet">
+
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/all.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/icheck.js"></script>
+
+</head>
+<style>
+
+    .right_btn_box {
+        margin: 5%;
+    }
+
+    .banner_list {
+        font-size: 120%;
+    }
+
+    .zhaomu-btn {
+        width: 85%;
+        top: 30%;
+        right: -11%;
+    }
+
+    @media screen and (min-width: 300px) and  (max-width: 360px) {
+        /*iphone 5*/
+        .right_btn_box {
+            margin: -11%;
+            margin-top: 5%;
+        }
+
+        .banner_list {
+            font-size: 100%;
+        }
+
+        .zhaomu-btn {
+            width: 85%;
+            top: 30%;
+            right: -11%;
+        }
+    }
+
+    @media screen and (min-width: 360px) and (max-width: 400px) {
+        /*iphone 8*/
+        .right_btn_box {
+            margin: -11%;
+            margin-top: 5%;
+        }
+
+        .banner_list {
+            font-size: 100%;
+        }
+
+        .zhaomu-btn {
+            width: 77%;
+            top: 30%;
+            right: -12.5%;
+        }
+    }
+
+    @media screen and (min-width: 400px) and (max-width: 500px) {
+        /*iphone 8plus*/
+        .zhaomu-btn {
+            width: 70%;
+            top: 30%;
+            right: -14%;
+        }
+    }
+</style>
+<body>
+<div style="width: 100%;height: 149px;    background-repeat: round;background-image: url('../img/partner3.png')">
+    <div style="width: 100%;height: 101px"></div>
+    <div style="width: 100%;height:47px;float: left;position:relative;top:48px;display:inline-block;margin-top:-46px;background: #000;opacity: 0.2"></div>
+    <div style="width: 100%;height: 47px;float: left;position: relative" class="banner_list">
+        <div style="float: left;width: 33.33333%;height:80%;">
+            <div style="width: 60%;height: 70%;margin: 0 auto;margin-top:10%;" id="index_page">
+                <div style="width: 100%;text-align:center;color: #fff;">邀请码</div>
+                <div style="width: 50%;margin: 0 auto;height: 15%;background:#fff "></div>
+            </div>
+        </div>
+        <div style="float: left;width: 33.33333%;height:80%;">
+            <div style="width: 60%;height: 70%;margin: 0 auto;margin-top:10%;" id="profit">
+                <div style="width: 100%;text-align:center;color: #b3d1ff;">我的收益</div>
+                <div style="display: none;width: 50%;margin: 0 auto;height: 15%;background:#fff "></div>
+            </div>
+        </div>
+        <div style="float: left;width: 33.33333%;height:80%;">
+            <div style="width: 60%;height: 70%;margin: 0 auto;margin-top:10%;" id="rules">
+                <div style="width: 100%;text-align:center;color: #b3d1ff;">收益规则</div>
+                <div style="display:none;width: 50%;margin: 0 auto;height: 15%;background:#fff; "></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="width: 100%;height:auto;    padding-bottom: 20px;background: #fff">
+    <div style="width: 100%;height: 40px;line-height: 60px;margin-top:0px;">
+        <div style="width: auto;height: 30px;margin-left:18px;float: left;">
+            <span style="color: #b0b0b0">您的</span><span>快捷支付费率成本</span> &nbsp;<span style="color: #ff7260"> 0.38%</span>
+        </div>
+
+    </div>
+    <div style="width: 100%;height: 40px;line-height: 60px;margin-top:0px;">
+        <div style="width: auto;height: 30px;margin-left:18px;float: left;">
+            <span style="color: #b0b0b0">您的</span><span>快捷支付提现成本</span>&nbsp; <span style="color: #ff7260">  2元</span>
+        </div>
+    </div>
+    <div style="width: 100%;height: 40px;line-height: 60px;margin-top:0px;">
+        <div style="width: auto;height: 30px;margin-left:18px;float: left;">
+            <span style="color: #b0b0b0;font-size: 12px">可新建费率产品(不低于自身费率),传播二维码,带来收益</span>
+        </div>
+    </div>
+</div>
+<hr style="border:0.5px solid #ccc;">
+<div style="width: 100%;height: 57px;background: #fff;">
+
+    <div style="    position: relative;
+    top: 25%;">
+        <div style="width: auto;height: 30px;margin-left:18px;float: left;">
+            <span style="color: #000">我的分享码</span>
+        </div>
+        <div style="width: 90px;height: 40px;float: right;">
+            <div class="btn" id="createBtn"
+                 style="font-weight: 300;color: #fff;font-size: 1.05rem;box-shadow: 1px 5px 20px 2px #91ccec;text-align: center;line-height: 32px;height: 32px;width: 88px;border-radius: 30px;background: #00a8ff">
+                分享
+            </div>
+        </div>
+    </div>
+
+</div>
+<hr style="border:0.5px solid #ccc;">
+
+<div style="width: 100%;height:47px;padding-bottom: 15px;">
+
+    <div style="width: 40%;line-height: 15px;
+    height: 15px;position: relative;top:25px;left:16px;border-left: solid 3px #00a8ff">
+        <span style="margin-left: 13px;color: #a1a1a1">拓展列表</span>
+    </div>
+</div>
+
+<div style="height: auto;width: 100%;background: #fff;">
+
+    <table style="width: 100%;text-align: center;font-size: 13.2px;border-collapse: collapse;">
+        <tr style="height: 66px;background: #fff;border-bottom: 1px solid #d7d7d7">
+            <td>
+                <input type="radio" name="iCheck" checked> <span style="line-height: inherit;color: #00a8ff">设为默认</span>
+            </td>
+            <td>
+                费率:<span style="color: #ff7417">0.4%</span>
+            </td>
+            <td>
+                提现费:<span style="color: #ff7417">0.01元</span>
+
+            </td>
+            <td>
+                <div class="share_img_btn" data-url="showcodedetail.html"
+                     style="height: 28px;font-weight: 300;color: #fff;font-size: 82%;box-shadow: 1px 5px 20px 2px #91ccec;text-align: center;line-height: 28px;border-radius: 30px;background: #00a8ff">
+                    生成分享图
+                </div>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div style="height: 80px;">
+    &nbsp;
+</div>
+<div class="right_nav" style="display: none">
+    <ul id="right_menu_list">
+        <li id="credit_card_method">
+            <a>办卡攻略</a>
+        </li>
+        <li id="share_method">
+            <a>分享攻略</a>
+        </li>
+    </ul>
+</div>
+<div class="nav" style="display: none">
+    <ul id="menuList">
+        <li id="index">
+            <a>申请信用卡</a>
+        </li>
+        <li id="my_profit" style="color:#00a8ff">
+            <a>我的分享收益</a>
+        </li>
+    </ul>
+</div>
+</div>
+<script>
+    document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+        WeixinJSBridge.call('hideOptionMenu');
+    });
+    $(function () {
+        $('input').iCheck({
+            checkboxClass: 'icheckbox_flat-blue',
+            radioClass: 'iradio_flat-blue'
+        });
+        $("#createBtn").click(function () {
+            window.location.href = "createcode.html";
+        });
+        $("#index_page").click(function () {
+            window.location.href = "index.html";
+        });
+        $("#profit").click(function () {
+            window.location.href = "profit.html";
+        });
+        $("#rules").click(function () {
+            window.location.href = "";
+        });
+        $(".share_img_btn").click(function () {
+            window.location.href = $(this).attr('data-url');
+        });
+    });
+
+</script>
+</body>
+
+</html>

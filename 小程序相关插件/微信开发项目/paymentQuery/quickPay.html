@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>收款</title>
+    <link href="/static/css/index.css" rel="stylesheet">
+    <link href="https://res.wx.qq.com/open/libs/weui/1.1.1/weui.min.css" rel="stylesheet">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
+</head>
+
+<style>
+
+    .right_btn_box {
+        margin: 5%;
+    }
+
+    .banner_list {
+        font-size: 120%;
+    }
+
+    .zhaomu-btn {
+        width: 85%;
+        top: 30%;
+        right: -11%;
+    }
+    .login_error{
+        color:red;
+        font-size: 12px;
+        line-height: 20px;
+        padding: 0 15px;
+    }
+    @media screen and (min-width: 300px) and  (max-width: 360px) {
+        /*iphone 5*/
+        .right_btn_box {
+            margin: -11%;
+            margin-top: 5%;
+        }
+
+        .banner_list {
+            font-size: 100%;
+        }
+
+        .zhaomu-btn {
+            width: 85%;
+            top: 30%;
+            right: -11%;
+        }
+    }
+
+    @media screen and (min-width: 360px) and (max-width: 400px) {
+        /*iphone 8*/
+        .right_btn_box {
+            margin: -11%;
+            margin-top: 5%;
+        }
+
+        .banner_list {
+            font-size: 100%;
+        }
+
+        .zhaomu-btn {
+            width: 77%;
+            top: 30%;
+            right: -12.5%;
+        }
+    }
+
+    @media screen and (min-width: 400px) and (max-width: 500px) {
+        /*iphone 8plus*/
+        .zhaomu-btn {
+            width: 70%;
+            top: 30%;
+            right: -14%;
+        }
+    }
+</style>
+<body>
+<div style="width: 100%;height:47px;padding-bottom: 15px;">
+    <div style="width: 40%;line-height: 15px;
+    height: 15px;position: relative;top:25px;left:16px;border-left: solid 3px #00a8ff">
+        <span style="margin-left: 13px;color: #a1a1a1">支付金额</span>
+    </div>
+</div>
+<div>
+    <input class="weui-input" name="openid" id="openid" type="hidden" value="{$openid}">
+
+    <div style="width: 100%;">
+        <div style="width: 100%;height: 44px; background: #fff">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">金额</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" name="money" id="money" type="tel" pattern="[0-9]*" placeholder="金额">
+                </div>
+            </div>
+        </div>
+
+        <div style="width: 94.5%;margin-left: 5%;border: 0.5px solid #dbdbdb">
+
+        </div>
+
+        <div style="width: 100%;height: 44px;background: #fff">
+            <!--<div style="margin-left: 5%;width: 95%;height: 30px;line-height: 15px;color:#a1a1a1;font-size:60%;position:relative;top: 0%;">-->
+
+                <!--<div style="width: 40%;height: 100%;float: left">-->
+                    <!--<p>交易手续费<span>0.38%</span>;</p>-->
+                    <!--<p>金额后三位不能相同。</p>-->
+                <!--</div>-->
+                <!--<div style="width: 28%;height: 100%;float: left">-->
+                    <!--<p>提现手续费<span>2元</span>;</p>-->
+                <!--</div>-->
+                <!--<div style="width: 32%;height: 100%;float: left">-->
+                    <!--<p>单次支付不低于1元。</p>-->
+                <!--</div>-->
+
+            <!--</div>-->
+            <div class="login_error"></div>
+
+        </div>
+    </div>
+
+    <div style="width: 100%;height:47px;padding-bottom: 15px;" id="cardInfo">
+        <div style="width: 40%;line-height: 15px;
+    height: 15px;position: relative;top:25px;left:16px;border-left: solid 3px #00a8ff">
+            <span style="margin-left: 13px;color: #a1a1a1">付款卡信息</span>
+        </div>
+
+        <div style="position: relative;height: 30px;margin: 0 auto;margin-top: 5%">
+            <div class="btn"
+                 id="showPicker"
+                 style="font-weight: 300;color: #fff;
+                 font-size: 14px;
+                 box-shadow: 1px 5px 20px 2px #91ccec;
+                 text-align: center;
+                 line-height: 32px;height: 32px;
+                 width: 120px;border-radius: 30px;
+                 position: absolute;
+                 display: inline-block;
+                 top: -15px;
+                 right: 0;
+                 background: #00a8ff;z-index:1001;">
+                用历史付款卡
+            </div>
+        </div>
+
+    </div>
+
+    <div style="width: 100%;" id = "cardDetail">
+        <!--<div style="width: 100%;height: 44px; background: #fff">-->
+            <!--<div class="weui-cell">-->
+                <!--<div class="weui-cell__hd"><label class="weui-label">商品描述</label></div>-->
+                <!--<div class="weui-cell__bd">-->
+                    <!--<input class="weui-input" type="text" name="goodsName" id="goodsName"-->
+                           <!--placeholder="商品描述" >-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <div style="width: 94.5%;margin-left: 5%;border: 0.5px solid #dbdbdb"></div>
+        <div style="width: 100%;height: 44px; background: #fff">
+            <div class="weui-cell">
+                <div class="weui-cell__hd"><label class="weui-label">支付卡号</label></div>
+                <div class="weui-cell__bd">
+                    <input class="weui-input" name="creditCardNo" id="creditCardNo" type="tel" pattern="[0-9]*"
+                           placeholder="支付卡号" value="" }>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="width: 100%;height: 50px;" id="infoBtn">
+
+        <div style="width: 40%;height: 40px;margin: 0 auto;margin-top: 8%">
+            <div class="btn"
+                 onclick="preCreateOrder()"
+                 style="font-weight: 300;color: #fff;font-size: 1.05rem;box-shadow: 1px 5px 20px 2px #91ccec;text-align: center;line-height: 32px;height: 32px;width: 100%;border-radius: 30px;background: #00a8ff">
+                下一步
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<div class="bobm_box">
+    <img class="bobm_one" src="/static/images/loading.gif" alt="">
+</div>
+<div style="width: 100%;height: 20px;"></div>
+
+<script>
+    // document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+    //     //WeixinJSBridge.call('hideOptionMenu');
+    // });
+
+    // loading
+    function loadHide(){
+        $(".bobm_box").hide();
+    }
+
+    function loadShow(){
+        $(".bobm_box").show();
+    }
+
+    var productType=sessionStorage.getItem('productType');
+    var payType=sessionStorage.getItem('payType');
+
+    if(productType == 'QUICK_UPPER'){
+        $("#cardInfo").hide();
+        $("#cardDetail").hide();
+    }
+
+    $("#money").bind('input propertychange', function() {
+
+        if(payType == 'QUICK_FRONT_UPPER'){
+            if ($("#money").val() < 50) {
+                $(".login_error").html('金额不能低于50元');
+            }
+        }else if(payType == 'QUICK_A'){
+            if ($("#money").val() < 500) {
+                $(".login_error").html('金额不能低于500元');
+            }
+        }else {
+            $(".login_error").html('');
+        }
+
+        if (!/^[1-9]\d*$/.test($("#money").val())) {
+            $(".login_error").html('金额只能为整数');
+        } else {
+            $(".login_error").html('');
+        }
+    });
+
+    $('#showPicker').on('click', function () {
+        //查询所有银行卡
+        // var val = [{label:'62121252252252215',value:'62121252252252215'},{label:'62121252252252215',value:'62121252252252215',id:1},{label:'62121252252252215',value:'62121252252252215',id:1},{label:'62121252252252215',value:'62121252252252215',id:1}];
+        var val='';
+        // 获取历史付款卡
+        function getList(){
+            $.ajax({
+                type: "GET",
+                url: "/trade/agreeInfo",
+                dataType: 'json',
+                data: {
+                    'productType':productType
+                },
+                success: function(data) {
+                    console.log(data)
+                    if(data.code=="000000"){
+                        val= data.data;
+                    }else{
+                        weui.alert('请求出错！', {title: '操作失败'});
+                    }
+                }
+            });
+
+        };
+        getList();
+
+        if (val.length == 0) {
+            weui.alert('请求出错！', {title: '操作失败'});
+            // val = {label: '您还没有付款卡',value: '您还没有付款卡'};
+            // weui.picker(val, {
+            //     onChange: function (result) {
+            //         //console.log(result);
+            //     },
+            //     onConfirm: function (result) {
+            //        $("#creditCardNo").val(ele.value);
+            //     }
+            // });
+        } else {
+            weui.picker(val, {
+                onChange: function (result) {
+                    //console.log(result);
+                },
+                onConfirm: function (result) {
+                    $(val).each(function (index, ele) {
+                        if (ele.value == result) {
+                            $("#creditCardNo").val(ele.value);
+                        }
+                    });
+                    // $.each(val, function (index, ele) {
+                    //     if (ele.cardNo == result) {
+                    //         $("#creditCardNo").val(ele.cardNo);
+                    //     }
+                    // });
+                }
+            });
+        }
+    });
+
+    function preCreateOrder() {
+        var money=$('#money').val();
+        var creditCardNo = $('#creditCardNo').val();
+        var o = "<?=$openid?>";
+        if(payType == 'QUICK_FRONT_UPPER'){
+            if (money < 50) {
+                weui.alert('金额不能低于50元', {title: '操作失败'});
+                return false;
+            } else if (!/^[1-9]\d*$/.test(money)) {
+                weui.alert('金额只能为整数', {title: '操作失败'});
+                return false;
+            }
+        }else if(payType == 'QUICK_A'){
+            if (money < 500) {
+                weui.alert('金额不能低于500元', {title: '操作失败'});
+                return false;
+            } else if (!/^[1-9]\d*$/.test(money)) {
+                weui.alert('金额只能为整数', {title: '操作失败'});
+                return false;
+            }
+        }
+
+
+        if(productType == 'QUICK_A'){
+            if (creditCardNo == '') {
+                weui.alert('支付卡号不能为空', {title: '操作失败'});
+                return false;
+            }
+            if (!/^\d{12,32}$/.test(creditCardNo)) {
+                weui.alert('支付卡号是否正确', {title: '操作失败'});
+                return false;
+            }
+        }else {
+            creditCardNo = 'XXXXXXXXXXXXXXXXXXXX';
+        }
+        loadShow();
+        $.ajax({
+            url: '/trade/quickpay',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                'creditCardNo': creditCardNo,
+                'amount':money,
+                'payType':payType
+            },
+            success: function (data) {
+                loadHide();
+                if(data.code=='000000' && data.data.isHtml == '1'){
+                    document.write(data.data.html);
+                }else if(data.code=="000000" && data.data.isHtml == '2'){
+                    sessionStorage.setItem("tradeId",data.data.tradeId);
+                    window.location.href ="/trade/toTradeConfirm";
+                } else {
+                    weui.alert(data.message, '温馨失败');
+                }
+            }
+        });
+    }
+</script>
+
+</body>
+
+</html>

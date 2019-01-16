@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport"
+          content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <link rel="stylesheet" href=""/>
+</head>
+<body>
+<h1>分享功能(包含微信朋友圈，微信好友分享，QQ分享)</h1>
+<script src="http://cdn.huataiyihe.com/js_jquery-3.2.1.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script >
+    //当前页面url
+    var url = window.location.href;
+    //分享功能的config参数声明
+    var appId, timestamp, nonceStr, signature;
+    //分享标题
+    $title='';
+    //分享的链接
+    $link=url;
+    //分享的详情
+    $desc='';
+    //分享的logo 必须为1:1的图片，如果不是则会在图片中间截取一个正方形
+    $imgUrl='';
+    $.ajax({
+        //分享功能config的参数异步获取
+        url: '/sdhui-sei/in/u/d/wechat/jsapiconfig',
+        data: {url: url},
+        success: function (data) {
+            if (data.rstCde == 0) {
+                appId=data.data.appId;
+                timestamp=data.data.timestamp;
+                signature=data.data.signature;
+                nonceStr=data.data.noncestr;
+                //微信分享的config配置
+                wx.config({
+                    debug: false,
+                    appId:appId,
+                    timestamp:timestamp,
+                    nonceStr:nonceStr,
+                    signature:signature,
+                    //微信jsdk模块注入   功能列表，我们要使用JS-SDK的什么功能;
+                    jsApiList: ['onMenuShareTimeline', 'onMenuShareAppMessage','onMenuShareQQ']
+
+                })
+                //config信息验证后会执行ready方法，所有接口调用都必须在config接口获得结果之后，config是一个客户端的异步操作，所以如果需要在 页面加载时就调用相关接口，则须把相关接口放在ready函数中调用来确保正确执行。对于用户触发时才调用的接口，则可以直接调用，不需要放在ready 函数中。
+                wx.ready(function(){
+                    // 获取“分享到朋友圈”按钮点击状态及自定义分享内容接口
+                    wx.onMenuShareTimeline({
+                        title: $title,
+                        link:$link,
+                        imgUrl: $imgUrl,
+                        fail:function(res){alert(res.errMsg)},
+                        success:function(){
+
+                        }
+                    });
+                    // 获取“分享给朋友”按钮点击状态及自定义分享内容接口
+                    wx.onMenuShareAppMessage({
+                        title:$title,
+                        desc: $desc,
+                        link:$link,
+                        imgUrl: $imgUrl,
+                        type: 'link'
+                    });
+                    //分享到qq
+                    wx.onMenuShareQQ({
+                        title:$title,
+                        desc: $desc,
+                        link:$link,
+                        imgUrl:$imgUrl
+                    });
+                });
+            }
+        }
+    });
+</script>
+</body>
+</html>

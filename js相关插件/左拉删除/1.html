@@ -1,0 +1,154 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+
+
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="format-detection" content="telephone=no">
+<title></title>
+<style>
+        * {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        html {
+            background-color: #F2F3F7;
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        body {
+            height: 100%;
+            overflow-x: hidden;
+        }
+
+        .session-box {
+            margin-top: 10px;
+            width: calc(100% + 80px);
+            overflow-x: auto;
+            position: relative;
+        }
+
+        .session-box .session-content {
+            background-color: #FFFFFF;
+            color: #333333;
+            font-size: 28px;
+            text-align: center;
+            height: 80px;
+            line-height: 80px;
+            float: left;
+            width: calc(100% - 80px);
+        }
+
+        .session-box .del-btn {
+            width: 80px;
+            height: 80px;
+            line-height: 80px;
+            text-align: center;
+            background-color: darkred;
+            color: #FFFFFF;
+            font-size: 20px;
+            font-weight: normal;
+            float: left;
+        }
+
+        .clear {
+            clear: both;
+        }
+    </style>
+</head>
+<body style="">
+<div class="session-box" id="session-box" isshow="false" style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); left: 0px; transition: left 300ms ease 0s;">
+<div class="session-content">
+会话1
+</div>
+<a href="javascript:;" class="del-btn">删除</a>
+<div class="clear"></div>
+</div>
+<div class="session-box" isshow="false" style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); left: 0px; transition: left 300ms ease 0s;">
+<div class="session-content">
+会话2
+</div>
+<a href="javascript:;" class="del-btn">删除</a>
+<div class="clear"></div>
+</div>
+<div class="session-box" isshow="false" style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); left: 0px; transition: left 300ms ease 0s;">
+<div class="session-content">
+会话3
+</div>
+<a href="javascript:;" class="del-btn">删除</a>
+<div class="clear"></div>
+</div>
+
+<div class="session-box" isshow="false" style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); left: 0px; transition: left 300ms ease 0s;">
+<div class="session-content">
+会话5
+</div>
+<a href="javascript:;" class="del-btn">删除</a>
+<div class="clear"></div>
+</div>
+<div class="session-box" isshow="false" style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); left: 0px; transition: left 300ms ease 0s;">
+<div class="session-content">
+会话6
+</div>
+<a href="javascript:;" class="del-btn">删除</a>
+<div class="clear"></div>
+</div>
+<div class="session-box" isshow="false" style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); left: 0px; transition: left 300ms ease 0s;">
+<div class="session-content">
+会话7
+</div>
+<a href="javascript:;" class="del-btn">删除</a>
+<div class="clear"></div>
+</div>
+<div class="session-box" isshow="false" style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); left: 0px; transition: left 300ms ease 0s;">
+<div class="session-content">
+会话8
+</div>
+<a href="javascript:;" class="del-btn">删除</a>
+<div class="clear"></div>
+</div>
+<div class="session-box" isshow="false" style="touch-action: pan-y; user-select: none; -webkit-user-drag: none; -webkit-tap-highlight-color: rgba(0, 0, 0, 0); left: 0px; transition: left 300ms ease 0s;">
+<div class="session-content">
+会话9
+</div>
+<a href="javascript:;" class="del-btn">删除</a>
+<div class="clear"></div>
+</div>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script><script src="http://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+<script src="./hammer.min.js"></script>
+<script src="./slide2del.js"></script>
+<script>
+
+
+    $(".session-box").slide2del({
+        sItemClass: ".session-box",
+        sDelBtnClass: ".del-btn",
+        delHandler: function (target) {
+
+            var text = target.find('.session-content').text();
+
+            target.remove();
+
+            alert(text+"成功删除");
+
+
+        },
+        itemClickHandler: function (target) {
+            console.log("你点击了选项：" + target.text());
+
+//            return false;//阻止默认事件
+//            $(this).slide2del_hideDel();
+        }
+    });
+
+
+</script>
+
+</body></html>

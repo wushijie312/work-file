@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>首页</title>
+    <link href="https://res.wx.qq.com/open/libs/weui/1.1.1/weui.min.css" rel="stylesheet">
+    <link href="../css/index.css" rel="stylesheet">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
+</head>
+<body>
+<div class="index_box">
+    <div class="index_one">
+        <img class="index_one_a" src="../img/home_1.png" />
+    </div>
+    <div class="index_two">
+        
+        <div class="weui-cells weui-cells_checkbox index_all">
+           <label class="" for="s1'+index+'"><div class="index_two_a index_two_b"><div class="index_all_pos"><input type="radio" productType="'+row.ALL.productType+'" name="checkbox1" class="weui-check" id="s1'+index+'"/><i class="weui-icon-checked"></i></div><div class="index_two_left"><h3>2</h3><img class="index_two_button" src="../img/home_3.jpg"></div><div class="index_two_main"><p>2</p><p>2</p><p>2</p></div></div></label>
+        </div>
+        <div class="weui-cells weui-cells_checkbox index_all">
+           <label class="" for="s1'+index+'"><div class="index_two_a index_two_b"><div class="index_all_pos"><input type="radio" productType="'+row.ALL.productType+'" name="checkbox1" class="weui-check" id="s1'+index+'"/><i class="weui-icon-checked"></i></div><div class="index_two_left"><h3>2</h3><img class="index_two_button" src="../img/home_3.jpg"></div><div class="index_two_main"><p>2</p><p>2</p><p>2</p></div></div></label>
+        </div>
+    </div>
+    <div class="weui-btn-area index_footer_pos">
+        <button class="weui-btn weui-btn_primary" style="background-color: #10aeff" type="submit">开始收款</button>
+    </div>
+</div>
+<div class="bobm_box">
+    <img class="bobm_one" src="../img/loading.gif" alt="">
+</div>
+<script type="text/javascript" class="picker js_show">
+    // loading
+    function loadHide(){
+        $(".bobm_box").hide();
+    }
+    function loadShow(){
+        $(".bobm_box").show();
+    }
+    loadShow();
+    // 获取首页商户信息
+    
+    function getList(){
+        $.ajax({
+            type: "GET",
+            //url: "http://172.16.3.34:8080/backstage_wxwork/daily/queryUserDaily.shtml?userid="+userId+"&date="+dates,
+            url: "/merchant/products",
+            dataType: 'json',
+            success: function(data) {
+                if(data.code=="000000"){
+                    if(data.code.length==0){
+                        weui.alert('无支付产品', {title: '提示'});
+                    }else{
+                        data.data.each(function(index,row){
+                            if(index%2==0){
+                                $(".index_all").append('<label class="" for="s1'+index+'"><div class="index_two_a index_two_b"><div class="index_all_pos"><input type="radio" producttype="'+row.OPEND.productType+'" name="checkbox1" class="weui-check" id="s1'+index+'"/><i class="weui-icon-checked"></i></div><div class="index_two_left"><h3>'+row.OPEND.productName+'</h3><img class="index_two_button" src="../img/home_2.jpg"></div><div class="index_two_main"><p>'+row.OPEND.cardInfo+'</p><p>'+row.OPEND.rateInfo+'</p><p>'+row.OPEND.limitInfo+'</p></div></div></label>');
+                            }else{
+                                $(".index_all").append('<label class="" for="s1'+index+'"><div class="index_two_a"><div class="index_all_pos"><input type="radio" producttype="'+row.ALL.productType+'" name="checkbox1" class="weui-check" id="s1'+index+'"/><i class="weui-icon-checked"></i></div><div class="index_two_left"><h3>'+row.ALL.productName+'</h3><img class="index_two_button" src="../img/home_3.jpg"></div><div class="index_two_main"><p>'+row.ALL.cardInfo+'</p><p>'+row.ALL.rateInfo+'</p><p>'+row.ALL.limitInfo+'</p></div></div></label>');
+                            }
+                        });
+                    }
+                    
+                }else{
+                    weui.alert('请求出错！', {title: '操作失败'});
+                }
+            }
+        });
+    };
+    getList();
+    var hasTouch = 'ontouchstart' in window,
+            endEvent = hasTouch ? 'touchend' : 'click';
+    // 选择产品类型
+        var productType='';
+        $(document).on(endEvent,".index_all input",function(){
+            productType=$(this).attr("productType");
+        }); 
+    //
+        $(document).on(endEvent,".index_two_b",function(){
+            var self=this;
+            weui.confirm('确认开通支付产品', {
+                buttons: [{
+                    label: '取消',
+                    type: 'default',
+                    onClick: function(){ console.log('no') }
+                }, {
+                    label: '确认',
+                    type: 'primary',
+                    onClick: function(){ 
+                        productType=$(self).find("input");
+
+                        $.ajax({
+                            type: "POST",
+                            //url: "http://172.16.3.34:8080/backstage_wxwork/daily/queryUserDaily.shtml?userid="+userId+"&date="+dates,
+                            url: "/merchant/openProduct",
+                            dataType: 'json',
+                            success: function(data) {
+                                if(data.code=="000000"){
+                                    if(data.code.length==0){
+                                        weui.alert('无支付产品', {title: '提示'});
+                                    }else{
+                                        console.log(data.data);
+                                    }
+                                    
+                                }else{
+                                    weui.alert('请求出错！', {title: '操作失败'});
+                                }
+                            }
+                        });
+                    }
+                }]
+            });
+            return false;
+        }); 
+    // 开始收款
+    
+        $(document).on(endEvent,".weui-btn_primary",function(){
+            productType=sessionStorage.getItem('productType');
+            if(productType=="" || productType=="undefined"){
+                weui.alert('请选择产品类型后再操作！', {title: '操作失败'});
+            }else{
+                sessionStorage.setItem('productType',productType);
+                window.location.href="/trade/toAgree?productType="+productType;
+            }
+        });   
+</script>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<html> 
+  <head> 
+        <meta charset="utf-8"> 
+        <title>HelloWorld</title> 
+  </head> 
+    <body> 
+    	<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+   <circle cx="100" cy="50" r="40" stroke="black" stroke-width="2" fill="#f90" /><circle cx="200" cy="50" r="40" stroke="black" stroke-width="2" fill="red" />
+</svg> 
+        <p>Hello World 1</p>
+        <p class="ppppp">Hello World 2</p>
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script> 
+<script>  
+        var p=d3.select("body").selectAll("p").text("www.ourd3js.com");      
+        p.style({"color":"#f90",'font-size':'20px'});
+        var str='China';
+        var body=d3.select('body');
+        var p=body.selectAll('p');
+        p.datum(str);
+        p.text(function(d,i){
+            console.log(d,i);
+            return "第 "+ i + " 个元素绑定的数据是 " + d;
+        });
+        // console.log(body);
+        // console.log(p1);
+        console.log(p);
+        // console.log(p0);
+        // console.log(svg);
+        // console.log(circle);
+</script> 
+</body> 
+</html>

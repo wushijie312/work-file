@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!-- 为移动设备添加 viewport -->
+    <meta name="viewport" content="width=device-width,initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <!-- 添加到主屏后的标题（iOS 6 新增） -->
+    <meta name="apple-mobile-web-app-title" content="">
+    <meta name="format-detection" content="telephone=no">
+    <!-- 是否启用 WebApp 全屏模式，删除苹果默认的工具栏和菜单栏 -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+<title>无标题文档</title>
+</head>
+     <!-- <link href="app.css" rel="stylesheet" type="text/css"/>  -->
+    <script src="./Sortable.js"></script>
+  <body>
+      <ul id="foo" class="block__list block__list_words">
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+            </ul>
+       <script>
+                 Sortable.create(document.getElementById('foo'), {
+                                animation: 150, //动画参数
+                                onAdd: function (evt){   //拖拽时候添加有新的节点的时候发生该事件
+                                     console.log('onAdd.foo:', [evt.item, evt.from]); 
+                                },
+                                onUpdate: function (evt){  //拖拽更新节点位置发生该事件
+                                    console.log('onUpdate.foo:', [evt.item, evt.from]);  
+                                },
+                                onRemove: function (evt){   //删除拖拽节点的时候促发该事件
+                                     console.log('onRemove.foo:', [evt.item, evt.from]); 
+                                },
+                                onStart:function(evt){  //开始拖拽出发该函数
+                                     console.log('onStart.foo:', [evt.item, evt.from]);
+                                },
+                                onSort:function(evt){  //发生排序发生该事件
+                                     console.log('onSort.foo:', [evt.item, evt.from]);
+                                },
+                                onEnd: function(evt){ //拖拽完毕之后发生该事件
+                                     console.log('onEnd.foo:', [evt.item, evt.from]); 
+                                }
+                     });
+      </script>  
+</body>
+</html>

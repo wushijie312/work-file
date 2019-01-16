@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+<meta charset="utf-8">
+<title>fullPage.js演示-搜狗输入法 for Mac_dowebok</title>
+<link rel="stylesheet" href="css/jquery.fullPage.min.css">
+<style>
+* { margin: 0; padding: 0;}
+ul { list-style-type: none;}
+.top { position: fixed; left: 0; right: 0; top: 0; z-index: 999; height: 50px; background-color: rgba(0, 0, 0, 0.6);}
+.menu { width: 1000px; margin: 0 auto; overflow: hidden;}
+.logo { float: left; margin-top: 9px;}
+.logo a { display: inline-block; width: 32px; height: 32px; background-image: url(images-14/logo_2x.png); background-size: 32px 32px;}
+.nav { float: right; margin-top: 10px; font-size: 0;}
+.nav li { display: inline-block; margin-left: 40px;}
+.nav a { display: inline-block; height: 30px; line-height: 30px; font-size: 12px; color: #fff; text-decoration: none;}
+.nav a:hover { color: #83c3f3;}
+.section { text-align: center; background-repeat: no-repeat; background-position: 50% 50%; background-size: cover; overflow: hidden;}
+#section0 { background-image: url(images-14/1bg.jpg);}
+#section1 { background-image: url(images-14/2bg.jpg);}
+#section2 { background-image: url(images-14/3bg.jpg);}
+#section3 { background-image: url(images-14/4bg.jpg);}
+.title1 { opacity: 0.8; font-size: 60px; line-height: 93px; background: url(images-14/titleline1.png) no-repeat center bottom;}
+.title2 { opacity: 0.8; font-size: 40px; line-height: 75px;}
+.title3 { font-size: 24px; font-family: 'PingFang-SC-UltraLight', '微软雅黑', '宋体'; line-height: 48px; margin-top: 20px; opacity: 0.7;}
+#section1 .title1, #section1 .title2, #section2 .title1, #section2 .title2 { color: #fff; opacity: 1;}
+#section1 .title3, #section2 .title3 { color: #fff;}
+#section3 .title3 { color: #000;}
+#section1 .title1 { background: url(images-14/titleline2.png) no-repeat center bottom;}
+#section2 .title1 { background: url(images-14/titleline3.png) no-repeat center bottom;}
+#section3 .title1 { background: url(images-14/titleline4.png) no-repeat center bottom;}
+.mTxt1 { width: 526px; height: 195px; margin: 0 auto; position: relative; top: 25%; background: url(images-14/oneTxt.png) no-repeat 0 0;}
+.DownloadBtn { cursor: pointer; margin: 85px auto 0; width: 220px; height: 50px; position: relative; background: #5396FF; color: #fff; line-height: 50px; font-size: 24px; border-radius: 25px;}
+.DownloadBtn a { display: inline-block; width: 100%; height: 100%; color: #fff; font-family: 'PingFang-SC-UltraLight', '微软雅黑', '宋体';}
+.mTxt1 { width: 526px; height: 195px; margin: 0 auto; position: relative; top: 25%; background: url(images-14/oneTxt.png) no-repeat 0 0;}
+.DownloadBtn { cursor: pointer; margin: 85px auto 0; width: 220px; height: 50px; position: relative; background: #5396FF; color: #fff; line-height: 50px; font-size: 24px; border-radius: 25px;}
+.DownloadBtn a { display: inline-block; width: 100%; height: 100%; color: #fff; font-family: 'PingFang-SC-UltraLight', '微软雅黑', '宋体'; text-decoration: none;}
+#fp-nav ul li a span, .fp-slidesNav ul li a span { background-color: #fff;}
+</style>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery.fullPage.min.js"></script>
+<script>
+$(function() {
+$('#fullpage').fullpage({
+	navigation: true
+});
+});
+</script>
+</head>
+
+<body>
+<div class="top">
+	<div class="menu">
+		<h1 class="logo"><a href="http://www.dowebok.com/"></a></h1>
+		<ul class="nav">
+			<li><a href="javascript:">拼音输入法</a></li>
+			<li><a href="javascript:">五笔输入法</a></li>
+			<li><a href="javascript:">皮肤编辑器</a></li>
+			<li><a href="javascript:">皮肤Store</a></li>
+			<li><a href="javascript:">论坛</a></li>
+			<li><a href="javascript:">微博</a></li>
+		</ul>
+	</div>
+</div>
+<div id="fullpage">
+	<div class="section" id="section0">
+		<div class="title1">忘记输入 享受Mac</div>
+		<div class="title2">搜狗拼音输入法 for Mac 3.5.0</div>
+		<div class="title3">我们相信，在Mac的世界中，你只需放飞自己的想象力
+			<br>享受一切理所应当的美好！</div>
+		<div class="DownloadBtn"><a href="http://www.dowebok.com/" target="_blank">立即下载</a></div>
+	</div>
+	<div class="section" id="section1">
+		<div class="title1">不为另类 只因喜爱</div>
+		<div class="title2">搜狗五笔输入法 for Mac 1.0.0</div>
+		<div class="title3">从PC到Mac，我们力求让你的五笔输入法得到同样的优质体验
+			<br>继承Windows输入法的完美血统</div>
+		<div class="DownloadBtn"><a href="http://www.dowebok.com/" target="_blank">立即下载</a></div>
+	</div>
+	<div class="section" id="section2">
+		<div class="title1">Hello,Mac!</div>
+		<div class="title2">皮肤编辑器 for Mac 1.0.0</div>
+		<div class="title3">无论你是轻车熟路的皮肤作者，还是灵感爆棚的设计师，都将在这里找到归属感
+			<br>带来梦想照进现实般的创作体验</div>
+		<div class="DownloadBtn"><a href="http://www.dowebok.com/" target="_blank">立即下载</a></div>
+	</div>
+	<div class="section" id="section3">
+		<div class="title1">个性输入 缤纷心情</div>
+		<div class="title2">海量精美皮肤 for Mac</div>
+		<div class="title3">简约派，或是萌系一族，我们都能给你想要的与众不同
+			<br>打字这件小事，也可玩味十足</div>
+		<div class="DownloadBtn"><a href="http://www.dowebok.com/" target="_blank">前往皮肤Store</a></div>
+	</div>
+</div>
+</body>
+
+</html>

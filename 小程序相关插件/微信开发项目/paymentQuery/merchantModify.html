@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>商户信息</title>
+    <link href="https://res.wx.qq.com/open/libs/weui/1.1.1/weui.min.css" rel="stylesheet">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://res.wx.qq.com/open/libs/weuijs/1.0.0/weui.min.js"></script>
+</head>
+
+<style>
+
+    .right_btn_box {
+        margin: 5%;
+    }
+
+    .banner_list {
+        font-size: 120%;
+    }
+
+    .zhaomu-btn {
+        width: 85%;
+        top: 30%;
+        right: -11%;
+    }
+
+    @media screen and (min-width: 300px) and  (max-width: 360px) {
+        /*iphone 5*/
+        .right_btn_box {
+            margin: -11%;
+            margin-top: 5%;
+        }
+
+        .banner_list {
+            font-size: 100%;
+        }
+
+        .zhaomu-btn {
+            width: 85%;
+            top: 30%;
+            right: -11%;
+        }
+    }
+
+    @media screen and (min-width: 360px) and (max-width: 400px) {
+        /*iphone 8*/
+        .right_btn_box {
+            margin: -11%;
+            margin-top: 5%;
+        }
+
+        .banner_list {
+            font-size: 100%;
+        }
+
+        .zhaomu-btn {
+            width: 77%;
+            top: 30%;
+            right: -12.5%;
+        }
+    }
+
+    @media screen and (min-width: 400px) and (max-width: 500px) {
+        /*iphone 8plus*/
+        .zhaomu-btn {
+            width: 70%;
+            top: 30%;
+            right: -14%;
+        }
+    }
+</style>
+<body>
+    <div class="shrz_one_a">
+        <div style="width: 100%;height:47px;padding-bottom: 15px;">
+            <div style="width: 40%;line-height: 15px;
+        height: 15px;position: relative;top:25px;left:16px;border-left: solid 3px #00a8ff">
+                <span style="margin-left: 13px;color: #a1a1a1">基本信息</span>
+            </div>
+        </div>
+
+        <div style="width: 100%;">
+            <div style="width: 100%;height: 44px; background: #fff">
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">身份证</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" type="text" id="legalPersonId" name="legalPersonId"
+                               placeholder="身份证">
+                    </div>
+                </div>
+            </div>
+            <div style="width: 94.5%;margin-left: 5%;border: 0.5px solid #dbdbdb"></div>
+
+            <div style="width: 100%;height: 44px; background: #fff">
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">姓名</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input"  type="text" id="legalPersonName" name="legalPersonName" placeholder="姓名">
+                    </div>
+                </div>
+            </div>
+
+            <div style="width: 94.5%;margin-left: 5%;border: 0.5px solid #dbdbdb"></div>
+            <div style="width: 100%;height: 44px; background: #fff">
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">手机号</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input"  id="merchantPersonPhone" name="merchantPersonPhone"
+                               type="tel" pattern="[0-9]*" placeholder="手机号">
+                    </div>
+                </div>
+            </div>
+
+            <div style="width: 94.5%;margin-left: 5%;border: 0.5px solid #dbdbdb"></div>
+            <div style="width: 100%;height: 44px; background: #fff">
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">经营省</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" readonly type="text" id="provinceCode" name=""  placeholder="经营省">
+                    </div>
+                </div>
+            </div>
+
+            <div style="width: 94.5%;margin-left: 5%;border: 0.5px solid #dbdbdb"></div>
+            <div style="width: 100%;height: 44px; background: #fff">
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">经营市</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" readonly type="text" id="cityCode" name=""  placeholder="经营市">
+                    </div>
+                </div>
+            </div>
+
+            <div style="width: 94.5%;margin-left: 5%;border: 0.5px solid #dbdbdb"></div>
+            <div style="width: 100%;height: 44px; background: #fff">
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">经营区</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" readonly type="text" id="districtCode" name=""  placeholder="经营区">
+                    </div>
+                </div>
+            </div>
+
+            <div style="width: 94.5%;margin-left: 5%;border: 0.5px solid #dbdbdb"></div>
+            <div style="width: 100%;height: 44px; background: #fff">
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">经营地址</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" type="text" id="operateAddress" name="operateAddress"  placeholder="经营地址">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div style="width: 100%;height:47px;padding-bottom: 15px;">
+            <div style="width: 40%;line-height: 15px;
+        height: 15px;position: relative;top:25px;left:16px;border-left: solid 3px #00a8ff">
+                <span style="margin-left: 13px;color: #a1a1a1">收款卡信息</span>
+            </div>
+        </div>
+
+        <div style="width: 100%;">
+            
+            <div style="width: 94.5%;margin-left: 5%;border: 0.5px solid #dbdbdb"></div>
+            <div style="width: 100%;height: 44px; background: #fff">
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">收款账号</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" name="accountNo" id="accountNo" type="tel" pattern="[0-9]*" placeholder="收款人银行卡号">
+                    </div>
+                </div>
+            </div>
+
+            <div style="width: 94.5%;margin-left: 5%;border: 0.5px solid #dbdbdb"></div>
+            <div style="width: 100%;height: 44px; background: #fff">
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">收款银行</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" name="bank_name" type="text" readonly id="bank_name"
+                                placeholder="收款银行">
+                    </div>
+                </div>
+            </div>
+            <div style="width: 94.5%;margin-left: 5%;border: 0.5px solid #dbdbdb"></div>
+            <div style="width: 100%;height: 44px; background: #fff">
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">开卡省</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" readonly type="text" id="bankProvince" name=""  placeholder="开卡省">
+                    </div>
+                </div>
+            </div>
+
+            <div style="width: 94.5%;margin-left: 5%;border: 0.5px solid #dbdbdb"></div>
+            <div style="width: 100%;height: 44px; background: #fff">
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">开卡市</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" readonly type="text" id="bankCity" name=""  placeholder="开卡市">
+                    </div>
+                </div>
+            </div>
+
+            <div style="width: 94.5%;margin-left: 5%;border: 0.5px solid #dbdbdb"></div>
+            <div style="width: 100%;height: 44px; background: #fff">
+                <div class="weui-cell">
+                    <div class="weui-cell__hd"><label class="weui-label">开卡支行</label></div>
+                    <div class="weui-cell__bd">
+                        <input class="weui-input" readonly type="text" id="bankBranch" name="" placeholder="开卡支行">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="width: 100%;height: 50px;" id="infoBtn">
+
+            <div style="width: 40%;height: 40px;margin: 0 auto;margin-top: 8%">
+                <div class="btn"
+                     onclick="preCreateOrder()"
+                     style="font-weight: 300;color: #fff;font-size: 1.05rem;box-shadow: 1px 5px 20px 2px #91ccec;text-align: center;line-height: 32px;height: 32px;width: 100%;border-radius: 30px;background: #00a8ff">
+                    下一步
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+<div style="width: 100%;height: 20px;"></div>
+
+<script>
+    // document.addEventListener('WeixinJSBridgeReady', function onBridgeReady() {
+    //     //WeixinJSBridge.call('hideOptionMenu');
+    // });
+
+    // 获取商户信息
+    getList();
+    function getList(){
+        $.ajax({
+            type: "GET",
+            url: "/merchant/info",
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                if(data.code=="000000"){
+                    $("#legalPersonId").val(data.data.legalPersonId);
+                    $("#legalPersonName").val(data.data.legalPersonName);
+                    $("#merchantPersonPhone").val(data.data.merchantPersonPhone);
+                    $("#provinceCode").val(data.data.provinceName);
+                    $("#provinceCode").attr("name",data.data.provinceCode);
+
+                    $("#cityCode").val(data.data.cityName);
+                    $("#cityCode").attr("name",data.data.cityCode);
+
+                    $("#districtCode").val(data.data.districtCode);
+                    $("#districtCode").attr("name",data.data.countryName);
+
+                    $("#operateAddress").val(data.data.operateAddress);
+                    $("#bank_name").val(data.data.bankName);
+                    $("#bank_name_btn").text(data.data.bankName);
+                    $("#accountNo").val(data.data.accountNo);
+
+                    $("#bankProvince").val(data.data.bankName);
+                    $("#bankProvince").attr("name",data.data.bankNameCode);
+
+                    $("#bankCity").val(data.data.bankCity);
+                    $("#bankCity").attr("name",data.data.provinceCode);
+
+                    $("#bankBranch").val(data.data.bankBranch);
+                    $("#bankBranch").attr("name",data.data.provinceCode);
+                }
+            }
+        });
+    };
+    // 选择省市区 start
+    $('#provinceCode').on('click', function () {
+        areaCity($(this),"/common/getProvince","");
+    });
+    $('#cityCode').on('click', function () {
+        areaCity($(this),"/common/getCityByPro",{"provinceId":$("#provinceCode").attr("name")});
+    });
+    $('#districtCode').on('click', function () {
+        areaCity($(this),"/common/getAreasByCity",{"cityId":$("#cityCode").attr("name")});
+    });
+    $('#bankProvince').on('click', function () {
+        areaCity($(this),"/common/getProvince","");
+    });
+    $('#bankCity').on('click', function () {
+        areaCity($(this),"/common/getCityByPro",{"provinceId":$("#bankProvince").attr("name")});
+    });
+    $('#bankBranch').on('click', function () {
+        areaCity($(this),"/common/getBranchBank",{"bankName":$("#bank_name").val(),"provinceId":$("#bankProvince").attr("name"),"cityId":$('#bankCity').attr("name")});
+    });
+    // 选择省市区 end
+    // 选择银行 start
+    $('#bank_name').on('click', function () {
+        areaCity($(this),"/common/getBank","");
+    });
+    // 选择银行 end
+    function areaCity(self,urls,jsonData){
+        var val='';
+        // 获取历史付款卡
+        function local(){
+            $.ajax({
+                type: "GET",
+                url: urls,
+                dataType: 'json',
+                async:false,
+                data:jsonData,
+                success: function(data) {
+                    console.log(data.data);
+                    if(data.code=="000000"){
+                        val= data.data;
+                    }else{
+                        weui.alert('没有符合条件的记录！', {title: '操作失败'});
+                    }
+                }
+            });
+        };
+        local();
+        if (val.length == 0) {
+//            weui.alert('请求有误退出后重新进入', {title: '操作失败'});
+            return false;
+        } else {
+            weui.picker(val, {
+                onChange: function (result) {
+                    //console.log(result);
+                },
+                onConfirm: function (result) {
+                    $(val).each(function (index, ele) {
+                        if (ele.value == result) {
+                            self.val(ele.value);
+                            self.prop("name",ele.name);
+                        }
+                    });
+                }
+            });
+        }
+    }
+    
+    function commitOrder() {
+        //遮罩
+        var $loadingToast = $('#loadingToast');
+        $('#showLoadingToast').on('click', function () {
+            if ($loadingToast.css('display') != 'none') return;
+            $loadingToast.fadeIn(100);
+            setTimeout(function () {
+                $loadingToast.fadeOut(100);
+            }, 2000);
+        });
+        weui.dialog({
+            title: '温馨提示',
+            content: '提交订单确认',
+            className: 'custom-classname',
+            buttons: [{
+                label: '取消',
+                type: 'default',
+                onClick: function () {
+                    //do something
+                }
+            }, {
+                label: '确定',
+                type: 'primary',
+                onClick: function () {
+                    $("#comfirmBtn").attr("disabled", true);
+                    $("#form-commit").submit();
+                    var $loadingToast = $('#loadingToast');
+                    if ($loadingToast.css('display') != 'none') return;
+                    $loadingToast.fadeIn(100);
+                    setTimeout(function () {
+                        $loadingToast.fadeOut(100);
+                    }, 5000);
+                }
+            }]
+        });
+    }
+
+    function preCreateOrder() {
+        var legalPersonId = $('#legalPersonId').val().replace(/\s+/g, "");
+        var legalPersonName = $('#legalPersonName').val();
+        var merchantPersonPhone = $('#merchantPersonPhone').val().replace(/\s+/g, "");
+        var provinceCode=$("#provinceCode").attr("name");
+        var cityCode=$("#cityCode").attr("name");
+        var districtCode=$("#districtCode").attr("name");
+        var operateAddress=$("#operateAddress").val().replace(/\s+/g, "");
+        var bank_name = $('#bank_name').attr("name");
+        var accountNo = $('#accountNo').val().replace(/\s+/g, "");
+        var bankProvince=$("#bankProvince").attr("name");
+        var bankCity=$("#bankCity").attr("name");
+        var bankBranch=$("#bankBranch").attr("name");
+        
+        var o = "<?=$openid?>";
+        
+       
+
+        if (!/(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/.test(legalPersonId)) {
+            weui.alert('身份证格式有误', {title: '操作失败'});
+            return false;
+        }
+        if (legalPersonId == '') {
+            weui.alert('身份证不能为空', {title: '操作失败'});
+            return false;
+        }
+        if (legalPersonName == '') {
+            weui.alert('姓名不能为空', {title: '操作失败'});
+            return false;
+        }
+        if (!(/^1(3|4|5|6|7|8)\d{9}$/.test(merchantPersonPhone))) {
+            weui.alert('手机号码有误，请重填', {title: '操作失败'});
+            return false;
+        }
+        if(provinceCode==""){
+            weui.alert('经营省不能为空', {title: '操作失败'});
+            return false;
+        }
+        if(cityCode==""){
+            weui.alert('经营市不能为空', {title: '操作失败'});
+            return false;
+        }
+        if(districtCode==""){
+            weui.alert('经营区不能为空', {title: '操作失败'});
+            return false;
+        }
+        if(operateAddress==""){
+            weui.alert('经营地址不能为空', {title: '操作失败'});
+            return false;
+        }
+        if (accountNo == '') {
+            weui.alert('收款银行卡号不能为空', {title: '操作失败'});
+            return false;
+        }
+        if (!/^\d{12,32}$/.test(accountNo)) {
+            weui.alert('检查收款银行卡是否正确', {title: '操作失败'});
+            return false;
+        }
+        if (bank_name == '') {
+            weui.alert('银行名称不能为空', {title: '操作失败'});
+            return false;
+        }
+        if (bank_name == 'null' || bank_name == '开户银行名称') {
+            weui.alert('银行名称不能错误', {title: '操作失败'});
+            return false;
+        }
+        if(bankProvince==""){
+            weui.alert('开卡省不能为空', {title: '操作失败'});
+            return false;
+        }
+        if(bankCity==""){
+            weui.alert('开卡市不能为空', {title: '操作失败'});
+            return false;
+        }
+        if(bankBranch==""){
+            weui.alert('开卡支行不能为空', {title: '操作失败'});
+            return false;
+        }
+        var jsonData={
+                legalPersonId:legalPersonId,
+                legalPersonName:legalPersonName,
+                merchantPersonPhone:merchantPersonPhone,
+                provinceCode:provinceCode,
+                districtCode:districtCode,
+                cityCode:cityCode,
+                operateAddress:operateAddress,
+                bankName:bank_name,
+                accountNo:accountNo,
+                bankProvince:bankProvince,
+                bankCity:bankCity,
+                bankBranch:bankBranch
+            }
+        $.ajax({
+            type: 'POST',
+            url: "/merchant/modify",
+            data:jsonData,
+            dataType: 'json',
+            success: function(data) {
+                console.log(data);
+                if(data.code ='000000'){
+                    window.location.href="/merchant/toUpload";
+                }else{
+                    weui.alert(data.message, {title: '温馨失败'});
+                }
+            }
+        });
+        return;
+    }
+</script>
+
+</body>
+
+</html>
