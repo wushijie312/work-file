@@ -1,5 +1,14 @@
 # JQuery UI - draggable参数中文详细说明
-·概述   
+## demo解析
+resizable：改变图片形状
+containment：控制在一个范围内
+$("#resizable").resizable({ containment: '.ey_show_a' });
+
+draggable：拖动位置
+containment：控制在一个范围内
+$("#resizable").draggable({ containment: '.ey_show_a' });
+
+##·概述   
 在任何DOM元素启用拖动功能。通过单击鼠标并拖动对象在窗口内的任何地方移动。   
 官方示例地址：http://jqueryui.com/demos/draggable/  
   
@@ -208,11 +217,4 @@ option
   用法：.draggable( 'option' , optionName , [value] )
 
 
-## demo解析
-resizable：改变图片形状
-containment：控制在一个范围内
-$("#resizable").resizable({ containment: '.ey_show_a' });
 
-draggable：拖动位置
-containment：控制在一个范围内
-$("#resizable").draggable({ containment: '.ey_show_a' });
