@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>jQuery UI Resizable - Default functionality</title>
+  <link rel="stylesheet" href="./jquery-ui.css">
+  <link rel="stylesheet" href="./style.css">
+  <style>
+  #resizable { width: 150px; height: 150px; padding: 0.5em; }
+  #resizable h3 { text-align: center; margin: 0; }
+  .resize_img{
+    width:100%;
+    height: 100%;
+  }
+  </style>
+  <script src="./jquery.js"></script>
+  <script src="./jquery-ui.js"></script>
+  <script>
+  $( function() {
+    $( "#resizable" ).resizable();
+    $( "#resizable" ).draggable();
+  } );
+  </script>
+</head>
+<body>
+ 
+<div id="resizable" class="ui-widget-content">
+  <img class="resize_img" src="./04.jpg">
+</div>
+ 
+ 
+</body>
+</html>
