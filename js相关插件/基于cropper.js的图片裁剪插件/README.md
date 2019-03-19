@@ -1,4 +1,7 @@
+##移动端：
 ![](./GIF.gif)
+
+##pc端：
 ![](./GIf_mobile.gif)
 
 1、引入相关的css和js文件。
