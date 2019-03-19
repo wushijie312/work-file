@@ -1,5 +1,5 @@
 ![](./GIF.gif)
-![](./GIF_mobile.gif)
+![](./GIf_mobile.gif)
 
 1、引入相关的css和js文件。
 
