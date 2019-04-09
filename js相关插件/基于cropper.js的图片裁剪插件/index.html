@@ -73,6 +73,8 @@
         var reader = new FileReader();
         reader.onload = function (evt) {
             var replaceSrc = evt.target.result;
+              // input file 重复上传同一张图片失效的解决办法 步骤1
+          $("#chooseImg").prop('type','text');
             //更换cropper的图片
             $('#tailoringImg').cropper('replace', replaceSrc,false);//默认false，适应高度，不失真
         }
@@ -132,6 +134,8 @@
     });
     //关闭裁剪框
     function closeTailor() {
+         // input file 重复上传同一张图片失效的解决办法 步骤2
+          $("#chooseImg").prop('type','text');
         $(".tailoring-container").toggle();
     }
 

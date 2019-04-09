@@ -1,0 +1,37 @@
+<html><head>
+<title>前端图片压缩</title>
+<meta charset="utf-8">
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script><script src="https://libs.baidu.com/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="compression.js"></script>
+<style>
+        #img{
+	width: 100px;
+	height: 50px;
+	text-align: center;
+	line-height: 50px;
+	border: 1px solid #434343;
+        }
+   </style>
+</head>
+<body style="">
+<p>当前压缩比例 0.5</p>
+<div id="img" style="position: relative;">上传图片<input type="file" accept="image/jpeg,image/jpg,image/png" style="position: absolute; width: 100%; height: 100%; left: 0px; top: 0px; opacity: 0;"></div>
+<br>
+<p id="zz"></p>
+<img id="jg" src="">
+<script type="text/javascript">
+    	 window.onload = function() {
+			  var dd = new compression({
+					domId:"img", // 上传图片的Dom 目前只支持id；
+					type:"jpg", // 压缩后保存图片的类型，目前支持 jpeg , png   参数：jpeg png
+					fidelity: .5,  // 压缩比例 (0,1]
+					imgFile:function(base64){
+						// alert(base64)  // 压缩好的回调
+						$("#zz").text("以下为压缩后的图片");
+						$("#jg").attr("src",base64);	
+					}
+			 })
+    	 }
+    </script>
+
+</body></html>
