@@ -10,12 +10,49 @@ export function decrease() {
     type: types.DECREASE
   }
 }
+// export function increase_async() {
+  
+//   const URL = types.URL_BASE + types.skuonoroffshelves;
+//   var post = JSON.stringify({
+//     username: "admin",
+//     password: "111111"
+//   });
+//   return (dispatch) => {
+//     fetch(URL, {
+//       method: 'post',
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'Accept': 'application/json'
+//       },
+//       body: post
+//     }).then((req) => {
+//       if (req.ok) {
+//         return req.json();
+//       } else if (req.status == 401) {
+//         setTimeout(function () { window.location.href = '/pcPage/PcPageLogin' }, 2000)
+//         //alert("您尚未登录或登录状态过期，请先登录！");
+//       }
+//     }).then(json => {
+//       if (json.code == 0) {
+//         return dispatch({
+//           type: types.USER_LOGIN,
+//           data: json.data,
+//           tk: json.tk
+//         });
+//       } else {
+
+//         alert('注册失败,请重试！');
+//       }
+//     });
+//   }
+
+// }
 export function increase_async() {
   // return async ()=>{
-  // 	var post={
-  // 		username:"admin",
-  // 		password:"111111"
-  // 	}
+  //  var post={
+  //    username:"admin",
+  //    password:"111111"
+  //  }
   //     var func=json => {
   //         if(json.code==0){
   //             return  {
