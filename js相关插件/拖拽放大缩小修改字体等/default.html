@@ -1,0 +1,87 @@
+<html>
+    <head>
+    <meta charset="utf-8">
+    <title>jQuery拖拽放大缩小插件idrag</title>
+    <script src="https://static.98ep.com/js/GroupPortal/jquery-1.9.1.min.js"></script>
+    <!-- <script type="text/javascript" src="drag.js"></script> -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style type="text/css">
+    
+    #box { width: 200px; height: 100px; cursor: move; position: absolute; top: 30px; left: 30px; background-color: #FFF; border: 1px solid #CCCCCC;  -webkit-box-shadow: 10px 10px 25px #ccc;-moz-box-shadow: 10px 10px 25px #ccc;box-shadow: 10px 10px 25px #ccc;}
+    
+    
+    
+    #coor { width: 10px; height: 10px; overflow: hidden; cursor: se-resize; position: absolute; right: 0; bottom: 0; background-color: #09C; }
+    
+    body { background-color: #F3F3F3; }
+    
+    </style>
+    </head>
+    <body style="">
+    <div id="box" style="top: 73px; left: 244px; width: 571px; height: 251px;" contenteditable="true" >
+        <div style="height:100%;width:100%;"></div>
+    <div id="coor"></div>
+    </div>
+    
+     </body></html>
+     <script>
+     $(function() {
+    $(document).mousemove(function(e) {
+        if ( !! this.move) {
+            var posix = !document.move_target ? {
+                'x': 0,
+                'y': 0
+            }: document.move_target.posix,
+            callback = document.call_down ||
+            function() {
+                $(this.move_target).css({
+                    'top': e.pageY - posix.y,
+                    'left': e.pageX - posix.x
+                });
+            };
+            callback.call(this, e, posix);
+        }
+    }).mouseup(function(e) {
+        if ( !! this.move) {
+            var callback = document.call_up ||
+            function() {};
+            callback.call(this, e);
+            $.extend(this, {
+                'move': false,
+                'move_target': null,
+                'call_down': false,
+                'call_up': false
+            });
+        }
+    });
+    var $box = $('#box').mousedown(function(e) {
+        var offset = $(this).offset();
+        this.posix = {
+            'x': e.pageX - offset.left,
+            'y': e.pageY - offset.top
+        };
+        $.extend(document, {
+            'move': true,
+            'move_target': this
+        });
+    }).on('mousedown', '#coor',
+    function(e) {
+        var posix = {
+            'w': $box.width(),
+            'h': $box.height(),
+            'x': e.pageX,
+            'y': e.pageY
+        };
+        $.extend(document, {
+            'move': true,
+            'call_down': function(e) {
+                $box.css({
+                    'width': Math.max(30, e.pageX - posix.x + posix.w),
+                    'height': Math.max(30, e.pageY - posix.y + posix.h)
+                });
+            }
+        });
+        return false;
+    });
+});
+     </script>

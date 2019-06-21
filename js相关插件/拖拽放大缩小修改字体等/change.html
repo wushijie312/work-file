@@ -1,0 +1,412 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>jQuery拖拽放大缩小插件idrag</title>
+    <script src="https://static.98ep.com/js/GroupPortal/jquery-1.9.1.min.js"></script>
+    <!-- <script type="text/javascript" src="drag.js"></script> -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box_wrap {
+            width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            background: rgb(243, 243, 243);
+            min-height: 100vh;
+        }
+
+        .move_normal {
+            outline: none;
+            width: 200px;
+            height: 100px;
+            line-height: 24px;
+            font-size: 14px;
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            border: 1px solid #CCCCCC;
+        }
+
+        .box_move {
+            cursor: move;
+
+        }
+
+
+        .coor_move {
+            width: 10px;
+            height: 10px;
+            overflow: hidden;
+            cursor: se-resize;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            background-color: #09C;
+        }
+
+        body {
+            background-color: #F3F3F3;
+        }
+
+        .box_x {
+            position: absolute;
+            left: 200px;
+            top: 100px;
+            width: 500px;
+            height: 500px;
+            border: 1px solid #f90;
+        }
+
+        .btn_x {
+            position: absolute;
+            right: 0;
+            top: -20px;
+            line-height: 20px;
+            border: none;
+            font-size: 12px;
+            background: #ddd url('./lock_close.png') center center no-repeat;
+            background-size: 18px;
+            width: 24px;
+            height: 20px;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .open_lock {
+            background: #ddd url('./lock_open.png') center center no-repeat;
+            background-size: 14px;
+        }
+
+        .move_cont {
+            min-height: 100%;
+            width: 100%;
+        }
+
+        .r_fixed_normal {
+            position: absolute;
+            right: 20px;
+            top: 50px;
+            background: #fff;
+            padding: 30px 10px;
+        }
+
+        .r_fixed_normal p {
+            line-height: 20px;
+            color: #333;
+            padding: 5px 0;
+            font-size: 14px;
+        }
+
+        .r_fixed_normal p input {
+            line-height: 20px;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .r_fixed_normal p span {
+            min-width: 60px;
+            display: inline-block;
+            line-height: 20px;
+            color: #333;
+            font-size: 14px;
+            text-align: justify;
+            text-align-last: justify;
+            margin-right: 10px;
+        }
+
+        .r_fixed_normal h3 {
+            font-size: 20px;
+            line-height: 30px;
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .move_bg {
+            border: 1px solid #09C;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box_wrap">
+        <div class="r_fixed_normal">
+            <h3>基础设置</h3>
+            <p><span>大小:</span><input class="normal_size" type="text" /></p>
+            <p><span>行高:</span><input class="normal_height" type="text" /></p>
+            <p><span>行间距:</span><input class="normal_spacing" type="text" /></p>
+            <p><span>颜色:</span><input class="normal_color" type="text" /></p>
+            <p><span>加粗:</span><select name="" id="" class="normal_bold">
+                <option value="normal">默认</option>
+                <option value="bold">加粗</option>
+            </select></p>
+            <p><span>斜体:</span><select name="" id="" class="normal_italics">
+                <option value="normal">默认</option>
+                <option value="italic">斜体</option>
+            </select></p>
+        </div>
+        <div class="box_x">
+            <div class="move_normal box_move" style="top: 0; left: 0;" onkeydown="keyEventFun(event,this)" data_fontS="14"
+                contenteditable="true" is_true="true" data_fonts="14" data_lines="24" data_spacing="0" data_color="333" data_weight="normal" data_style="normal">
+                <div class="move_cont"></div>
+                <div class="coor coor_move"></div>
+                <button class="btn_x open_lock"></button>
+            </div>
+            <div class="move_normal box_move" style="top: 0; left: 0;" onkeydown="keyEventFun(event,this)" data_fontS="14"
+                contenteditable="true" is_true="true"  data_fonts="14" data_lines="24" data_spacing="0" data_color="333" data_weight="normal" data_style="normal">
+                <div class="move_cont"></div>
+                <div class="coor coor_move"></div>
+                <button class="btn_x open_lock"></button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    // add
+    // var is_true=false;
+    var normal_self,self_count=0;
+    function keyEventFun(e, self) {
+        var h = $(self).height();
+        var h_cont = $(self).children(".move_cont").height();
+        var l_h = $(self).attr("data_lineH");
+        var font_s = $(self).attr("data_fontS");
+       
+        while (h_cont > h) {
+            var h = $(self).height();
+            var h_cont = $(self).children(".move_cont").height();
+            if (font_s > 12) {
+                font_s = font_s - 1
+                $(self).attr("data_fontS", font_s);
+                $(self).css({ fontSize: font_s + "px" });
+            } else {
+                var move_cont_tit = $(self).children(".move_cont").html();
+                move_cont_tit = move_cont_tit.substring(0, move_cont_tit.length - 2);
+                $(self).children(".move_cont").text(move_cont_tit);
+                setFocus( $(self).children(".move_cont"));
+                h_cont=h-1;
+            }
+        }
+
+        var data_lines=$(".normal_height").val();
+        if(data_lines>h){
+            data_lines=h;
+        }
+        normal_self.attr("data_lines",data_lines);
+        normal_self.css({lineHeight:data_lines+"px"});
+        $(".normal_height").val(h);
+        $(".normal_size").val(font_s);
+    };
+    function setFocus(el) {
+        el = el[0]; // jquery 对象转dom对象  
+        el.focus();
+        var range = document.createRange();
+        range.selectNodeContents(el);
+        range.collapse(false);
+        var sel = window.getSelection();
+        //判断光标位置，如不需要可删除
+        if (sel.anchorOffset != 0) {
+            return;
+        };
+        sel.removeAllRanges();
+        sel.addRange(range);
+    }
+    $(function () {
+        $(".normal_size").keyup(function () {
+            var value = $(this).val();
+            value = value.replace(/\s+/g, "");
+            value = value.replace(/[^\d]/g, "");
+            $(this).val(value);
+            if (normal_self) {
+                normal_self.css({ fontSize: value + "px" });
+                normal_self.attr("data_fonts",value);
+            }
+           
+        });
+       
+        $(".normal_height").keyup(function () {
+            var value = $(this).val();
+           
+            value = value.replace(/\s+/g, "");
+            value = value.replace(/[^\d]/g, "");
+            var h = normal_self.height();
+            if(value>h){
+                value=h;
+            }
+                $(this).val(value);
+            if (normal_self) {
+                normal_self.css({ lineHeight: value + "px" });
+                normal_self.attr("data_lines",value);
+            }
+        });
+        $(".normal_spacing").keyup(function () {
+            var value = $(this).val();
+            value = value.replace(/\s+/g, "");
+            value = value.replace(/[^\d]/g, "");
+            $(this).val(value);
+            if (normal_self) {
+                normal_self.css({ letterSpacing: value + "px" });
+                normal_self.attr("data_spacing",value);
+            }
+        });
+        $(".normal_color").keyup(function () {
+            var value = $(this).val();
+            value = value.replace(/\s+/g, "");
+            value = value.replace(/[^\w]/g, "");
+            $(this).val(value);
+            if (normal_self) {
+                normal_self.css({ color: "#" + value });
+                normal_self.attr("data_color",value);
+            }
+        });
+        $(".normal_bold").change(function () {
+            var value = $(this).val();
+            if (normal_self) {
+                normal_self.css({ fontWeight: value });
+                normal_self.attr("data_weight",value);
+            }
+            $(this).val(value);
+        });
+        $(".normal_italics").change(function () {
+            var value = $(this).val();
+            if (normal_self) {
+                normal_self.css({ fontStyle: value });
+                normal_self.attr("data_style",value);
+            }
+            $(this).val(value);
+
+        });
+        $(document).mousemove(function (e) {
+            if (!!this.move) {
+                var posix = !document.move_target ? {
+                    'x': 0,
+                    'y': 0,
+                    'w': $box.width(),
+                    'h': $box.height(),
+                } : document.move_target.posix;
+                //控制拖拽不能超过指定区域
+                if (e.pageX >= $(".box_x").width() + $(".box_x").offset().left) {
+
+                    e.pageX = $(".box_x").width() + $(".box_x").offset().left;
+                }
+                if (e.pageY >= $(".box_x").width() + $(".box_x").offset().top) {
+
+                    e.pageY = $(".box_x").height() + $(".box_x").offset().top;
+                }
+
+                // 控制方框不能超出指定区域
+                if (e.pageY - posix.y >= 0 && e.pageY - posix.y < $(".box_x").height() - posix.h) {
+                    t_top = e.pageY - posix.y
+                } else if (e.pageY - posix.y < 0) {
+                    t_top = 0
+                } else {
+                    t_top = $(".box_x").height() - posix.h;
+                }
+                if (e.pageX - posix.x >= 0 && e.pageX - posix.x < $(".box_x").width() - posix.w) {
+                    l_left = e.pageX - posix.x
+                } else if (e.pageX - posix.x < 0) {
+                    l_left = 0
+                } else {
+                    l_left = $(".box_x").width() - posix.w;
+                }
+                var callback = document.call_down ||
+                    function () {
+                        $(this.move_target).css({
+                            'top': t_top,
+                            'left': l_left
+                        });
+                    };
+                callback.call(this, e, posix);
+            }
+        }).mouseup(function (e) {
+            if (!!this.move) {
+                var callback = document.call_up ||
+                    function () { };
+                callback.call(this, e);
+                $.extend(this, {
+                    'move': false,
+                    'move_target': null,
+                    'call_down': false,
+                    'call_up': false
+                });
+            }
+        });
+        var $box = $('.box_move').mousedown(function (e) {
+            var offset = $(this).position();
+            // var offset = $(this).offset();
+            var boxOffset = $(".box_x").offset();
+            this.posix = {
+                'x': e.pageX - offset.left,
+                'y': e.pageY - offset.top,
+                'w': $(this).width(),
+                'h': $(this).height(),
+                'self': $(this)
+            };
+            var is_true = $(this).attr("is_true");
+            if (is_true == "true") {
+                $.extend(document, {
+                    'move': true,
+                    'move_target': this
+                });
+            }
+            normal_self = $(this);
+            $(this).addClass("move_bg").siblings(".move_normal").removeClass("move_bg");
+            var data_fonts=$(this).attr("data_fonts");
+            var data_lines=$(this).attr("data_lines");
+            var data_spacing=$(this).attr("data_spacing");
+            var data_color=$(this).attr("data_color");
+            var data_weight=$(this).attr("data_weight");
+            var data_style=$(this).attr("data_style");
+            $(this).css({fontSize:data_fonts+"px",lineHeight:data_lines+"px", letterSpacing: data_spacing + "px",color: "#" + data_color, fontWeight: data_weight,fontStyle: data_style });
+            $(".normal_size").val(data_fonts);
+            $(".normal_height").val(data_lines);
+            $(".normal_spacing").val(data_spacing);
+            $(".normal_color").val(data_color);
+            $(".normal_bold").val(data_weight);
+            $(".normal_italics").val(data_style);
+        }).on('mousedown', '.coor',
+            function (e) {
+                var move = $(this).parents(".move_normal");
+
+                var posix = {
+                    'w': move.width(),
+                    'h': move.height(),
+                    'x': e.pageX,
+                    'y': e.pageY
+                };
+                $.extend(document, {
+                    'move': true,
+                    'call_down': function (e) {
+                        move.css({
+                            'width': Math.max(30, e.pageX - posix.x + posix.w),
+                            'height': Math.max(30, e.pageY - posix.y + posix.h)
+                        });
+                    }
+                });
+                return false;
+            });
+
+        $(".btn_x").click(function () {
+            if ($(this).hasClass("open_lock")) {
+                $(this).removeClass("open_lock");
+                // $(this).attr("is_true",false);
+                $(this).parents(".move_normal").removeClass("box_move ").attr("is_true", false);;
+                $(this).siblings(".coor_move").hide();
+            } else {
+                $(this).addClass("open_lock");
+                // $(this).attr("is_true",true);
+                $(this).parents(".move_normal").addClass("box_move").attr("is_true", true);;
+                $(this).siblings(".coor_move").show();
+            }
+        });
+    });
+
+</script>
