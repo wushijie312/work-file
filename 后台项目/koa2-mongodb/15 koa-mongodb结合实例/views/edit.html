@@ -1,0 +1,18 @@
+<html>
+<head>
+    <title>
+edit
+    </title>
+
+</head>
+<body>
+<h3>编辑用户----{{list.username}}</h3>
+<form action="/doEdit" method="post">
+    用户ID：<input type="hide "  name="id" value="{{@list._id}}"><br/>
+    用户名：<input type="text " name="name" value="{{list.username}}"><br/>
+    年龄：<input type="text " name="age" value="{{list.age}}"><br/>
+    性别：<input type="text " name="sex" value="{{list.sex}}"><br/>
+    <button type="submit">提交</button>
+</form>
+</body>
+</html>

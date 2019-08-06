@@ -1,0 +1,38 @@
+<html>
+<head>
+    <title>
+        首页
+    </title>
+
+</head>
+<body>
+<a href="/add">增加用户</a><br/>
+<table>
+    <tr>
+        <td>姓名</td>
+        <td>年龄</td>
+        <td>性别</td>
+        <td>操作</td>
+    </tr>
+    {{each list}}
+    <tr>
+
+        <td>
+            {{$value.username}}
+        </td>
+        <td>
+            {{$value.age}}
+        </td>
+        <td>
+            {{$value.sex}}
+        </td>
+        <td>
+            <a href="/edit?id={{@$value._id}}">编辑</a>
+            <a href="/delete?id={{@$value._id}}">删除</a>
+        </td>
+
+    </tr>
+    {{/each}}
+</table>
+</body>
+</html>

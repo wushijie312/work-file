@@ -1,0 +1,25 @@
+<html>
+<head>
+    <title>
+news
+    </title>
+
+</head>
+<body>
+
+<% include public/header.ejs%>
+<h3>ejs循环渲染数据</h3>
+<%-content%>
+<ul>
+    <%for(var i=0;i<list.length;i++){%>
+    <li><%=list[i]%></li>
+    <%}%>
+</ul>
+<h2>条件判断</h2>
+<%if(age>20){%>
+    <p><%=age%></p>
+<%}%>
+<h2>公共信息</h2>
+<p><%=userinfo%></p>
+</body>
+</html>

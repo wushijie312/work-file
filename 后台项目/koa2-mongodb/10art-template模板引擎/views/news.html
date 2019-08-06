@@ -1,0 +1,21 @@
+<html>
+<head>
+    <title>
+        news
+    </title>
+
+</head>
+<body>
+<%include('./public/header.html')%>
+<h3>ejs循环渲染数据</h3>
+<ul>
+    {{each list}}
+      {{if typeof $value=="object"}}
+    <li>{{$value.kkk}}---{{$index}}</li>
+    {{else}}
+    <li>{{$value}}---{{$index}}</li>
+    {{/if}}
+    {{/each}}
+</ul>
+</body>
+</html>
