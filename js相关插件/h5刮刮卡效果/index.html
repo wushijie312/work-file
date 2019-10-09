@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>手机端刮奖效果</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="layoutmode" content="standard">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" href="./css/reset.css">
+    <meta name="wap-font-scale" content="no">
+    <meta content="telephone=no" name="format-detection">
+    <style>
+        img {
+            width: 100%;
+            position: absolute;
+            height: 100vh;
+            display: block;
+            top: 0;
+        }
+
+        html,
+        body {
+            height: 100vh;
+        }
+
+        #canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #canvas1 {
+            position: absolute;
+            top: 710px;
+            left: 110px;
+        }
+    </style>
+</head>
+
+<body><img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1570625530061&di=2815e59ca4ef2556821ee7107bba6d6e&imgtype=0&src=http%3A%2F%2Fimage1.big-bit.com%2F2019%2F0906%2F20190906111453313.jpg"
+        alt="">
+    <canvas id="canvas"></canvas>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/Scratch.js"></script>
+    <script>
+        var canvas = document.getElementById('canvas');
+        canvas.width = $("html,body").width();
+        canvas.height = $("html,body").height();
+        var scratch = new Scratch("canvas", { //第一个参数是canvas的id,,其他都可传可不传
+            width: 320,//画布的宽度，，不传为默认宽度
+            height: 567,//画布的高度，，不传为默认宽度
+            top: 0,//画布的高度偏移量。。不传为默认距离body的高度
+            left: 0,//画布的宽度偏移量。。不传为默认距离body的宽度
+            color: "#f90",//画布的颜色
+            // url : "/uploadImg/images/11111111.jpg",//上传图片路径，如果上传，则color无效
+            handWidth: 30,//画布的手势宽度
+            percent: 0.3,//完成百分比，，默认 百分之50
+            time: 20,//达到完成条件，弹出success 时间 默认200ms
+            autoClick: true,// true 达成条件 canvas全部透明，，false 不全部透明 ，可在回调函数里面自行关闭
+            success: function () {//完成百分比之后回调函数，
+                console.log("完成了")
+            }
+        })
+        scratch.init()//必须执行一次初始化
+    // scratch.initCanvas() //还原画布
+
+
+    </script>
+</body>
+
+</html>
