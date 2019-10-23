@@ -42,4 +42,4 @@ class App extends React.Component {
   }
 }
 
-export default connect(state=>({count:state}),{increment,decrement,incrementAsync})(App);
+export default connect(state=>({count:state.counter}),{increment,decrement,incrementAsync})(App);
