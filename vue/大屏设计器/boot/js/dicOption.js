@@ -1,0 +1,87 @@
+var dicOption = {
+  pieLabelPosition : [{ label: '外侧', value: 'outside' },{label: '内部', value: 'inside'},{label: '中心', value: 'center'}], //饼图标签位置
+  scatterLabelPosition : [{ label: '顶部', value: 'top' },{label: '内部', value: 'inside'},{label: '左部', value: 'left'},{label: '右部', value: 'right'}],//散点图标签位置
+  line: [{ label: '线条', value: 'line' }, { label: '圆环', value: 'circle' }],
+  fontWeight: [{ label: 'normal', value: 'normal' }, { label: 'bold', value: 'bold' }, { label: 'bolder', value: 'bolder' }, { label: 'ligter', value: 'ligter' }],
+  border: [{ label: '无边框', value: '' }, { label: '内置图片', value: 'img' }, { label: '内置边框', value: 'border' }],
+  textAlign: [{ label: '居中', value: 'center' }, { label: '左对齐', value: 'left' }, { label: '右对齐', value: 'right' }],
+  dataType: [{ label: '静态数据', value: 0 }, { label: '动态数据', value: 1 }],
+  orientList: [{ label: '竖排', value: 'vertical' }, { label: '横排', value: 'horizontal' }],
+  dataMethod: [{ label: 'POST', value: 'post' }, { label: 'GET', value: 'get' }],
+  eventList: ['tabs'],
+  dataList: ['tabs', 'map', 'video', 'wordCloud', 'pie', 'pictorialBar', 'iframe', 'swiper', 'flop', 'bar', 'line', 'progress', 'table', 'gauge', 'funnel', 'scatter', 'radar'],
+  themeList: [{
+    label: '默认配色',
+    value: 'avue'
+  }, {
+    label: '紫色主题',
+    value: 'macarons'
+  }, {
+    label: '绿色主题',
+    value: 'wonderland'
+  }],
+  barList: ['bar', 'line','scatter'],
+  titleList: ['bar', 'pie', 'line', 'radar', 'funnel'],
+  labelList: ['bar', 'line', 'pie', 'radar', 'scatter','funnel'],
+  legendList: ['bar', 'pie', 'line', 'radar', 'funnel'],
+  colorList: ['bar', 'pie', 'line', 'funnel', 'radar','scatter'],
+  tipList: ['bar', 'pie', 'line', 'funnel', 'scatter', 'radar'],
+  postionList: ['bar', 'line', 'pictorialbar'],
+  formatterList: ['bar', 'map', 'line', 'pie', 'gauge', 'funnel', 'scatter', 'radar'],
+  clickFormatterList: ['map'],
+  labelFormatterList: ['bar'],
+  tabsTypeList: [{
+    label: '选项卡',
+    value: 'tabs',
+  }, {
+    label: '选择框',
+    value: 'select',
+  }],
+  mapType: [{
+    label: '原生',
+    value: 0
+  }],
+  target: [{ label: '本窗口', value: '_self' }, { label: '新窗口', value: '_blank', }],
+  swiperType: [{ label: '普通', value: '' }, { label: '立体', value: 'card' }],
+  directionList:[{label: '竖向',value: 'vertical'},{label: '横向',value: 'horizontal'}],
+  swiperIndicator: [{ label: '外部', value: 'indicator' }, { label: '不显示', value: 'none' }],
+  format: [{ label: '日期', value: 'yyyy-MM-dd' }, { label: '日期+时分', value: 'yyyy-MM-dd hh:mm' }, { label: '日期+时分秒', value: 'yyyy-MM-dd hh:mm:ss' }, { label: '日期(无年)', value: 'MM-dd' }, { label: '时分', value: 'hh:mm' }, { label: '时分秒', value: 'hh:mm:ss' }, { label: '星期', value: 'day' }],
+  mapComponentList:["virual-map","map",],
+  geoCoordType:[{ label: '向内扩散', value: 1 }, { label: '向外扩散', value: 2 }],
+  provinceList:[{ label:"中国",value: 0, name: 'china' },  
+                { label:"安徽",value: 1, name: 'anhui' },
+                { label:"澳门",value: 2, name: 'aomen' },
+                { label:"北京",value: 3, name: 'beijing' },
+                { label:"重庆",value: 4, name: 'chongqing' },
+                { label:"福建",value: 5, name: 'fujian' },
+                { label:"甘肃",value: 6, name: 'gansu' },
+                { label:"广东",value: 7, name: 'guangdong' },
+                { label:"广西",value: 8, name: 'guangxi' },
+                { label:"贵州",value: 9, name: 'guizhou' },
+                { label:"海南",value: 10, name: 'hainan' },
+                { label:"河北",value: 11, name: 'hebei' },
+                { label:"黑龙江",value: 12, name: 'heilongjiang' },
+                { label:"河南",value: 13, name: 'henan' },
+                { label:"湖北",value: 14, name: 'hubei' },
+                { label:"湖南",value: 15, name: 'hunan' },
+                { label:"江苏",value: 16, name: 'jiangsu' },
+                { label:"江西",value: 17, name: 'jiangxi' },
+                { label:"吉林",value: 18, name: 'jilin' },
+                { label:"辽宁",value: 19, name: 'liaoning' },
+                { label:"内蒙古",value: 20, name: 'neimenggu' },
+                { label:"宁夏",value: 21, name: 'ningxia' },
+                { label:"青海",value: 22, name: 'qinghai' },
+                { label:"山东",value: 23, name: 'shandong' },
+                { label:"上海",value: 24, name: 'shanghai' },
+                { label:"山西",value: 25, name: 'shanxi' },
+                { label:"陕西",value: 26, name: 'shanxi1' },
+                { label:"四川",value: 27, name: 'sichuan' },
+                { label:"台湾",value: 28, name: 'taiwan' },
+                { label:"天津",value: 29, name: 'tianjin' },
+                { label:"香港",value: 30, name: 'xianggang' },
+                { label:"新疆",value: 31, name: 'xinjiang' },
+                { label:"西藏",value: 32, name: 'xizang' },
+                { label:"云南",value: 33, name: 'yunnan' },
+                { label:"浙江",value: 34, name: 'zhejiang' } 
+              ]
+}

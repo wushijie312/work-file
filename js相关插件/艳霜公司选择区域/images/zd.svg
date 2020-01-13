@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.5 (67469) - http://www.bohemiancoding.com/sketch -->
+    <title>icon/放大</title>
+    <desc>Created with Sketch.</desc>
+    <g id="icon/放大" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M9,9 L9,4 C9,3.44771525 9.44771525,3 10,3 C10.5522847,3 11,3.44771525 11,4 L11,9 L16,9 C16.5522847,9 17,9.44771525 17,10 C17,10.5522847 16.5522847,11 16,11 L11,11 L11,16 C11,16.5522847 10.5522847,17 10,17 C9.44771525,17 9,16.5522847 9,16 L9,11 L4,11 C3.44771525,11 3,10.5522847 3,10 C3,9.44771525 3.44771525,9 4,9 L9,9 Z" id="放大" fill="#919EAB"></path>
+    </g>
+</svg>

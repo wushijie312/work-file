@@ -1,0 +1,81 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>选择商品</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="layoutmode" content="standard">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="renderer" content="webkit">
+    <link rel="stylesheet" href="https://static.98ep.com/css/mobiles/SUNACh5/reset.css">
+    <link rel="stylesheet" href="https://static.98ep.com/css/Mobiles/SUNACh5/rong.css">
+    <link rel="stylesheet" href="https://static.98ep.com/js/Mobile/SUNACh5/need/layer.css">
+    <meta name="wap-font-scale" content="no">
+    <meta content="telephone=no" name="format-detection">
+
+</head>
+
+<body>
+
+    <div class="gift_box wrap">
+        <div class="gift_b_box">
+            <img class="gift_a" src="https://static.98ep.com/Img/mobiles/SUNACh5/gift_1.png" alt="">
+            <img class="gift_b" src="https://static.98ep.com/Img/mobiles/SUNACh5/gift_2.png" alt="">
+        </div>
+        <div class="gift_navBox">
+            <ul class="gift_nav clearfix">
+                <li class="active">
+                    <img class="gift_nav_img" src="https://static.98ep.com/Img/mobiles/SUNACh5/gift_ban1.png" alt="">
+                </li>
+                <li>
+                    <img class="gift_nav_img" src="https://static.98ep.com/Img/mobiles/SUNACh5/gift_ban2.png" alt="">
+                </li>
+                <li>
+                    <img class="gift_nav_img" src="https://static.98ep.com/Img/mobiles/SUNACh5/gift_ban3.png" alt="">
+                </li>
+                <li>
+                    <img class="gift_nav_img" src="https://static.98ep.com/Img/mobiles/SUNACh5/gift_ban4.png" alt="">
+                </li>
+            </ul>
+        </div>
+        <button class="gift_btn"><a href="./address.html"></a></button>
+    </div>
+    <script src="https://static.98ep.com/Js/common/jquery.min.js"></script>
+    <script src="https://static.98ep.com/js/Mobile/SUNACh5/layer.js"></script>
+    <script>
+        $(function () {
+
+            $(".gift_nav li").click(function () {
+                $(this).addClass("active").siblings().removeClass("active");
+                $(this).find(".gift_nav_tit").addClass("active");
+                $(this).siblings().find(".gift_nav_tit").removeClass("active")
+
+            });
+            $(".gift_nav_details").click(function () {
+                // 更多使用详情，请访问：http://layer.layui.com/mobile/
+                //自定义标题风格
+                layer.open({
+                    title: [
+                        '我是标题',
+                        'background-color: #FF4351; color:#fff;'
+                    ]
+                    , content: '标题风格任你定义。'
+                });
+                //  layer.open({
+                //      content: '您确定要刷新一下本页面吗？'
+                //      , btn: ['确定']
+                //     , yes: function (index) {
+                //         //  location.reload();
+                //          layer.close(index);
+                //     }
+                //  });
+            });
+
+        })
+    </script>
+</body>
+
+</html>

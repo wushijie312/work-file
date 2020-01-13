@@ -1,0 +1,81 @@
+/*
+* @Author: NiceMing
+* @Date:   2018-03-11 15:26:02
+*/
+@import './public.scss';
+@import './_Edit.scss';
+
+.qu-content {
+	.qu-item {
+		display: flex;
+		border: 2px solid #ccc;
+
+		&:hover {
+			background-color: #fff;
+		}
+
+		.qu-data, .ans-data {
+			display: flex;
+			flex-direction: column;
+
+			& > * {
+				height: 2rem;
+			}
+
+			.echart {
+				height: 20rem;
+			}
+
+		}
+
+		.qu-data {
+			flex: 3;
+
+			p {
+				margin: 1rem 0 0 4rem;
+			}
+
+		}
+
+		.ans-data {
+			flex: 2;
+
+			.outerBar {
+				position: relative;
+				width: 20rem;
+				height: 1.2rem;
+				margin: 1.6rem 0 0 0;
+				font-size: 1.2rem;
+				border: 1px solid #ccc;
+			}
+
+			.innerBar {
+				display: block;
+				width: 0;
+				height: 100%;
+				background-color: $orange;
+				transition: width .5s;
+			}
+
+			.scaleNum {
+				position: absolute;
+				top: 0;
+				right: -4rem;
+			}
+
+		}
+
+	}
+
+}
+
+#backBtn {
+  width: 8rem;
+  height: 3rem;
+  margin: 0 auto;
+  line-height: 3rem;
+  cursor: pointer;
+  text-align: center;
+  color: #fff;
+  @include add-btn;
+}

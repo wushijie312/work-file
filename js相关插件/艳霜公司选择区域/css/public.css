@@ -1,0 +1,42 @@
+﻿body,html{position:relative;width:100%;height:100%;font-family:Microsoft Yahei}
+.container{position:relative;width:100%;height:auto}
+.wrapper{position:relative;margin:0 auto;width:1200px}
+.fl{float:left}
+.fr{float:right}
+.clearfix:after,.clearfix:before{display:table;content:" "}
+.clearfix:after{clear:both;visibility:hidden;height:0;line-height:0}
+em,i{font-style:normal}
+.slh{text-overflow:ellipsis;overflow:hidden;white-space:nowrap}
+.clear{clear:both}
+.head-rightpic{margin-right:0;width:90px;height:30px;border-radius:0}
+.layui-nav .layui-nav-item{line-height:70px}
+.layui-layout-admin .layui-header{z-index:99999;width:100%}
+.logo{width:9.4%;display:block;height:4.4rem;float:left;padding-left:20px}
+.logo img{float:left;display:block;overflow:hidden;border-radius:50%;width:3.2rem;margin-top:10px}
+.logo-right{width:64%;display:block;float:right;overflow:hidden;height:70px}
+.logo-right h3{text-align:left;font-size:1rem;font-family:PingFangSC-Regular;font-weight:400;color:rgba(255,255,255,1);line-height:70px}
+.logo-right p{font-size:.8rem;font-family:PingFangSC-Regular;font-weight:400;color:rgba(255,255,255,1);line-height:1rem}
+.headnav-min li{float:left;text-align:center;margin-top:1rem;line-height:2.5rem}
+.headnav-min li a{font-size:.8rem;font-family:PingFangSC-Regular;font-weight:400;color:rgba(255,255,255,1)}
+.headnav-min li a:hover{color:#d3b365}
+.activea{color:#d4b365!important}
+.headnav-min li i{color:#686e74;margin-left:1.6rem}
+.Container .header{position:fixed;top:0;left:0;z-index:999;width:100%;height:70px;border-bottom:1px solid #eee;background-color:#fff!important}
+.header{position:fixed;top:0;left:0;z-index:999;width:100%;height:70px;background-color:#151e36!important}
+.header .wrapper .main-top-nav{padding-top:33px;height:70px}
+.containerBf,.leftNav{top:70px!important}
+.leftNav .leftNavw{width:200px}
+.leftNav .leftNavw .leftListNum li a{height:50px;line-height:50px}
+.leftNav .leftNavw .layui-nav-tree .layui-nav-item a:hover{background-color:transparent}
+.leftNav .leftNavw .layui-nav-tree .layui-nav-bar{background-color:#ffe097}
+.headnav-min{display:block;float:left;width:72%}
+.width2{color:#686e74;margin-left:2%;margin-right:2%;display:block}
+.header-demo .layui-layout-right{display:block;float:right}
+.leftNav .leftNavw .leftListNum .active{background:rgba(212,179,101,1)}
+.layui-table-tool .layui-table-tool-self .layui-inline[lay-event]{border:none}
+.layui-table-tool-self{width:30px}
+.layui-table-tool-self .layui-icon-export,.layui-table-tool-self .layui-icon-print{display:none!important}
+@media screen and (max-width:1500px){.logo{width:14%}
+.logo-right{width:60%}
+}
+.layui-table-page .layui-laypage{margin:0;float:right}

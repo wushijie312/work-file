@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<script>
+       let base = '/Users/admin/Desktop/bigscreen';
+    let basePath = base+'/boot';
+</script><script>
+    let reportUrl={
+        "index":basePath+"/index",
+        "list":basePath+"/list",
+        "add":basePath+"/add",
+        "edit":basePath+"/edit",
+        "view":basePath+"/view",
+        "queryById":basePath+"/queryById"
+    }
+</script>
+<html class="no-js">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title></title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="./boot/cdn/axios.min.js"></script>
+    <script src="./boot/cdn/vue.min.js"></script>
+    <link href="./boot/cdn/animate.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./boot/cdn/element-ui/theme-chalk/index.css" />
+    <script src="./boot/cdn/element-ui/index.js"></script>
+    <link rel="stylesheet" href="./boot/css/common.css" />
+    <link rel="stylesheet" href="./boot/lib/index.css" />
+    <link rel="stylesheet" href="./boot/cdn/swiper.min.css" />
+    <script src="./boot/js/components.js"></script>
+    <script src="./boot/cdn/swiper.min.js"></script>
+    <script src="./boot/cdn/echarts.min.js"></script>
+    <script src="./boot/cdn/echarts-wordcloud.min.js"></script>
+    <script src="./boot/js/theme/avue.project.js"></script>
+    <script src="./boot/js/theme/halloween.project.js"></script>
+    <script src="./boot/js/theme/wonderland.project.js"></script>
+    <script src="./boot/js/common.js"></script>
+    <script src="./boot/js/utils.js"></script>
+    <script src="./boot/lib/avue.min.js"></script>
+
+    <!-- <link rel="stylesheet" href="./boot/css/style.css" />
+    <link rel="stylesheet" href="./boot/css/iconfont.css" />
+    <link rel="stylesheet" href="./boot/css/iconfont/iconfont.css">
+    <link rel="stylesheet" href="./boot/css/iconfont1/iconfont.css">
+    <link rel="stylesheet" href="./boot/css/closefont/iconfont.css"> -->
+
+    <!-- <script src="./boot/cdn/echarts.min.js"></script>
+    <script src="./boot/cdn/Sortable.min.js"></script>
+    <script src="./boot/cdn/vuedraggable.umd.min.js"></script>
+    <script src="./boot/js/map.js"></script>
+    <script src="./boot/js/colorOption.js"></script>
+    <script src="./boot/js/imgOption.js"></script>
+    <script src="./boot/js/dicOption.js"></script> -->
+    <!--图表初始化数据-->
+    <script src="./boot/js/china.js"></script>
+
+     <script src="./boot/map/register_map.js"></script>
+    <script src="./boot/js/components/province_map.js"></script>
+    <script src="./boot/js/components/virtualmap.js"></script>
+    <script src="./boot/js/components/geo_coord.js"></script>
+
+    <script src="./boot/map/init_virtualmap.js"></script>
+    <script src="./boot/map/geo_coord_data.js"></script>
+    <script src="./boot/map/init_geo_coord.js"></script>
+    <style>
+        #app {
+          position: relative;
+          width: 100%;
+          height: 100%;
+            overflow: visible;
+        }
+    
+        .content {
+          transform-origin: 0 0;
+          background-color: #333;
+        }
+      </style>
+</head>
+
+<body>
+    <div id="app">
+      <div class="content" :style="styleName">
+        <avue-draggable disabled :index="index" :z-index="item.zIndex" v-for="(item,index) in list"
+          :width="item.component.width" :height="item.component.height" :key="index" :top="item.top" :left="item.left"
+          v-show="!item.destruction && !item.display">
+          <avue-echart-slide v-if="item.component.prop==='slide'" :option="item.component.option" :width="item.width"
+            :height="item.height">
+            <div class="swiper-slide" v-for="(citem,cindex) in item.child.index" :key="citem">
+              <component :width="item.component.width" :height="item.component.height" :ref="'list_'+index" disabled
+                :id="'component_'+index" :is="'avue-echart-'+list[citem].component.name"
+                :component="list[citem].component" :data="list[citem].data" :option="list[citem].component.option"
+                :theme="list[citem].component.option.theme" :url="list[citem].url" :child="list[citem].child"
+                :time="list[citem].time" :home-url="config.url" :data-method="list[citem].dataMethod"
+                :data-type="list[citem].dataType" :data-query="handleGetQuery(list[citem])"
+                :data-append="list[citem].dataAppend" :click="handleConClick" :formatter="list[citem].formatter"
+                :label-formatter="list[citem].labelFormatter" :click-formatter="list[citem].clickFormatter"
+                :data-formatter="list[citem].dataFormatter" :title-formatter="list[citem].titleFormatter">
+              </component>
+            </div>
+          </avue-echart-slide>
+  
+          <component v-else :width="item.component.width" :height="item.component.height" :ref="'list_'+index"
+            :id="'component_'+index" :is="'avue-echart-'+item.component.name" :component="item.component"
+            :data="item.data" :option="item.component.option" :theme="item.component.option.theme" :url="item.url"
+            :child="item.child" :time="item.time" :home-url="config.url" :data-method="item.dataMethod"
+            :data-type="item.dataType" :data-query="handleGetQuery(item)" :data-append="item.dataAppend"
+            :click="handleConClick" :formatter="item.formatter" :label-formatter="item.labelFormatter"
+            :click-formatter="item.clickFormatter" :data-formatter="item.dataFormatter"
+            :title-formatter="item.titleFormatter">
+          </component>
+  
+        </avue-draggable>
+      </div>
+    </div>
+  </body>
+  <script>
+    new Vue({
+      el: '#app',
+      data() {
+        return {
+            url:{
+                "queryById":basePath+"/queryById",
+            },
+          scale: 1,
+          config: config,
+          list: list
+        }
+      },
+      created() {
+  
+      },
+      mounted() {
+          let id = getQueryString('id');
+          if(!id){
+              return;
+          }
+  
+          const loading = this.$loading({
+              lock: true,
+              text: '正在加载中，请稍后',
+              spinner: 'el-icon-loading',
+              background: 'rgba(0, 0, 0, 0.7)'
+          });
+          getReportData(this.url.queryById+"?id="+id,(report)=>{
+              loading.close();
+              this.list = report.desScreenItemJson;
+              this.config = report.desScreenMainJson;
+              this.setScale();
+              window.onresize = () => {
+                  this.initData();
+                  this.setScale();
+              }
+  
+          });
+  
+      },
+      computed: {
+        styleName() {
+          const scale = this.scale;
+          return Object.assign({
+            transform: "scale("+scale+","+scale+")",
+            width: this.setPx(this.config.width),
+            height: this.setPx(this.config.height),
+            backgroundColor: this.config.backgroundColor
+          }, (() => {
+              let backgroundImage = this.config.backgroundImage;
+            if (backgroundImage) {
+                if (backgroundImage) {
+                    if(!backgroundImage.startsWith("http")){
+                        backgroundImage = basePath+backgroundImage;
+                    }
+                }
+              return {
+                background: "url("+backgroundImage+") 0% 0% / 100% 100% rgb(3, 12, 59)",
+              }
+            }
+            return
+          })())
+        },
+      },
+      methods: {
+        initData() {
+          if ((this.config.mark || {}).show) {
+            this.watermark(this.config.mark);
+          }
+        },
+        handleGetQuery(item) {
+          return Object.assign(this.deepClone(this.config.query), item.dataQuery)
+        },
+        handleConClick({ type, child, value }) {
+          if (type === 'tabs') {
+            const indexList = child.index;
+            indexList.forEach((index) => {
+              const paramName = child.paramName;
+              let url = this.list[index].url;
+              if (url) {
+                this.list[index].url = addUrlParam(url, paramName, value);
+                this.$refs['list_' + index].forEach(ele => {
+                  ele.updateData();
+                })
+              }
+            })
+          }
+        },
+        setScale() {
+          this.scale = (window.innerWidth / this.config.width)
+        },
+      }
+    })
+  </script>
+  
+  </html>
